@@ -103,15 +103,30 @@ function validatePwdConfirm(pwd,pwdConfirm,error){
   }
 }
 
-function emailExist(name, error){
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-        if(request.readyState === 4 && request.status === 200) {
-            var emails = JSON.parse(request.responseText);
+function emailExist(email, error){
+    $.ajax({
+        url: './script/emailExist.php',
+        type: 'POST',
+        dataType: "json",
+        data: {
+            email: email
+        },
+        success : function(code_html, statut){
+        },
+
+        error : function(resultat, statut, erreur){
+        },
+
+        complete : function(resultat, statut){
+            if(resultat.responseText === "1"){
+                error.style.visibility = 'visible';
+                error.style.color = '#FF0000';
+            }else{
+                error.style.visibility = 'hidden';
+            }
         }
-    };
-    request.open('GET', 'script/emailExist.php');
-    request.send();
+
+    })
 }
 
 

@@ -5,6 +5,7 @@
  * Date: 06/03/2019
  * Time: 15:22
  */
+include "../functions.php";
 if (!empty($_POST["email"])) {
     $_POST["email"] = strtolower(trim($_POST["email"]));
 
@@ -21,8 +22,6 @@ if (!empty($_POST["email"])) {
 
 // Fetch data with the query
     $result = $query->fetch();
+    echo !empty($result) ? "1" : "0";
 
-    if (!empty($result)) {
-        $error = true;
-    }
 }
