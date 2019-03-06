@@ -3,7 +3,7 @@ function validateForm() {
   var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var regexPhone = /^(0|\+33)[1-9]([-.: ]?[0-9]{2}){4}$/;
   var regexPostalCode = /^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/;
- 
+
 
    if(!validateName(document.forms["registerForm"]["name"].value, document.getElementById('errorName'),2,60)){
      error = true;
@@ -51,22 +51,22 @@ function validateForm() {
 
 function validateName(name, error, min , max) {
   if (name.length < min || name.length > max) {
-    error.style.visibility = 'visible';
+    error.style.display = 'inline';
     error.style.color = '#FF0000';
     return false;
   }else{
-    error.style.visibility = 'hidden';
+    error.style.display = 'none';
     return true
   }
 }
 
 function validateRegex(name, error, regex){
   if(!regex.test(name)){
-    error.style.visibility = 'visible';
+    error.style.display = 'inline';
     error.style.color = '#FF0000';
     return false;
   }else{
-    error.style.visibility = 'hidden';
+    error.style.display = 'none';
     return true
   }
 }
@@ -79,26 +79,26 @@ function validateBirthday(name, error){
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
   }
-  
+
    if(isNaN(age) || age < 18|| age > 111){
-      error.style.visibility = 'visible';
+      error.style.display = 'inline';
       error.style.color = '#FF0000';
       return false;
    }
    else
    {
-      error.style.visibility = 'hidden';
+     error.style.display = 'none';
       return true;
    }
 }
 
 function validatePwdConfirm(pwd,pwdConfirm,error){
   if (pwd !== pwdConfirm) {
-    error.style.visibility = 'visible';
+    error.style.display = 'inline';
     error.style.color = '#FF0000';
     return false;
   }else{
-    error.style.visibility = 'hidden';
+    error.style.display = 'none';
     return true
   }
 }
@@ -119,10 +119,10 @@ function emailExist(email, error){
 
         complete : function(resultat, statut){
             if(resultat.responseText === "1"){
-                error.style.visibility = 'visible';
+                error.style.display = 'inline';
                 error.style.color = '#FF0000';
             }else{
-                error.style.visibility = 'hidden';
+                error.style.display = 'none';
             }
         }
 

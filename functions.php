@@ -13,7 +13,7 @@ function connectDB(){
     die("SQL error:" . $e->getMessage());
   }
 */
- 
+
   try {
     $connection = new PDO($dsn, DBUSER, DBPWD);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
