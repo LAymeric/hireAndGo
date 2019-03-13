@@ -29,4 +29,16 @@
   define('ALREADY_REGISTER', 'Déjà inscrit?');
   define('VALIDATE', 'Valider');
   define('CANCEL', 'Anuler');
+  define('INVALID_NAME', 'Nom invalide (entre 2 et 60 caractères)');
+  define('INVALID_FIRSTNAME', 'Prénom invalide (entre 2 et 60 caractères)');
+  define('INVALID_BIRTHDATE', 'Vous devez avoir plus de 18 ans');
+  define('INVALID_EMAIL', 'L\'adresse email existe déjà');
+  define('INVALID_EMAIL2', 'L\'Adresse email invalide');
+  define('INVALID_TOWN', 'Mauvaise ville');
+  define('INVALID_POSTAL_CODE', 'Code postale invalide');
+  define('INVALID_ADDRESS', 'Adresse invalide (entre 5 et 60 caractères)');
+  define('INVALID_COUNTRY', 'Mauvais Pays');
+  define('INVALID_PHONE', 'Numéro invalide');
+  define('INVALID_PASSWORD', 'Mot de passe invalide (mini 8 caractères)');
+  define('INVALID_CONFIRMATION', 'Confirmation invalide');
 ?>

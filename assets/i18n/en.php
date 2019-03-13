@@ -29,4 +29,16 @@
   define('ALREADY_REGISTER', 'Already Register?');
   define('VALIDATE', 'Validate');
   define('CANCEL', 'Canccel');
+  define('INVALID_NAME', 'Invalide name(between 2 and 60 characters)');
+  define('INVALID_FIRSTNAME', 'Invalide firstname(between 2 and 60 characters)');
+  define('INVALID_BIRTHDATE', 'You must be older than 18');
+  define('INVALID_EMAIL', 'The email address already exists');
+  define('INVALID_EMAIL2', 'Wrong email Adresse email');
+  define('INVALID_TOWN', 'Wrong town');
+  define('INVALID_POSTAL_CODE', 'Wrong postal code');
+  define('INVALID_ADDRESS', 'Wrong Addresse (between 5 and 60 characters)');
+  define('INVALID_COUNTRY', 'Wrong country');
+  define('INVALID_PHONE', 'Wrong phone');
+  define('INVALID_PASSWORD', 'Wrong password (mini 8 characters)');
+define('INVALID_CONFIRMATION', 'Wrong confirmation');
 ?>
