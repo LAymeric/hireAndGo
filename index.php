@@ -9,7 +9,7 @@
 
       <!-- Trigger the modal with a button -->
       <p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal">Commander une course !</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal"><?php echo COMMAND_BUTTON; ?></button>
       </p>
     </div>
 
