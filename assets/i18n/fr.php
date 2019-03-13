@@ -8,4 +8,25 @@
   define('BOOKING', 'Réserver');
   define('LOGOUT', 'Déconnexion');
   define('LOGIN', 'Connexion');
+  define('NEWSLETTER', 'Inscrivez vous à la Newsletter');
+  define('EMAIL_PLACEHOLDER', 'Entrez votre email');
+  define('GUARANTY', 'Nous ne partagerons jamais votre adresse email avec quiconque.');
+  define('SUBMIT', 'Soumettre');
+  define('NAME', 'Nom');
+  define('FIRSTNAME', 'Prénom');
+  define('BIRTHDATE', 'Date de naissance');
+  define('ADDRESS', 'Address');
+  define('EMAIL', 'Email');
+  define('TOWN', 'Ville');
+  define('POSTAL_CODE', 'Code Postal');
+  define('COUNTRY', 'Pays');
+  define('PHONE', 'Numéro de Téléphone');
+  define('PASSWORD', 'Mot de passe');
+  define('CONFIRMATION', 'Confirmation');
+  define('REGISTER', 'S\'inscrire');
+  define('CGU_ACCEPT', 'j\'ai lu et j\'accepte les');
+  define('CGU', 'Conditions d\'utilisation');
+  define('ALREADY_REGISTER', 'Déjà inscrit?');
+  define('VALIDATE', 'Valider');
+  define('CANCEL', 'Anuler');
 ?>

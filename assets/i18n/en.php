@@ -8,4 +8,25 @@
   define('BOOKING', 'Booking');
   define('LOGOUT', 'Logout');
   define('LOGIN', 'Login');
+  define('NEWSLETTER', 'Subscribe to the Newsletter');
+  define('EMAIL_PLACEHOLDER', 'Enter your email');
+  define('SUBMIT', 'Submit');
+  define('GUARANTY', 'We will never share your email address with anyone.');
+  define('NAME', 'Name');
+  define('FIRSTNAME', 'Firstname');
+  define('BIRTHDATE', 'Birth date');
+  define('ADDRESS', 'Address');
+  define('EMAIL', 'Email');
+  define('TOWN', 'Town');
+  define('POSTAL_CODE', 'Postal Code');
+  define('COUNTRY', 'Country');
+  define('PHONE', 'Phone number');
+  define('PASSWORD', 'Password');
+  define('CONFIRMATION', 'Confirmation');
+  define('REGISTER', 'Register');
+  define('CGU_ACCEPT', 'I read and accept the ');
+  define('CGU', 'Using Conditions');
+  define('ALREADY_REGISTER', 'Already Register?');
+  define('VALIDATE', 'Validate');
+  define('CANCEL', 'Canccel');
 ?>

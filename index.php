@@ -58,17 +58,17 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 mx-auto">
-      <h2 class="text-center mb-3">Inscrivez-vous à la Newsletter</h2>
+      <h2 class="text-center mb-3"><?php NEWSLETTER ?></h2>
       <form>
         <div class="row">
           <div class="form-group col-12">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre email">
-            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre adresse email avec quiconque.</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='<?php echo EMAIL_PLACEHOLDER; ?>'>
+            <small id="emailHelp" class="form-text text-muted"><?php echo GUARANTY; ?></small>
           </div>
         </div>
         <div class="row">
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-secondary">Soumettre</button>
+            <button type="submit" class="btn btn-secondary"><?php echo SUBMIT; ?></button>
           </div>
         </div>
       </form>
@@ -87,14 +87,14 @@
           <div class="modal-content">
             <div classe="test">
             <div class="modal-header">
-                <h4 class="modal-title" >S'inscrire</h4>
+                <h4 class="modal-title" ><?php echo REGISTER ?> </h4>
             </div>
             <div class="modal-body">
               <form name="registerForm" method="POST" action="script/saveUser.php" onsubmit="return validateForm()" >
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="name">Nom</label>
+                      <label for="name"><?php echo NAME; ?></label>
                       <input type="text" class="form-control" placeholder="Dupont" name="name"  required="required">
                       <div id="errorName" class="error" style="visibility:hidden">Nom invalide (entre 2 et 60 caractères)</div>
                     </div>
@@ -102,7 +102,7 @@
 
                <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="firstname">Prénom</label>
+                    <label for="firstname"><?php echo FIRSTNAME; ?></label>
                     <input type="text" class="form-control" placeholder="Yannis" name="firstname" required="required">
                     <div id="errorFirstname" class="error" style="display: none">Prénom invalide (entre 2 et 60 caractères)</div>
                   </div>
@@ -112,7 +112,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="birthday">Date de naissance</label>
+                    <label for="birthday"><?php echo BIRTHDATE; ?></label>
                     <input type="date" class="form-control" name="birthday" required="required">
                     <div id="errorBirthday" class="error" style="display:none">Vous devez avoir plus de 18 ans</div>
                   </div>
@@ -131,7 +131,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="city">Ville</label>
+                    <label for="city"><?php echo TOWN; ?></label>
                     <input type="text" class="form-control" placeholder="Paris" name="city" required="required">
                     <div id="errorCity" class="error" style="display:none">Mauvaise ville</div>
                   </div>
@@ -139,7 +139,7 @@
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="postalCode">Code postal</label>
+                    <label for="postalCode"><?php echo POSTAL_CODE; ?></label>
                     <input type="text" class="form-control" placeholder="75000" name="postalCode" required="required">
                     <div id="errorPostalCode" class="error" style="display:none">Code postale invalide</div>
                   </div>
@@ -149,7 +149,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="address">Adresse</label>
+                    <label for="address"><?php echo ADDRESS; ?></label>
                     <input type="text" class="form-control" placeholder="36 Rue Dupont" name="address" required="required">
                     <div id="errorAddress" class="error" style="display:none">Adresse invalide (entre 5 et 60 caractères)</div>
                   </div>
@@ -157,7 +157,7 @@
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="country">Pays</label>
+                    <label for="country"><?php echo COUNTRY; ?></label>
                     <select name="country">
                       <option value="France" selected="selected">France </option>
 
@@ -422,7 +422,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="phone">Numéro de téléphone</label>
+                    <label for="phone"><?php echo PHONE; ?></label>
                     <input type="text" class="form-control" placeholder="06 XX XX XX XX" name="phone" required="required">
                     <div id="errorPhone" class="error" style="display:none">numéro invalide</div>
                   </div>
@@ -432,7 +432,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="pwd">Mot de passe</label>
+                    <label for="pwd"><?php echo PASSWORD; ?></label>
                     <input type="password" class="form-control" name="pwd" required="required">
                     <div id="errorPwd" class="error" style="display:none">Mot de passe invalide (mini 8 caractères)</div>
                   </div>
@@ -440,7 +440,7 @@
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="pwdConfirm">Confirmation</label>
+                    <label for="pwdConfirm"><?php echo CONFIRMATION; ?></label>
                     <input type="password" class="form-control" name="pwdConfirm" required="required">
                     <div id="errorPwdConfirm" class="error" style="display:none">Confirmation invalide</div>
                   </div>
@@ -449,19 +449,19 @@
 
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="cgu" required="required">
-                <label class="form-check-label" style="margin-bottom:10px;">j'ai lu et j'accepte les <a href="#">conditions d'utilisations</a></label>
+                <label class="form-check-label" style="margin-bottom:10px;"><?php echo CGU_ACCEPT ?> <a href="#"><?php echo CGU ?></a></label>
               </div>
 
               <div class="form-group">
-                <a href="login.php">Déja inscrit ?</a>
+                <a href="login.php"><?php echo ALREADY_REGISTER ?> </a>
               </div>
 
               <div class="form-group" style="text-align:center;">
-                <button type="submit" class="btn btn-secondary">Valider</button>
+                <button type="submit" class="btn btn-secondary"><?php echo VALIDATE ?> </button>
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo CANCEL ?> </button>
             </div>
           </div>
 
