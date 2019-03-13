@@ -29,21 +29,21 @@ if(!isset($navbarItem)) $navbarItem = 'home';
             </a>
           </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.php">Contact</a>
+                <a class="nav-link" href="contact.php"><?php echo CONTACT; ?></a>
             </li>
           <?php if (isConnected()){?>
                   <li class="nav-item">
-                    <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="profile.php">Profile</a>
+                    <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="profile.php"><?php echo PROFILE; ?></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="booking.php">Réserver</a>
+                    <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="booking.php"><?php echo BOOKING; ?></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="logout.php">Déconnexion</a>
+                      <a class="nav-link" href="logout.php"><?php echo LOGOUT; ?></a>
                   </li>
           <?php } else{?>
                   <li class="nav-item">
-                      <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="login.php">Connexion</a>
+                      <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="login.php"><?php echo LOGIN; ?></a>
                   </li>
               <?php } ?>
 
