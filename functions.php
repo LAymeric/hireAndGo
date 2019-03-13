@@ -1,6 +1,9 @@
 <?php
 require "dbConst.php";
-session_start();
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Connection to database
 function connectDB(){
@@ -35,7 +38,7 @@ function createToken($length) {
 // Check if a user is connected
 function isConnected() {
 
-  if (isset($_SESSION["auth"])) {
+  if (isset($_SESSION["auth"])){
     return true;
   }
 
