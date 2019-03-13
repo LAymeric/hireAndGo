@@ -1,10 +1,11 @@
 <?php
     include "head.php";
     include "navbar.php";
+    include "script/i18n.php";
 ?>
     <div class="wrapper" id="wrapper-index">
-      <h1>Hire'N Go</h1>
-      <h2>VOYAGEZ DANS LE LUXE</h2>
+      <h1><?php echo MAIN_TITLE; ?></h1>
+      <h2><?php echo MAIN_SUBTITLE; ?></h2>
 
       <!-- Trigger the modal with a button -->
       <p>

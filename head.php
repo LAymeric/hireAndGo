@@ -39,10 +39,6 @@
 
     <!-- Functions js-->
     <script src="js/utils.js"></script>
-
-
-
-
   </head>
 
   <body>
