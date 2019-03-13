@@ -1,4 +1,13 @@
     <!-- Footer -->
+    <script>
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+    document.location.reload()
+}
+  </script>
     <footer class="py-5">
       <div class="container">
         <div class="row">
@@ -27,13 +36,13 @@
             </ul>
           </div>
         </div>
+        <div>
+          <button type="button" onclick="setCookie('lang', 'fr', 30)">FR</button>
+          <button type="button" onclick="setCookie('lang', 'en', 30)">EN</button>
+        </div>
       </div>
     </footer>
 
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 

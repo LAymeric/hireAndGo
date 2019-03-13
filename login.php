@@ -26,7 +26,7 @@
 
         <div class="push"></div>
         <div class="form-group" style="text-align:center;">
-            <button type="submit" class="btn btn-primary">Se connecter</span></button>
+            <button type="submit" class="btn btn-info">Se connecter</span></button>
         </div>
 
         <p class="font-weight-light">

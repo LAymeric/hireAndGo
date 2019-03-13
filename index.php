@@ -1,14 +1,15 @@
 <?php
     include "head.php";
     include "navbar.php";
+    include "script/i18n.php";
 ?>
     <div class="wrapper" id="wrapper-index">
-      <h1>Hire'N Go</h1>
-      <h2>VOYAGEZ DANS LE LUXE</h2>
+      <h1><?php echo MAIN_TITLE; ?></h1>
+      <h2><?php echo MAIN_SUBTITLE; ?></h2>
 
       <!-- Trigger the modal with a button -->
       <p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal">Commander une course !</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal"><?php echo COMMAND_BUTTON; ?></button>
       </p>
     </div>
 
