@@ -46,8 +46,18 @@ if(!isset($navbarItem)) $navbarItem = 'home';
                       <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="login.php"><?php echo LOGIN; ?></a>
                   </li>
               <?php } ?>
+                  <li class="nav-item dropdown <?php if($navbarItem ==='new') echo ' active'?>">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      langue
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <button class="dropdown-item" type="button" onclick="setCookie('lang', 'fr', 30)">Fr</button>
+                      <button class="dropdown-item" type="button" onclick="setCookie('lang', 'en', 30)">En</button>
+                    </div>
+                  </li>
 
         </ul>
       <!--</div>-->
     </div>
   </nav>
+

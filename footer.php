@@ -36,10 +36,6 @@ function setCookie(cname, cvalue, exdays) {
             </ul>
           </div>
         </div>
-        <div>
-          <button type="button" onclick="setCookie('lang', 'fr', 30)">FR</button>
-          <button type="button" onclick="setCookie('lang', 'en', 30)">EN</button>
-        </div>
       </div>
     </footer>
 
