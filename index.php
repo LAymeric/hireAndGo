@@ -1,7 +1,7 @@
 <?php
     include "head.php";
     include "navbar.php";
-    include "script/i18n.php";
+
 ?>
     <div class="wrapper" id="wrapper-index">
       <h1><?php echo MAIN_TITLE; ?></h1>

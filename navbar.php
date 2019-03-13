@@ -24,7 +24,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
         </div>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link<?php if($navbarItem === 'home') echo ' active'?>" href="index.php">Accueil
+            <a class="nav-link<?php if($navbarItem === 'home') echo ' active'?>" href="index.php"><?php echo HOME; ?>
               <span class="sr-only">(current)</span>
             </a>
           </li>
