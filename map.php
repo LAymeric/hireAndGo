@@ -4,10 +4,43 @@ include "navbar.php";
 ?>
 <div style="margin-top:100px">
     <label for="start">Départ:</label>
-    <input name="start" type="text" id="start" onchange="onAddressChange()"/>
+    <input name="start" type="text" id="start"/>
     <label for="end">Arrivée:</label>
     <input name="end" type="text" id="end"/>
+    <button type="button" onclick="searchAddress()">Rechercher</button>
     <div id="map" style="width:100%; height:500px; margin-top:20px"></div>
+    <script>
+
+        function searchAddress() {
+            var start = document.getElementById("start");
+            var end = document.getElementById("end");
+            var requestStart = {
+                query: start.value,
+                fields: ['name']
+            };
+            var requestEnd = {
+                query: end.value,
+                fields: ['name', 'geometry']
+            };
+            var service = new google.maps.places.PlacesService(map);
+
+            service.findPlaceFromQuery(requestStart, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    start.value = results[0].name
+                    console.log(results[0].name)
+                }else {
+                    alert("no result for start")
+                }
+            });
+            service.findPlaceFromQuery(requestEnd, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    end.value = results[0].name
+                }else {
+                    alert("no result for end")
+                }
+            });
+        }
+    </script>
     <script>
         var map;
         //todo mettre dans un fichier js séparé
@@ -35,7 +68,7 @@ include "navbar.php";
 
     </script>
     <script>
-        function onAddressChange() {
+        /*function onAddressChange() {
             var input = document.getElementById("start").value
             if(input.length < 3){
                 return
@@ -53,7 +86,7 @@ include "navbar.php";
                 }
             });
 
-        }
+        }*/
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsKxdujg4iLb1HsqBEyhUqTxokbiuYwGU&callback=initMap&libraries=places">
