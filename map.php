@@ -15,8 +15,8 @@ include "navbar.php";
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsKxdujg4iLb1HsqBEyhUqTxokbiuYwGU&callback=initMap&libraries=places">
     //todo mettre l'api key dans un fichier de constantes
-</script>
+    </script>
 </div>
 <?php
-include "footer.php";
+    include "footer.php";
 ?>
