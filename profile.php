@@ -1,8 +1,8 @@
 <?php
 	$navbarItem = 'profile';
-	include "navbar.php";
-	require_once "head.php";
-	include_once "class/User.php";
+    include "head.php";
+    include "navbar.php";
+    include "class/User.php";
 
 	$user = new User($_SESSION["id"]);
 	$user->selectUser($_SESSION["id"]);
