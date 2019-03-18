@@ -76,7 +76,7 @@ nav a:hover {
 }
 #wrapper-index {
   background-image: url("../vendor/images/welcomepage/background/background.png");
-  height: 650px;
+  height: 750px;
 }
 
 #wrapper-login {
@@ -131,6 +131,7 @@ footer a:hover {
 .modal-body{
   color: #000;
 }
+
 
 h4{
   margin:0 auto;

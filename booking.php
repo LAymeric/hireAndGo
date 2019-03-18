@@ -32,7 +32,7 @@
                     <input type="time" class="form-control" name="reservation_time" required="required">
                 </div>
                 </div>
-            </div>    
+            </div>
 
             <div class="row">
                 <div class="col-sm-6">
@@ -83,7 +83,7 @@
             </div>
 
             <div class="form-group" style="text-align:center;">
-            <button type="submit" class="btn btn-secondary">Valider</button>
+            <button type="submit" class="btn btn-info">Valider</button>
             </div>
         </form>
     </div>

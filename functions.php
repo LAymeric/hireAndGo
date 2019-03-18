@@ -1,6 +1,9 @@
 <?php
 require "dbConst.php";
-session_start();
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Connection to database
 function connectDB(){
@@ -13,7 +16,7 @@ function connectDB(){
     die("SQL error:" . $e->getMessage());
   }
 */
- 
+
   try {
     $connection = new PDO($dsn, DBUSER, DBPWD);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -35,7 +38,7 @@ function createToken($length) {
 // Check if a user is connected
 function isConnected() {
 
-  if (isset($_SESSION["auth"])) {
+  if (isset($_SESSION["auth"])){
     return true;
   }
 
