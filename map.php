@@ -80,7 +80,7 @@ include "navbar.php";
                 if (status === 'OK') {
                     directionsDisplay.setDirections(response);
                 } else {
-                    window.alert('Directions request failed due to ' + status);
+                    alert('Directions request failed due to ' + status);
                 }
             });
         }
@@ -109,7 +109,7 @@ include "navbar.php";
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsKxdujg4iLb1HsqBEyhUqTxokbiuYwGU&callback=initMap&libraries=places">
-    //todo mettre lapi key dans un fichier de constantes
+    //todo mettre l'api key dans un fichier de constantes
 </script>
 </div>
 <?php
