@@ -52,4 +52,14 @@
   define('MAIN_TITLE_PROFILE', 'Client Dashboard');
   define('EDIT_PROFILE', 'Edit my profile');
   define('EDIT_PASSWORD', 'Edit my password');
+  define('MAIN_TITLE_BOOKING','Booking');
+  define('MAIN_SUBTITLE_BOOKING','Let\'s go !');
+  define('DATE_DEPARTURE','Departure date');
+  define('DATE_HOURS','Departure hours');
+  define('ADDRESS_DEPARTURE','Departure address');
+  define('POSTAL_CODE_DEPARTURE','Departure postal code');
+  define('TOWN_DEPARTURE','Departure town');
+  define('ADDRESS_DESTINATION','Destination address');
+  define('POSTAL_CODE_DESTINATION','Destination postal code');
+  define('TOWN_DESTINATION','Destination town');
 ?>
