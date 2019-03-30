@@ -52,4 +52,14 @@
   define('MAIN_TITLE_PROFILE', 'Espace Client');
   define('EDIT_PROFILE', 'Mise à jour de mes informations');
   define('EDIT_PASSWORD', 'Changer mon mot de passe');
+  define('MAIN_TITLE_BOOKING','Reservation');
+  define('MAIN_SUBTITLE_BOOKING','En route !');
+  define('DATE_DEPARTURE','Date de départ');
+  define('DATE_HOURS','Heure de départ');
+  define('ADDRESS_DEPARTURE','Adresse de départ');
+  define('POSTAL_CODE_DEPARTURE','Code postale de départ');
+  define('TOWN_DEPARTURE','Ville de départ');
+  define('ADDRESS_DESTINATION','Addresse de destination');
+  define('POSTAL_CODE_DESTINATION','Code postal d\'arrivée');
+  define('TOWN_DESTINATION','Ville de destination');
 ?>
