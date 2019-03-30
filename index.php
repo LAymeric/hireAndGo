@@ -1,14 +1,15 @@
 <?php
     include "head.php";
     include "navbar.php";
+
 ?>
     <div class="wrapper" id="wrapper-index">
-      <h1>Hire'N Go</h1>
-      <h2>VOYAGEZ DANS LE LUXE</h2>
-      
+      <h1><?php echo MAIN_TITLE; ?></h1>
+      <h2><?php echo MAIN_SUBTITLE; ?></h2>
+
       <!-- Trigger the modal with a button -->
       <p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal">Commander une course !</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal"><?php echo COMMAND_BUTTON; ?></button>
       </p>
     </div>
 
@@ -19,7 +20,7 @@
     <span class="icon-medium">
       <i class="fas fa-car"></i>
     </span>
-    
+
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit,
         <strong>Reiciendis</strong> fugit.
@@ -57,17 +58,17 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 mx-auto">
-      <h2 class="text-center mb-3">Inscrivez-vous à la Newsletter</h2>
+      <h2 class="text-center mb-3"><?php NEWSLETTER ?></h2>
       <form>
         <div class="row">
           <div class="form-group col-12">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre email">
-            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre adresse email avec quiconque.</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='<?php echo EMAIL_PLACEHOLDER; ?>'>
+            <small id="emailHelp" class="form-text text-muted"><?php echo GUARANTY; ?></small>
           </div>
         </div>
         <div class="row">
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-secondary">Soumettre</button>
+            <button type="submit" class="btn btn-secondary"><?php echo SUBMIT; ?></button>
           </div>
         </div>
       </form>
@@ -86,24 +87,24 @@
           <div class="modal-content">
             <div classe="test">
             <div class="modal-header">
-                <h4 class="modal-title" >S'inscrire</h4>
+                <h4 class="modal-title" ><?php echo REGISTER ?> </h4>
             </div>
             <div class="modal-body">
               <form name="registerForm" method="POST" action="script/saveUser.php" onsubmit="return validateForm()" >
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <div id="errorName" class="error" style="visibility:hidden">Nom invalide (entre 2 et 60 caractères)</div>
-                      <label for="name">Nom</label>
+                      <label for="name"><?php echo NAME; ?></label>
                       <input type="text" class="form-control" placeholder="Dupont" name="name"  required="required">
+                      <div id="errorName" class="error" style="display: none"> <?php echo INVALID_NAME ?></div>
                     </div>
                   </div>
 
                <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorFirstname" class="error" style="visibility:hidden">Prénom invalide (entre 2 et 60 caractères)</div>
-                    <label for="firstname">Prénom</label>
+                    <label for="firstname"><?php echo FIRSTNAME; ?></label>
                     <input type="text" class="form-control" placeholder="Yannis" name="firstname" required="required">
+                    <div id="errorFirstname" class="error" style="display: none"><?php echo INVALID_FIRSTNAME ?></div>
                   </div>
                 </div>
               </div>
@@ -111,19 +112,18 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div class="error" style="visibility:hidden">push</div>
-                    <div id="errorBirthday" class="error" style="visibility:hidden">Vous devez avoir plus de 18 ans</div>
-                    <label for="birthday">Date de naissance</label>
+                    <label for="birthday"><?php echo BIRTHDATE; ?></label>
                     <input type="date" class="form-control" name="birthday" required="required">
+                    <div id="errorBirthday" class="error" style="display:none"><?php echo INVALID_BIRTHDATE ?></div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorEmailExist" class="error" style="visibility:hidden">Adresse email exeste déjà</div>
-                    <div id="errorEmail" class="error" style="visibility:hidden">Adresse email invalide</div>
                     <label for="email">Email</label>
                     <input type="text" class="form-control" placeholder="du@pont.fr" name="email" required="required">
+                    <div id="errorEmailExist" class="error" style="display:none"><?php echo INVALID_EMAIL ?></div>
+                    <div id="errorEmail" class="error" style="display:none"><?php echo INVALID_EMAIL2 ?></div>
                   </div>
                 </div>
               </div>
@@ -131,17 +131,17 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorCity" class="error" style="visibility:hidden">Mauvaise ville</div>
-                    <label for="city">Ville</label>
+                    <label for="city"><?php echo TOWN; ?></label>
                     <input type="text" class="form-control" placeholder="Paris" name="city" required="required">
+                    <div id="errorCity" class="error" style="display:none"><?php echo INVALID_TOWN ?></div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorPostalCode" class="error" style="visibility:hidden">Code postale invalide</div>
-                    <label for="postalCode">Code postal</label>
+                    <label for="postalCode"><?php echo POSTAL_CODE; ?></label>
                     <input type="text" class="form-control" placeholder="75000" name="postalCode" required="required">
+                    <div id="errorPostalCode" class="error" style="display:none"><?php echo INVALID_POSTAL_CODE ?></div>
                   </div>
                 </div>
               </div>
@@ -149,22 +149,21 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorAddress" class="error" style="visibility:hidden">Adresse invalide (entre 5 et 60 caractères)</div>
-                    <label for="address">Adresse</label>
+                    <label for="address"><?php echo ADDRESS; ?></label>
                     <input type="text" class="form-control" placeholder="36 Rue Dupont" name="address" required="required">
+                    <div id="errorAddress" class="error" style="display:none"><?php echo INVALID_ADDRESS ?></div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorCountry" class="error" style="visibility:hidden">Mauvais Pays</div>
-                    <label for="country">Pays</label>
-                    <select name="country"> 
+                    <label for="country"><?php echo COUNTRY; ?></label>
+                    <select name="country">
                       <option value="France" selected="selected">France </option>
 
                       <option value="Afghanistan">Afghanistan </option>
                       <option value="Afrique_Centrale">Afrique_Centrale </option>
-                      <option value="Afrique_du_sud">Afrique_du_Sud </option> 
+                      <option value="Afrique_du_sud">Afrique_du_Sud </option>
                       <option value="Albanie">Albanie </option>
                       <option value="Algerie">Algerie </option>
                       <option value="Allemagne">Allemagne </option>
@@ -173,7 +172,7 @@
                       <option value="Anguilla">Anguilla </option>
                       <option value="Arabie_Saoudite">Arabie_Saoudite </option>
                       <option value="Argentine">Argentine </option>
-                      <option value="Armenie">Armenie </option> 
+                      <option value="Armenie">Armenie </option>
                       <option value="Australie">Australie </option>
                       <option value="Autriche">Autriche </option>
                       <option value="Azerbaidjan">Azerbaidjan </option>
@@ -204,8 +203,8 @@
                       <option value="Canaries">Canaries </option>
                       <option value="Cap_vert">Cap_Vert </option>
                       <option value="Chili">Chili </option>
-                      <option value="Chine">Chine </option> 
-                      <option value="Chypre">Chypre </option> 
+                      <option value="Chine">Chine </option>
+                      <option value="Chypre">Chypre </option>
                       <option value="Colombie">Colombie </option>
                       <option value="Comores">Colombie </option>
                       <option value="Congo">Congo </option>
@@ -222,7 +221,7 @@
                       <option value="Djibouti">Djibouti </option>
                       <option value="Dominique">Dominique </option>
 
-                      <option value="Egypte">Egypte </option> 
+                      <option value="Egypte">Egypte </option>
                       <option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option>
                       <option value="Equateur">Equateur </option>
                       <option value="Erythree">Erythree </option>
@@ -256,7 +255,7 @@
                       <option value="Guyane_Francaise ">Guyane_Francaise </option>
 
                       <option value="Haiti">Haiti </option>
-                      <option value="Hawaii">Hawaii </option> 
+                      <option value="Hawaii">Hawaii </option>
                       <option value="Honduras">Honduras </option>
                       <option value="Hong_Kong">Hong_Kong </option>
                       <option value="Hongrie">Hongrie </option>
@@ -288,7 +287,7 @@
                       <option value="Liban">Liban </option>
                       <option value="Liberia">Liberia </option>
                       <option value="Liechtenstein">Liechtenstein </option>
-                      <option value="Lituanie">Lituanie </option> 
+                      <option value="Lituanie">Lituanie </option>
                       <option value="Luxembourg">Luxembourg </option>
                       <option value="Lybie">Lybie </option>
 
@@ -342,7 +341,7 @@
                       <option value="Paraguay">Paraguay </option>
                       <option value="Pays_Bas">Pays_Bas </option>
                       <option value="Perou">Perou </option>
-                      <option value="Philippines">Philippines </option> 
+                      <option value="Philippines">Philippines </option>
                       <option value="Pologne">Pologne </option>
                       <option value="Polynesie">Polynesie </option>
                       <option value="Porto_Rico">Porto_Rico </option>
@@ -365,16 +364,16 @@
                       <option value="Salvador">Salvador </option>
                       <option value="Samoa_Occidentales">Samoa_Occidentales</option>
                       <option value="Samoa_Americaine">Samoa_Americaine </option>
-                      <option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </option> 
-                      <option value="Senegal">Senegal </option> 
+                      <option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </option>
+                      <option value="Senegal">Senegal </option>
                       <option value="Seychelles">Seychelles </option>
                       <option value="Sierra Leone">Sierra Leone </option>
                       <option value="Singapour">Singapour </option>
                       <option value="Slovaquie">Slovaquie </option>
                       <option value="Slovenie">Slovenie</option>
                       <option value="Somalie">Somalie </option>
-                      <option value="Soudan">Soudan </option> 
-                      <option value="Sri_Lanka">Sri_Lanka </option> 
+                      <option value="Soudan">Soudan </option>
+                      <option value="Sri_Lanka">Sri_Lanka </option>
                       <option value="Suede">Suede </option>
                       <option value="Suisse">Suisse </option>
                       <option value="Surinam">Surinam </option>
@@ -389,11 +388,11 @@
                       <option value="Thailande">Thailande </option>
                       <option value="Tibet">Tibet </option>
                       <option value="Timor_Oriental">Timor_Oriental </option>
-                      <option value="Togo">Togo </option> 
+                      <option value="Togo">Togo </option>
                       <option value="Trinite_et_Tobago">Trinite_et_Tobago </option>
                       <option value="Tristan da cunha">Tristan de cuncha </option>
                       <option value="Tunisie">Tunisie </option>
-                      <option value="Turkmenistan">Turmenistan </option> 
+                      <option value="Turkmenistan">Turmenistan </option>
                       <option value="Turquie">Turquie </option>
 
                       <option value="Ukraine">Ukraine </option>
@@ -415,6 +414,7 @@
                       <option value="Zambie">Zambie </option>
                       <option value="Zimbabwe">Zimbabwe </option>
                     </select>
+                    <div id="errorCountry" class="error" style="display:none"><?php echo INVALID_COUNTRY ?></div>
                   </div>
                 </div>
               </div>
@@ -422,9 +422,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorPhone" class="error" style="visibility:hidden">numéro invalide</div>
-                    <label for="phone">Numéro de téléphone</label>
+                    <label for="phone"><?php echo PHONE; ?></label>
                     <input type="text" class="form-control" placeholder="06 XX XX XX XX" name="phone" required="required">
+                    <div id="errorPhone" class="error" style="display:none"><?php echo INVALID_PHONE ?></div>
                   </div>
                 </div>
               </div>
@@ -432,42 +432,42 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorPwd" class="error" style="visibility:hidden">Mot de passe invalide (mini 8 caractères)</div>
-                    <label for="pwd">Mot de passe</label>
+                    <label for="pwd"><?php echo PASSWORD; ?></label>
                     <input type="password" class="form-control" name="pwd" required="required">
+                    <div id="errorPwd" class="error" style="display:none"><?php echo INVALID_PASSWORD ?></div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <div id="errorPwdConfirm" class="error" style="visibility:hidden">Confirmation invalide</div>
-                    <label for="pwdConfirm">Confirmation</label>
+                    <label for="pwdConfirm"><?php echo CONFIRMATION; ?></label>
                     <input type="password" class="form-control" name="pwdConfirm" required="required">
+                    <div id="errorPwdConfirm" class="error" style="display:none"><?php echo INVALID_CONFIRMATION; ?></div>
                   </div>
                 </div>
               </div>
 
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="cgu" required="required">
-                <label class="form-check-label" style="margin-bottom:10px;">j'ai lu et j'accepte les <a href="#">conditions d'utilisations</a></label>
+                <label class="form-check-label" style="margin-bottom:10px;"><?php echo CGU_ACCEPT ?> <a href="#"><?php echo CGU ?></a></label>
               </div>
 
               <div class="form-group">
-                <a href="login.php">Déja inscrit ?</a>
+                <a href="login.php"><?php echo ALREADY_REGISTER ?> </a>
               </div>
 
               <div class="form-group" style="text-align:center;">
-                <button type="submit" class="btn btn-secondary">Valider</button>
+                <button type="submit" class="btn btn-secondary"><?php echo VALIDATE ?> </button>
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo CANCEL ?> </button>
             </div>
           </div>
 
         </div>
       </div>
- 
+
     </div>
 
 <?php

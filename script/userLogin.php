@@ -11,7 +11,8 @@
 
     if (password_verify($_POST["pwd"], $data["pwd"])) {
         $_SESSION["auth"]  = true;
+        $_SESSION["id"]    = $data["id"];
         header("Location: ../profile.php");
-      } 
+      }
     }
 
