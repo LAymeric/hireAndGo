@@ -29,14 +29,14 @@
 
 		                    	<div class="wizard-header">
 		                        	<h3 class="wizard-title">
-		                        	   Espace Client
+                                        <?php echo MAIN_TITLE_PROFILE;?>
 		                        	</h3>
 		                    	</div>
 								<div class="wizard-navigation">
 									<ul>
-			                            <li><a href="#account" data-toggle="tab">Mon Compte</a></li>
-			                            <li><a href="#bookings" data-toggle="tab">Mes Réservations</a></li>
-			                            <li><a href="#subscribs" data-toggle="tab">Mon Abonnement</a></li>
+			                            <li><a href="#account" data-toggle="tab"><?php echo MY_ACCOUNT;?></a></li>
+			                            <li><a href="#bookings" data-toggle="tab"><?php echo MY_BOOKING;?></a></li>
+			                            <li><a href="#subscribs" data-toggle="tab"><?php echo MY_SUBSCRIPTION;?></a></li>
 			                        </ul>
 								</div>
 
@@ -54,20 +54,20 @@
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label>Nom: <?php echo $user->__get("name"); ?></label>
+													<label><?php echo NAME.": ".$user->__get("name"); ?></label>
 												</div>
 
                 								<div class="form-group">
-													<label>Prénom: <?php echo $user->__get("firstname"); ?></label>
+													<label><?php echo FIRSTNAME.": ".$user->__get("firstname"); ?></label>
 												</div>
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label>Email: <?php echo $user->__get("email"); ?></label>
+													<label><?php echo EMAIL.": ".$user->__get("email"); ?></label>
 												</div>
 
                 								<div class="form-group">
-													<label>Phone: <?php echo $user->__get("phone"); ?></label>
+													<label><?php echo PHONE.": ".$user->__get("phone"); ?></label>
 												</div>
 											</div>
 
@@ -77,28 +77,28 @@
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label>Ville : <?php echo $user->__get("city"); ?></label>
+													<label><?php echo TOWN.": ".$user->__get("city"); ?></label>
 												</div>
 
                 								<div class="form-group">
-													<label>Pays : <?php echo $user->__get("country"); ?></label>
+													<label><?php echo COUNTRY.": ".$user->__get("country"); ?></label>
 												</div>
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label>Adresse : <?php echo $user->__get("address"); ?></label>
+													<label><?php echo ADDRESS.": ".$user->__get("address"); ?></label>
 												</div>
 
                 								<div class="form-group">
-													<label>Code Postal : <?php echo $user->__get("postalCode"); ?></label>
+													<label><?php echo POSTAL_CODE.": ".$user->__get("postalCode"); ?></label>
 												</div>
 											</div>
 											 <div class="form-group paddingLeft">
-                								<a href="#" data-toggle="modal" data-target="#updateModal">Mise a jour de mes informations</a>
+                								<a href="#" data-toggle="modal" data-target="#updateModal"><?php echo EDIT_PROFILE?></a>
                                             </div>
 
                                             <div class="form-group paddingLeft">
-                                                <a href="#" data-toggle="modal" data-target="#updatePwd">Changer mon mot de passe</a>
+                                                <a href="#" data-toggle="modal" data-target="#updatePwd"><?php echo EDIT_PASSWORD?></a>
                                             </div>
 
 										</div>

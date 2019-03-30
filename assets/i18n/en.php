@@ -8,6 +8,7 @@
   define('BOOKING', 'Booking');
   define('LOGOUT', 'Logout');
   define('LOGIN', 'Login');
+  define('LANGUAGE', 'Language');
   define('NEWSLETTER', 'Subscribe to the Newsletter');
   define('EMAIL_PLACEHOLDER', 'Enter your email');
   define('SUBMIT', 'Submit');
@@ -40,5 +41,15 @@
   define('INVALID_COUNTRY', 'Wrong country');
   define('INVALID_PHONE', 'Wrong phone');
   define('INVALID_PASSWORD', 'Wrong password (mini 8 characters)');
-define('INVALID_CONFIRMATION', 'Wrong confirmation');
+  define('INVALID_CONFIRMATION', 'Wrong confirmation');
+  define('MAIN_TITLE_LOGIN','Login');
+  define('MAIN_SUBTITLE_LOGIN','Let\'s go !');
+  define('SIGN_IN','Sign in');
+  define('SIGN_UP_ACCOUNT','( You do not have an account ? )');
+  define('MY_ACCOUNT','My Account');
+  define('MY_BOOKING','My Booking');
+  define('MY_SUBSCRIPTION','My Subscription');
+  define('MAIN_TITLE_PROFILE', 'Client Dashboard');
+  define('EDIT_PROFILE', 'Edit my profile');
+  define('EDIT_PASSWORD', 'Edit my password');
 ?>

@@ -8,6 +8,7 @@
   define('BOOKING', 'Réserver');
   define('LOGOUT', 'Déconnexion');
   define('LOGIN', 'Connexion');
+  define('LANGUAGE', 'Langue');
   define('NEWSLETTER', 'Inscrivez vous à la Newsletter');
   define('EMAIL_PLACEHOLDER', 'Entrez votre email');
   define('GUARANTY', 'Nous ne partagerons jamais votre adresse email avec quiconque.');
@@ -41,4 +42,14 @@
   define('INVALID_PHONE', 'Numéro invalide');
   define('INVALID_PASSWORD', 'Mot de passe invalide (mini 8 caractères)');
   define('INVALID_CONFIRMATION', 'Confirmation invalide');
+  define('MAIN_TITLE_LOGIN','Connexion');
+  define('MAIN_SUBTITLE_LOGIN','En route !');
+  define('SIGN_IN','Se connecter');
+  define('SIGN_UP_ACCOUNT','( Vous n\'avez pas de compte ? )');
+  define('MY_ACCOUNT','Mon Compte');
+  define('MY_BOOKING','Mes Réservations');
+  define('MY_SUBSCRIPTION','Mon Abonnement');
+  define('MAIN_TITLE_PROFILE', 'Espace Client');
+  define('EDIT_PROFILE', 'Mise à jour de mes informations');
+  define('EDIT_PASSWORD', 'Changer mon mot de passe');
 ?>
