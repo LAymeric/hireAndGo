@@ -38,8 +38,6 @@
                                      "arrival_postal_code"=>$arrival_postal_code,
                                      "arrival_city"=>$arrival_city
                                     ));
-
-            header('Location: ../reussite_reservation.html');
         }
     }
 ?>

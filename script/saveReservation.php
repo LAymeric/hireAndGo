@@ -1,9 +1,8 @@
 <?php
 require_once "../class/Reservation.php";
 include "../functions.php";
-
-    var_dump($_POST);
-    print_r($_POST);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
   if (count($_POST) === 8
     && !empty($_POST["reservation_date"])
     && !empty($_POST["reservation_time"])
@@ -14,6 +13,7 @@ include "../functions.php";
     && !empty($_POST["arrival_postal_code"])
     && !empty($_POST["arrival_city"])
   ) {
+      echo "test";
     // Database connection
     $connection = connectDB();
 
@@ -60,17 +60,31 @@ include "../functions.php";
 
     if ($error) {
         var_dump($_POST);
+        echo "test2";
       //header("Location: ../index.php");
     } 
 
     // Else => insertion in database
 
     else {
-        $reservation_date = date("Y-m-d H:i:s");
-        $reservation_time = time("h-m-s");
 
-        $reservation = new Reservation($reservation_date, $reservation_time,$_POST["reservation_time"], $_POST["departure_address"],$_POST["departure_postal_code"],$_POST["departure_city"],$_POST["arrival_address"], $_POST["arrival_postal_code"],$_POST["arrival_city"]);
-        $reservation->addReservation($reservation_date, $reservation_time,$_POST["departure_address"], $_POST["departure_postal_code"], $_POST["departure_city"], $_POST["arrival_address"],$_POST["arrival_postal_code"], $_POST["arrival_city"]);
+        echo "test3";
+        $reservation = new Reservation($_POST["reservation_time"],
+            $_POST["reservation_date"],
+            $_POST["departure_address"],
+            $_POST["departure_postal_code"],
+            $_POST["departure_city"],
+            $_POST["arrival_address"],
+            $_POST["arrival_postal_code"],
+            $_POST["arrival_city"]);
+        $reservation->addReservation($_POST["reservation_date"],
+            $_POST["reservation_time"],
+            $_POST["departure_address"],
+            $_POST["departure_postal_code"],
+            $_POST["departure_city"],
+            $_POST["arrival_address"],
+            $_POST["arrival_postal_code"],
+            $_POST["arrival_city"]);
     }
 
   } else {
