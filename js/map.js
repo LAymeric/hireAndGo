@@ -61,31 +61,6 @@ function searchAddress() {
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
-    $.ajax({ url: 'script/saveReservation.php',
-        data: {
-            reservation_time: reservation_time.value,
-            reservation_date: reservation_date.value,
-            departure_address: startAddress.value,
-            departure_postal_code: startPC.value,
-            departure_city: startCity.value,
-            arrival_address: endAddress.value,
-            arrival_postal_code: endPC.value,
-            arrival_city: endCity.value
-        },
-        type: 'POST',
-        dataType: "json",
-        success : function(code, status){
-        //todo afficher une popup de résumé de l'itinéraire enregistré
-            //todo save nombre de km et temps de trajet !
-        },
-
-        error : function(result, status, error){
-        //todo afficher une popup d'erreur
-        },
-
-        complete : function(result, status){
-        }
-    });
 
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 }
@@ -98,6 +73,41 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }, function(response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
+            var totalDistance = 0;
+            var totalDuration = 0;
+            var legs = response.routes[0].legs;
+            for(var i=0; i<legs.length; ++i) {
+                totalDistance += legs[i].distance.value;
+                totalDuration += legs[i].duration.value;
+            }
+            $.ajax({ url: 'script/saveReservation.php',
+                data: {
+                    reservation_time: reservation_time.value,
+                    reservation_date: reservation_date.value,
+                    departure_address: startAddress.value,
+                    departure_postal_code: startPC.value,
+                    departure_city: startCity.value,
+                    arrival_address: endAddress.value,
+                    arrival_postal_code: endPC.value,
+                    arrival_city: endCity.value,
+                    distance:totalDistance/1000,
+                    duration:totalDuration
+                },
+                type: 'POST',
+                dataType: "json",
+                success : function(code, status){
+                    //todo afficher une popup de résumé de l'itinéraire enregistré
+                    //todo save nombre de km et temps de trajet !
+                },
+
+                error : function(result, status, error){
+                    //todo afficher une popup d'erreur
+                },
+
+                complete : function(result, status){
+                }
+            });
+
         } else {
             alert('Directions request failed due to ' + status);
         }

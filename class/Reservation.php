@@ -9,9 +9,11 @@
         private $arrival_address;
         private $arrival_postal_code;
         private $arrival_city;
+        private $distance;
+        private $duration;
 
         public function __construct($reservation_date, $reservation_time, $departure_address, $departure_postal_code,
-                                    $departure_city, $arrival_address, $arrival_postal_code, $arrival_city){
+                                    $departure_city, $arrival_address, $arrival_postal_code, $arrival_city, $distance, $duration){
             $this->reservation_date=$reservation_date;
             $this->reservation_time=$reservation_time;
             $this->departure_address=$departure_address;
@@ -20,6 +22,8 @@
             $this->arrival_address=$arrival_address;
             $this->arrival_postal_code=$arrival_postal_code;
             $this->arrival_city=$arrival_city;
+            $this->duration=$duration;
+            $this->distance=$distance;
         }
 
 
@@ -27,8 +31,10 @@
             include_once "../functions.php";
             $connection = connectDB();  
 
-            $insertReservation = $connection->prepare("INSERT INTO reservation (reservation_date, reservation_time, departure_address, departure_postal_code, departure_city, arrival_address, arrival_postal_code, arrival_city) 
-                VALUES(:reservation_date,:reservation_time,:departure_address,:departure_postal_code,:departure_city,:arrival_address,:arrival_postal_code,:arrival_city)");
+            $insertReservation = $connection->prepare("INSERT INTO reservation (reservation_date, reservation_time, departure_address,
+ departure_postal_code, departure_city, arrival_address, arrival_postal_code, arrival_city, distance, duration) 
+                VALUES(:reservation_date,:reservation_time,:departure_address,:departure_postal_code,
+                :departure_city,:arrival_address,:arrival_postal_code,:arrival_city, :distance, :duration)");
             $insertReservation->execute(array
                                     ("reservation_date"=> $this->reservation_date,
                                      "reservation_time"=>$this->reservation_time,
@@ -38,6 +44,8 @@
                                      "arrival_address"=>$this->arrival_address,
                                      "arrival_postal_code"=>$this->arrival_postal_code,
                                      "arrival_city"=>$this->arrival_city,
+                                     "distance"=>$this->distance,
+                                     "duration"=>$this->duration,
                                     ));
         }
     }

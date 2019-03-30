@@ -3,7 +3,7 @@ require_once "../class/Reservation.php";
 include "../functions.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-  if (count($_POST) === 8
+  if (count($_POST) === 10
     && !empty($_POST["reservation_date"])
     && !empty($_POST["reservation_time"])
     && !empty($_POST["departure_address"])
@@ -58,7 +58,9 @@ ini_set('display_startup_errors', 1);
             $_POST["departure_city"],
             $_POST["arrival_address"],
             $_POST["arrival_postal_code"],
-            $_POST["arrival_city"]);
+            $_POST["arrival_city"],
+            $_POST["distance"],
+            $_POST["duration"]);
         $reservation->addReservation();
     }
 
