@@ -9,37 +9,44 @@
         private $arrival_address;
         private $arrival_postal_code;
         private $arrival_city;
+        private $distance;
+        private $duration;
 
-        public function __construct($d, $t, $da,$dp,$dc,$aa,$ap,$ac){
-            $this->reservation_date=$d;
-            $this->reservation_time=$t;
-            $this->departure_address=$da;
-            $this->departure_postal_code=$dp;
-            $this->departure_city=$dc;
-            $this->arrival_address=$aa;
-            $this->arrival_postal_code=$ap;
-            $this->arrival_city=$ac;
+        public function __construct($reservation_date, $reservation_time, $departure_address, $departure_postal_code,
+                                    $departure_city, $arrival_address, $arrival_postal_code, $arrival_city, $distance, $duration){
+            $this->reservation_date=$reservation_date;
+            $this->reservation_time=$reservation_time;
+            $this->departure_address=$departure_address;
+            $this->departure_postal_code=$departure_postal_code;
+            $this->departure_city=$departure_city;
+            $this->arrival_address=$arrival_address;
+            $this->arrival_postal_code=$arrival_postal_code;
+            $this->arrival_city=$arrival_city;
+            $this->duration=$duration;
+            $this->distance=$distance;
         }
 
 
-        public function addReservation($reservation_date, $reservation_time, $departure_address, $departure_postal_code,$departure_city,$arrival_address,$arrival_postal_code,$arrival_city){      
+        public function addReservation(){
             include_once "../functions.php";
             $connection = connectDB();  
 
-            $insertReservation = $connection->prepare("INSERT INTO reservation (reservation_date, reservation_time, departure_address, departure_postal_code, departure_city, arrival_address, arrival_postal_code, arrival_city) 
-                VALUES(:reservation_date,:reservation_time,:departure_address,:departure_postal_code,:departure_city,:arrival_address,:arrival_postal_code,:arrival_city)");
+            $insertReservation = $connection->prepare("INSERT INTO reservation (reservation_date, reservation_time, departure_address,
+ departure_postal_code, departure_city, arrival_address, arrival_postal_code, arrival_city, distance, duration) 
+                VALUES(:reservation_date,:reservation_time,:departure_address,:departure_postal_code,
+                :departure_city,:arrival_address,:arrival_postal_code,:arrival_city, :distance, :duration)");
             $insertReservation->execute(array
-                                    ("reservation_date"=> $reservation_date,
-                                     "reservation_time"=>$reservation_time,
-                                     "departure_address"=>$departure_address,
-                                     "departure_postal_code"=>$departure_postal_code,
-                                     "departure_city"=>$departure_city,
-                                     "arrival_address"=>$arrival_address,
-                                     "arrival_postal_code"=>$arrival_postal_code,
-                                     "arrival_city"=>$arrival_city
+                                    ("reservation_date"=> $this->reservation_date,
+                                     "reservation_time"=>$this->reservation_time,
+                                     "departure_address"=>$this->departure_address,
+                                     "departure_postal_code"=>$this->departure_postal_code,
+                                     "departure_city"=>$this->departure_city,
+                                     "arrival_address"=>$this->arrival_address,
+                                     "arrival_postal_code"=>$this->arrival_postal_code,
+                                     "arrival_city"=>$this->arrival_city,
+                                     "distance"=>$this->distance,
+                                     "duration"=>$this->duration,
                                     ));
-
-            header('Location: ../reussite_reservation.html');
         }
     }
 ?>

@@ -36,7 +36,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
                     <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="profile.php"><?php echo PROFILE; ?></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="map.php"><?php echo BOOKING; ?></a>
+                    <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="booking.php"><?php echo BOOKING; ?></a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="logout.php"><?php echo LOGOUT; ?></a>
