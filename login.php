@@ -11,18 +11,31 @@
     <div class="push"></div>
 
     <div class="container center_div register-form" >
+        <?php if (isset($_SESSION["failedLogin"])) {
+            echo '<div class="push"></div>';
+            echo '<div class="container-fluid">';
+            echo '<div class="alert alert-danger">';
+            echo $_SESSION["failedLogin"];
+            echo '</div>';
+            echo '</div>';
+        }
+        unset($_SESSION["failedLogin"]);
+        ?>
 
         <form method="POST" action="script/userLogin.php">
 
         <div class="form-group login_fields">
             <label for="email"><?php echo EMAIL;?></label>
             <input type="email" class="form-control" placeholder="du@pont.fr" name="email" value="" required="required">
+            <div id="errorEmailLogin" class="error" style="display: none"><?php echo LOGIN_FAIL_EMAIL ?></div>
         </div>
 
         <div class="form-group login_fields">
             <label for="pwd"><?php echo PASSWORD;?></label>
             <input type="password" class="form-control" name="pwd" required="required">
+            <div id="errorPwdLogin" class="error" style="display: none"><?php echo LOGIN_FAIL_PWD ?></div>
         </div>
+
 
         <div class="push"></div>
         <div class="form-group" style="text-align:center;">
@@ -41,5 +54,6 @@
 
 
 <?php
+
     include "footer.php";
 ?>
