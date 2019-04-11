@@ -13,6 +13,9 @@
         $_SESSION["auth"]  = true;
         $_SESSION["id"]    = $data["id"];
         header("Location: ../profile.php");
-      }
+      }else {
+        $_SESSION["failedLogin"] = "Error: Your username or password is wrong.";
+        header("Location: ../login.php");
+    }
     }
 
