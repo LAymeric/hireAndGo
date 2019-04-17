@@ -457,7 +457,7 @@
               </div>
 
               <div class="form-group" style="text-align:center;">
-                <button type="submit" class="btn btn-secondary"><?php echo VALIDATE ?> </button>
+                <button type="submit" class="btn btn-info"><?php echo VALIDATE ?> </button>
               </div>
             </div>
             <div class="modal-footer">

@@ -44,13 +44,17 @@
 		                            <div class="tab-pane" id="account">
 										<div class="row">
 											<div class="col-sm-3">
-												<div class="picture-container">
-													<div class="picture">
-														<img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-														<input type="file" id="wizard-picture">
-													</div>
-													<h6>Changer sa photo</h6>
-												</div>
+                                                <form action="script/uploadProfilePhotos.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="picture-container">
+                                                        <div class="picture">
+                                                            <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                                            <input type="file" id="wizard-picture">
+                                                        </div>
+                                                        <h6><?php echo AVATAR;?></h6>
+                                                        <input type="submit" class="btn btn-secondary" name="submit-avatar" value="<?php echo AVATAR;?>" />
+                                                    </div>
+                                                </form>
+
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
@@ -147,23 +151,23 @@
                 <div class="modal-content">
 
                         <div class="modal-header">
-                            <h4 class="modal-title" >Modifier ses informations</h4>
+                            <h4 class="modal-title" ><?php echo EDIT_PROFILE;?></h4>
                         </div>
                         <div class="modal-body">
-                            <form name="updateUserForm" method="POST" action="script/updateUser.php" onsubmit="return validateForm()" >
+                            <form name="registerForm" method="POST" action="script/updateUser.php" onsubmit="return validateForm()" >
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="name">Nom</label>
+                                            <label for="name"><?php echo NAME;?></label>
                                             <input type="text" class="form-control"  name="name" value="<?php echo $user->__get("name"); ?>">
-                                            <div id="errorName" class="error" style="visibility:hidden">Nom invalide (entre 2 et 60 caractères)</div>
+                                            <div id="errorName" class="error" style="display: none"> <?php echo INVALID_NAME ?></div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="firstname">Prénom</label>
+                                            <label for="firstname"><?php echo FIRSTNAME;?></label>
                                             <input type="text" class="form-control"  name="firstname" value="<?php echo $user->__get("firstname"); ?>">
                                             <div id="errorFirstname" class="error" style="display: none">Prénom invalide (entre 2 et 60 caractères)</div>
                                         </div>
@@ -173,7 +177,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="email"><?php echo EMAIL;?></label>
                                             <input type="text" class="form-control"  name="email" value="<?php echo $user->__get("email"); ?>" required="required">
                                             <div id="errorEmailExist" class="error" style="display:none">Adresse email exeste déjà</div>
                                             <div id="errorEmail" class="error" style="display:none">Adresse email invalide</div>
@@ -182,7 +186,7 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="phone">Numéro de téléphone</label>
+                                            <label for="phone"><?php echo PHONE;?></label>
                                             <input type="text" class="form-control"  name="phone" value="<?php echo $user->__get("phone"); ?>" required="required">
                                             <div id="errorPhone" class="error" style="display:none">numéro invalide</div>
                                         </div>
@@ -192,7 +196,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="city">Ville</label>
+                                            <label for="city"><?php echo TOWN;?></label>
                                             <input type="text" class="form-control"  name="city" value="<?php echo $user->__get("city"); ?>" required="required">
                                             <div id="errorCity" class="error" style="display:none">Mauvaise ville</div>
                                         </div>
@@ -200,7 +204,7 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="postalCode">Code postal</label>
+                                            <label for="postalCode"><?php echo POSTAL_CODE;?></label>
                                             <input type="text" class="form-control"  name="postalCode" value="<?php echo $user->__get("postalCode"); ?>" required="required">
                                             <div id="errorPostalCode" class="error" style="display:none">Code postale invalide</div>
                                         </div>
@@ -210,7 +214,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="address">Adresse</label>
+                                            <label for="address"><?php echo ADDRESS;?></label>
                                             <input type="text" class="form-control" value="<?php echo $user->__get("address"); ?>" name="address" required="required">
                                             <div id="errorAddress" class="error" style="display:none">Adresse invalide (entre 5 et 60 caractères)</div>
                                         </div>
@@ -218,7 +222,7 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="country">Pays</label>
+                                            <label for="country"><?php echo COUNTRY;?></label>
                                             <select name="country">
                                                 <option  selected="selected"><?php echo $user->__get("country"); ?></option>
 
@@ -484,13 +488,13 @@
 
 
                                 <div class="form-group" style="text-align:center;">
-                                    <button type="submit" class="btn btn-info">Mettre à jour</button>
+                                    <button type="button" class="btn btn-info"><?php echo UPDATE;?></button>
                                 </div>
 
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo CANCEL;?></button>
                         </div>
                 </div>
 
@@ -532,13 +536,13 @@
                             </div>
 
                             <div class="form-group" style="text-align:center;">
-                                <button type="submit" class="btn btn-info">Valider</button>
+                                <button type="submit" class="btn btn-info"><?php echo UPDATE;?></button>
                             </div>
 
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo CANCEL;?></button>
                     </div>
                 </div>
 

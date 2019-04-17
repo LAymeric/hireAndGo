@@ -33,7 +33,7 @@
         <div class="form-group login_fields">
             <label for="pwd"><?php echo PASSWORD;?></label>
             <input type="password" class="form-control" name="pwd" required="required">
-            <div id="errorPwdLogin" class="error" style="display: none"><?php echo LOGIN_FAIL_PWD ?></div>
+            <div id="errorPwdLogin" class="error" style="display: none"><?php echo LOGIN_FAIL_PWD;?></div>
         </div>
 
 

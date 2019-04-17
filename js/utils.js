@@ -45,7 +45,6 @@ function validateForm() {
   }
   if(!emailExist(document.forms["registerForm"]["email"].value, document.getElementById('errorEmailExist')))
 
-      if(!emailExist(document.forms["registerForm"]["email"].value, document.getElementById('errorEmailExist')))
 
    return !error
 }

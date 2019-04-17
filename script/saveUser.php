@@ -147,7 +147,7 @@ require_once "../class/User.php";
         var_dump($_POST);
         echo "noOk";
       //header("Location: ../index.php");
-    } 
+    }
 
     // Else => insertion in database
 

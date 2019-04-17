@@ -62,4 +62,7 @@
   define('ADDRESS_DESTINATION','Destination address');
   define('POSTAL_CODE_DESTINATION','Destination postal code');
   define('TOWN_DESTINATION','Destination town');
+  define('UPDATE','Update');
+  define('AVATAR','Change your avatar');
+
 ?>
