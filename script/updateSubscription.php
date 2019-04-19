@@ -17,8 +17,8 @@ var_dump($_POST);
         $sub->modifySubscription($_POST['id']);
 
         header("Location: ../admin/subscription.php");
-    } /*else {
+    } else {
         //code erreur
         header("Location: ".$_SERVER["HTTP_REFERER"]);
-    }*/
+    }
 ?>
