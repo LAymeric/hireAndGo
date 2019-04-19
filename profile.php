@@ -44,17 +44,12 @@
 		                            <div class="tab-pane" id="account">
 										<div class="row">
 											<div class="col-sm-3">
-                                                <form action="script/uploadProfilePhotos.php" method="POST" enctype="multipart/form-data">
                                                     <div class="picture-container">
                                                         <div class="picture">
                                                             <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
                                                             <input type="file" id="wizard-picture">
                                                         </div>
-                                                        <h6><?php echo AVATAR;?></h6>
-                                                        <input type="submit" class="btn btn-secondary" name="submit-avatar" value="<?php echo AVATAR;?>" />
                                                     </div>
-                                                </form>
-
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
@@ -154,7 +149,7 @@
                             <h4 class="modal-title" ><?php echo EDIT_PROFILE;?></h4>
                         </div>
                         <div class="modal-body">
-                            <form name="registerForm" method="POST" action="script/updateUser.php" onsubmit="return validateForm()" >
+                            <form name="registerForm" method="POST" action="script/updateUser.php" onsubmit="return validateForm(false)" >
 
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -488,7 +483,7 @@
 
 
                                 <div class="form-group" style="text-align:center;">
-                                    <button type="button" class="btn btn-info"><?php echo UPDATE;?></button>
+                                    <button type="submit" class="btn btn-info"><?php echo UPDATE;?></button>
                                 </div>
 
                             </form>
@@ -513,7 +508,7 @@
                         <h4 class="modal-title" >Modifier mon mot de passe</h4>
                     </div>
                     <div class="modal-body">
-                        <form name="updateUserForm" method="POST" action="script/updatePwd.php" onsubmit="return validateForm()" >
+                        <form name="updateUserForm" method="POST" action="script/updatePwd.php" onsubmit="return validatePasswordForm()" >
 
                             <div class="row">
                                 <div class="col-sm-6">

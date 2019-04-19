@@ -90,7 +90,7 @@
                 <h4 class="modal-title" ><?php echo REGISTER ?> </h4>
             </div>
             <div class="modal-body">
-              <form name="registerForm" method="POST" action="script/saveUser.php" onsubmit="return validateForm()" >
+              <form name="registerForm" method="POST" action="script/saveUser.php" onsubmit="return validateForm(true)" >
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
