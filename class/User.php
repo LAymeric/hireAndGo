@@ -1,7 +1,7 @@
 
 <?php
 
-require_once "C:\wamp64\www\hireAndGo/functions.php";
+require_once __DIR__."./../functions.php";
 
     class USER{
         private $id;
@@ -16,6 +16,7 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
         private $address;
         private $phone;
         private $registration_date;
+        private $state = 0;
 
         public function __get($property) {
             if('name' === $property) {
@@ -40,6 +41,8 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
                 return $this->phone;
             } else if('registration_date' === $property) {
                 return $this->registration_date;
+            } else if('state' === $property) {
+                return $this->state;
             } else {
                 throw new Exception('Propriété invalide !');
             }
@@ -83,7 +86,7 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
         public function addUser($newEmail, $newPassword, $name,$firstname,$birthday,$postalCode,$city,$country,$address,$phone,$registration_date){
             $connection = connectDB();
 
-            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date)");
+            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date,state) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:state)");
             $insertUser ->execute(array
                                     ("email"=> $newEmail,
                                      "pwd"=>$newPassword,
@@ -95,7 +98,8 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
                                      "country"=>$country,
                                      "address"=>$address,
                                      "phone"=>$phone,
-                                     "registration_date"=>$registration_date
+                                     "registration_date"=>$registration_date,
+                                     "state"=>$this->state
                                     ));
 
             header('Location: ../login.php');

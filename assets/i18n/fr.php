@@ -29,7 +29,7 @@
   define('CGU', 'Conditions d\'utilisation');
   define('ALREADY_REGISTER', 'Déjà inscrit?');
   define('VALIDATE', 'Valider');
-  define('CANCEL', 'Anuler');
+  define('CANCEL', 'Annuler');
   define('INVALID_NAME', 'Nom invalide (entre 2 et 60 caractères)');
   define('INVALID_FIRSTNAME', 'Prénom invalide (entre 2 et 60 caractères)');
   define('INVALID_BIRTHDATE', 'Vous devez avoir plus de 18 ans');
@@ -64,5 +64,11 @@
   define('TOWN_DESTINATION','Ville de destination');
   define('UPDATE','Mettre à jour');
   define('AVATAR','Changer sa photo');
+  define('REGISTRATION', 'Date d\'inscription');
+  define('DESCRIPTION','Description');
+  define('PRICE', 'Prix');
+  define('SUBSCRIPTION','Abonnement');
+  define('MEMBER','Menbre');
+  define('ADMIN', 'Administrateur');
 
 ?>

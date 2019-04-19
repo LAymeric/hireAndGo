@@ -12,6 +12,7 @@
     if (password_verify($_POST["pwd"], $data["pwd"])) {
         $_SESSION["auth"]  = true;
         $_SESSION["id"]    = $data["id"];
+        $_SESSION["state"] = $data["state"];
         header("Location: ../profile.php");
       }else {
         $_SESSION["failedLogin"] = "Error: Your username or password is wrong.";

@@ -40,5 +40,11 @@
     <!-- Functions js-->
     <script src="js/utils.js"></script>
   </head>
-  <?php include "script/i18n.php";?>
+  <?php $address = substr($_SERVER['PHP_SELF'], 0,strlen($_SERVER['PHP_SELF']) - strlen(strrchr($_SERVER['PHP_SELF'], '/')));
+
+  if ("/admin" == $address){
+      include "../script/i18n.php";
+  } else {
+      include "script/i18n.php";
+  }?>
   <body>

@@ -5,12 +5,13 @@
  	 } else {
  		 $lang = "fr";
     }
+("/admin" == $address) ? $backToParent = "../" : $backToParent = "";
 
- 	 if ($lang=='fr') {
- 		 include('assets/i18n/fr.php');
- 	 } elseif ($lang=='en') {
- 		 include('assets/i18n/en.php');
- 	 }else{
-      include('assets/i18n/fr.php');
-    }
+	if ($lang=='fr') {
+		include($backToParent.'assets/i18n/fr.php');
+	} else if ($lang=='en') {
+		include($backToParent.'assets/i18n/en.php');
+	}else{
+		include($backToParent.'assets/i18n/fr.php');
+	}
  ?>
