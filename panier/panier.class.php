@@ -58,4 +58,12 @@ class panier{
 		unset($_SESSION['panier'][$product_id]);
 	}
 
+	public function verifProduct($quantity, $stock)
+    {
+        if($quantity > $stock)
+        {
+            
+        }
+    }
+
 }

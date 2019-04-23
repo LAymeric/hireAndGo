@@ -1,29 +1,35 @@
 <?php require 'header.php'; ?>
 
-<div class="home">
-	<div class="row">
-		<div class="wrap">
-			<?php $products = $DB->query('SELECT * FROM products'); ?>
-			<?php foreach ( $products as $product ): ?>
-				<div class="box">
-					<div class="product full">
-						<a href="#">
-							<img src="img/<?= $product->id; ?>.jpg" width="100px">
-						</a>
-						<div class="description">
-							<?= $product->name; ?>
-							<a class="price"><?= number_format($product->price,2,',',' '); ?> €</a>
-						</div>
-						<a class="add addPanier" href="addpanier.php?id=<?= $product->id; ?>">
-							add
-						</a>
-					</div>
-				</div>
-			<?php endforeach ?>
-		</div>
-	</div>
+<?php $products = $DB->query('SELECT * FROM products'); ?>
+
+<a href="panier.php">Panier</a>
+
+<div class="container">
+    <?php foreach ( $products as $product ): ?>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix Hors Taxe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="img/<?php echo $product->id; ?>.jpg" width="100px"><?php echo $product->name; ?></td>
+                <td><?= number_format($product->price,2,',',' '); ?> €</td>
+                <td>
+                    <button type="button" class="btn">
+                        <a class="add addPanier" href="addpanier.php?id=<?php echo $product->id; ?>">Ajouter au panier</a>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <?php endforeach ?>
 </div>
 
+<?php include 'footer.php' ?>
 
 
-<?php require 'footer.php'; ?>
+
+
