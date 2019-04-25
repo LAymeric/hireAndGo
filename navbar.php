@@ -43,7 +43,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
               </li>
               <?php if($_SESSION["state"] == 1){?>
                   <li class="nav-item">
-                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo $address."admin/"; ?>admin.php"><?php echo ADMIN; ?></a>
+                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/admin" == $address) ? "./" : "admin/"; ?>admin.php"><?php echo ADMIN; ?></a>
                   </li>
               <?php }
           } else{?>

@@ -70,5 +70,8 @@
   define('SUBSCRIPTION','Abonnement');
   define('MEMBER','Menbre');
   define('ADMIN', 'Administrateur');
-
+  define('ACTION', 'Action');
+  define('PICTURE', 'Image');
+  define('QUANTITY', 'Quantité');
+  define('PRODUCT', 'Produit');
 ?>

@@ -12,7 +12,9 @@
             <div class="col-sm">
                 <a href="subscription.php"><?php echo SUBSCRIPTION ?></a>
             </div>
-            <div class="col-sm">bin test 3</div>
+            <div class="col-sm">
+                <a href="product.php"><?php echo PRODUCT ?>
+            </div>
             <div class="col-sm">bin test 4</div>
         </div>
     </div>

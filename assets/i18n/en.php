@@ -70,5 +70,8 @@
   define('PRICE', 'Price');
   define('SUBSCRIPTION','Subscription');
   define('MEMBER', 'Member');
-
+  define('ACTION', 'Action');
+  define('PICTURE', 'Picture');
+  define('QUANTITY', 'Quantity');
+  define('PRODUCT', 'Product');
 ?>

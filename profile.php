@@ -127,17 +127,17 @@
                                                     echo "<div class='col-lg-12'>";
                                                     echo "<label>" . NAME . ": " . $value["name"] . "</label>";
                                                     echo "<p>" . DESCRIPTION . ": " . $value["description"] . "</p>";
-                                                    echo "<label>" . PRICE . ": " . $value["price"] . "</label>";
+                                                    echo "<label>" . PRICE . ": " . $value["price"] . "€</label>";
                                                     echo "</div>";
                                                 }
                                             }
                                         } else {
-                                            $query = "SELECT name, description, price FROM subscription WHERE id = 1";
+                                            $query = "SELECT name, description, price FROM subscription WHERE id = 4";
                                             $result = sqlSelect($query);
                                             echo "<div class='col-lg-12'>";
                                             echo "<label>" . NAME . ": " . $result["name"] . "</label>";
                                             echo "<p>" . DESCRIPTION . ": " . $result["description"] . "</p>";
-                                            echo "<label>" . PRICE . ": " . $result["price"] . "</label>";
+                                            echo "<label>" . PRICE . ": " . $result["price"] . "€</label>";
                                             echo "</div>";
                                         } ?>
 		                            </div>

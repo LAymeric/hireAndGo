@@ -17,8 +17,8 @@ class Subcrpition{
     public function addSubscription(){
         $connection = connectDB();
 
-        $insertUser = $connection->prepare("INSERT INTO subscription(name, description, price) VALUES (:name, :description, :price)");
-        $insertUser ->execute(array
+        $insertSubs = $connection->prepare("INSERT INTO subscription(name, description, price) VALUES (:name, :description, :price)");
+        $insertSubs ->execute(array
         (   "name"=>$this->name,
             "description"=>$this->description,
             "price"=>$this->price
@@ -31,7 +31,7 @@ class Subcrpition{
         $result = sqlSelect($query);
         $this->name = $result["name"];
         $this->description = $result["description"];
-        $this->price = substr($result["price"], 0, strlen($result["price"]) - 1);
+        $this->price = $result["price"];
     }
 
     public function modifySubscription($id){
@@ -43,6 +43,13 @@ class Subcrpition{
            "description"=>$this->description,
            "price"=>$this->price
         ));
+    }
+
+    public function deleteSubscription($id){
+        $connection = connectDB();
+
+        $deleteSubscription = $connection->prepare("DELETE FROM subscription WHERE id =".$id);
+        $deleteSubscription->execute();
     }
 
     public function __get($property){

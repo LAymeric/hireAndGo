@@ -7,8 +7,7 @@ require_once "../class/Subcrpition.php";
         && !empty($_POST["description"])
         && !empty($_POST["price"])){
 
-            $price = $_POST["price"]."€";
-            $sub = new Subcrpition($_POST["name"], $_POST["description"], $price);
+            $sub = new Subcrpition($_POST["name"], $_POST["description"], $_POST['price']);
             $sub->addSubscription();
 
             header("Location: ../admin/subscription.php");

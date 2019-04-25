@@ -1,8 +1,7 @@
 <?php
     ini_set('display_errors',1);
-    include "../functions.php";
     require_once "../class/Subcrpition.php";
-var_dump($_POST);
+
     if (!empty($_POST["name"])
         && !empty($_POST["description"])
         && !empty($_POST["price"])) {

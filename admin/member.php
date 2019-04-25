@@ -1,11 +1,10 @@
 <?php
     ini_set("display_errors", 1);
+    $navbarItem = 'admin';
     include "../head.php";
     include "../navbar.php";
     require_once __DIR__."./../functions.php";
 
-
-    $navbarItem = 'admin';
 ?>
 <body style="margin-top: 150px">
     <?php
