@@ -10,8 +10,10 @@ require_once __DIR__."./../functions.php";
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-auto">
+                <h1><?php echo PRODUCT ?></h1>
                 <p style="text-align: center">
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#productModal">Ajouter Produit</button>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#productModal"><?php echo ADD_PRODUCT?></button>
+                    <a href="admin.php" role="button" class="btn btn-info btn-lg"><?php echo RETURN_HOME_ADMIN?></a>
                 </p>
                 <?php
                 $query = "SELECT * FROM product";
@@ -21,12 +23,12 @@ require_once __DIR__."./../functions.php";
                     echo "<tr><th>".PICTURE."</th><th>".NAME."</th><th>".PRICE."</th><th>".QUANTITY."</th><th>".ACTION."</th></tr>";
                     foreach ($result as $value){
                         echo "<tr><th><img src='../picture/".$value["picture"]."' class='picture2'></th><th>".$value["name"]."</th><th>".$value["price"]."€</th><th>".$value["quantity"]."</th>";
-                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>Modifier</a>
-                                <a href='../script/deleteProduct.php?id=".$value["id"]."'>Supprimer</a></th>";
+                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</a>
+                                <a href='../script/deleteProduct.php?id=".$value["id"]."'>".DELETE."</a></th>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "Il n'y aucun produit";
+                    echo EMPTY_SPRODUCT;
                 }
                 echo "</table>" ?>
             </div>
@@ -43,7 +45,7 @@ require_once __DIR__."./../functions.php";
             <div class="modal-content">
                 <div classe="test">
                     <div class="modal-header">
-                        <h4 class="modal-title" ><?php echo SUBSCRIPTION ?> </h4>
+                        <h4 class="modal-title" ><?php echo PRODUCT ?> </h4>
                     </div>
                     <div class="modal-body">
                         <form name="productForm" method="POST" action="../script/saveProduct.php" enctype="multipart/form-data">

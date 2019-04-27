@@ -4,7 +4,7 @@
     include "head.php";
     include "navbar.php";
     include "class/User.php";
-    include "class/Subcrpition.php";
+    include "class/Subscrpition.php";
     require_once __DIR__."./functions.php";
 
 	$user = new User($_SESSION["id"]);

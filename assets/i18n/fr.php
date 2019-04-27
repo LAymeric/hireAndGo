@@ -74,4 +74,13 @@
   define('PICTURE', 'Image');
   define('QUANTITY', 'Quantité');
   define('PRODUCT', 'Produit');
+  define('ADD_SUBSCRIPTION', 'Ajouter un abonnement');
+  define('MODIFY','Modifier');
+  define('DELETE','Supprimer');
+  define('EMPTY_SUBSCRIPTION', 'Il n\'y a aucun abonnement');
+  define('ADD_PRODUCT','Ajouter un produit');
+  define('EMPTY_PRODUCT','Il n\'y a aucun produit');
+  define('CHANGE_RIGTHS','Changer les droits');
+  define('SAVE','Enregistrer');
+  define('RETURN_HOME_ADMIN','Retour');
 ?>

@@ -10,8 +10,10 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-auto">
+                <h1><?php echo SUBSCRIPTION?></h1>
             <p style="text-align: center">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#subscriptionModal">Ajouter abonnement</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#subscriptionModal"><?php echo ADD_SUBSCRIPTION?></button>
+                <a href="admin.php" role="button" class="btn btn-info btn-lg"><?php echo RETURN_HOME_ADMIN?></a>
             </p>
             <?php
                 $query = "SELECT * FROM subscription";
@@ -21,12 +23,12 @@
                     echo "<tr><th>".NAME."</th><th>".DESCRIPTION."</th><th>".PRICE."</th><th>".ACTION."</th></tr>";
                     foreach ($result as $value){
                         echo "<tr><th>".$value["name"]."</th><th>".$value["description"]."</th><th>".$value["price"]."€</th>";
-                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>Modifier</a>
-                                <a href='../script/deleteSubscription.php?id=".$value["id"]."'>Supprimer</a></th>";
+                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</a>
+                                <a href='../script/deleteSubscription.php?id=".$value["id"]."'>".DELETE."</a></th>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "Il n'y aucun abonnement";
+                    echo EMPTY_SUBSCRIPTION;
                 }
                 echo "</table>" ?>
             </div>

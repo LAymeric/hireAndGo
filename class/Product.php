@@ -16,7 +16,7 @@ class Product{
         $this->price = $price;
     }
 
-    public function addProduce(){
+    public function addProduct(){
         $connection = connectDB();
 
         $insertProduct = $connection->prepare("INSERT INTO product(name, picture, quantity, price) VALUES (:name, :picture, :quantity, :price)");

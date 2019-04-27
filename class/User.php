@@ -141,7 +141,7 @@ require_once __DIR__."./../functions.php";
             $deleteUser->execute();
         }
 
-        public function modifyLaw($id, $state){
+        public function modifyRigths($id, $state){
             $connection = connectDB();
 
             $user = $connection->prepare("UPDATE member SET state = :state WHERE id=".$id);

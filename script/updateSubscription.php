@@ -1,6 +1,6 @@
 <?php
     ini_set('display_errors',1);
-    require_once "../class/Subcrpition.php";
+    require_once "../class/Subscrpition.php";
 
     if (!empty($_POST["name"])
         && !empty($_POST["description"])
@@ -9,10 +9,8 @@
 
         $name = htmlspecialchars($_POST['name']);
         $description = htmlspecialchars($_POST['description']);
-        $price = htmlspecialchars($_POST["price"] . "€");
 
-
-        $sub = new Subcrpition($name, $description, $price);
+        $sub = new Subscrpition($name, $description, $_POST['price']);
         $sub->modifySubscription($_POST['id']);
 
         header("Location: ../admin/subscription.php");

@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__."./../functions.php";
 
-class Subcrpition{
+class Subscrpition{
 
     private $id;
     private $name;
