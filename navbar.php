@@ -51,6 +51,9 @@ if(!isset($navbarItem)) $navbarItem = 'home';
                   <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="<?php echo $address;?>login.php"><?php echo LOGIN; ?></a>
               </li>
           <?php } ?>
+            <li class="nav-item">
+                <a class="nav-link" href="Hire'n%20Go%203D/Hire'n%20Go%203D.html">Hire'n Go 3D</a>
+            </li>
               <li class="nav-item dropdown <?php if($navbarItem ==='new') echo ' active'?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php echo LANGUAGE; ?>
