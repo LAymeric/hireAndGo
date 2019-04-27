@@ -4,9 +4,14 @@
   <head>
 
     <title>Hire'N Go</title>
-      <?php include "functions.php"; ?>
+      <?php include "functions.php";
+
+      $address = substr($_SERVER['PHP_SELF'], 0,strlen($_SERVER['PHP_SELF']) - strlen(strrchr($_SERVER['PHP_SELF'], '/')));
+      $path = ("/hireAndGo/admin" == $address) ? "../" : "";
+
+      ?>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php if($_SESSION['state'] == 1) echo "../"?>vendor/images/favicon/favicon.ico" type="image/ico">
+    <link rel="shortcut icon" href="<?php echo $path; ?>vendor/images/favicon/favicon.ico" type="image/ico">
 
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -19,13 +24,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php if($_SESSION['state'] == 1) echo "../";?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $path;?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome 5.0.8 -->
-    <link href="<?php if($_SESSION['state'] == 1) echo "../";?>vendor/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="<?php echo $path;?>vendor/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php if($_SESSION['state'] == 1) echo "../";?>css/style.css" rel="stylesheet">
+    <link href="<?php echo $path;?>css/style.css" rel="stylesheet">
 
     <!--Modal -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -38,13 +43,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Functions js-->
-    <script src="<?php if($_SESSION['state'] == 1) echo "../";?>js/utils.js"></script>
+    <script src="<?php echo $path;?>js/utils.js"></script>
   </head>
-  <?php $address = substr($_SERVER['PHP_SELF'], 0,strlen($_SERVER['PHP_SELF']) - strlen(strrchr($_SERVER['PHP_SELF'], '/')));
-
-  if ("/admin" == $address){
-      include "../script/i18n.php";
-  } else {
-      include "script/i18n.php";
-  }?>
+  <?php
+      include $path."script/i18n.php";
+  ?>
   <body>

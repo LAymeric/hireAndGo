@@ -7,8 +7,8 @@ if(!isset($navbarItem)) $navbarItem = 'home';
 <!-- Navigation -->
  <nav class="navbar navbar-expand-lg navbar fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="<?php echo ("/admin" == $address) ? "../" : ""; ?>index.php">
-          <img src="<?php echo ("/admin" == $address) ? "../" : ""; ?>vendor/images/logos/logo2.png" alt="logo" width=90>
+        <a class="navbar-brand" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>index.php">
+          <img src="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>vendor/images/logos/logo2.png" alt="logo" width=90>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
           </div>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link<?php if($navbarItem === 'home') echo ' active'?>" href="<?php echo ("/admin" == $address) ? "../" : ""; ?>index.php"><?php echo HOME; ?>
+            <a class="nav-link<?php if($navbarItem === 'home') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>index.php"><?php echo HOME; ?>
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -33,17 +33,17 @@ if(!isset($navbarItem)) $navbarItem = 'home';
             </li>
           <?php if (isConnected()){?>
               <li class="nav-item">
-                  <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="<?php echo ("/admin" == $address) ? "../" : ""; ?>profile.php"><?php echo PROFILE; ?></a>
+                  <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>profile.php"><?php echo PROFILE; ?></a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="<?php echo ("/admin" == $address) ? "../" : ""; ?>booking.php"><?php echo BOOKING; ?></a>
+                  <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>booking.php"><?php echo BOOKING; ?></a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="<?php echo ("/admin" == $address) ? "../" : ""; ?>logout.php"><?php echo LOGOUT; ?></a>
+                  <a class="nav-link" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>logout.php"><?php echo LOGOUT; ?></a>
               </li>
               <?php if($_SESSION["state"] == 1){?>
                   <li class="nav-item">
-                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/admin" == $address) ? "./" : "admin/"; ?>admin.php"><?php echo ADMIN; ?></a>
+                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "./" : "admin/"; ?>admin.php"><?php echo ADMIN; ?></a>
                   </li>
               <?php }
           } else{?>
