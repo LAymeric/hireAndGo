@@ -56,6 +56,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
                     </div>
                   </li>
 
+
                  <li class="caddie"><a href="panier/pageProduit.php">Caddie</a></li>
 
         </ul>
