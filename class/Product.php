@@ -52,7 +52,7 @@ class Product{
         $query = "SELECT * FROM product WHERE id = ".$this->id;
         $result = sqlSelect($query);
         $this->name = $result["name"];
-        $this->image = $result["picture"];
+        $this->picture = $result["picture"];
         $this->quantity = $result["quantity"];
         $this->price = $result["price"];
     }

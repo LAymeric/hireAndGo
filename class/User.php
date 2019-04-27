@@ -43,6 +43,8 @@ require_once __DIR__."./../functions.php";
                 return $this->registration_date;
             } else if('state' === $property) {
                 return $this->state;
+            } else if('id' === $property) {
+                return $this->id;
             } else {
                 throw new Exception('Propriété invalide !');
             }
@@ -111,7 +113,7 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone
+                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone,state
                 FROM member
                 WHERE id=" . $id
                 );
@@ -128,6 +130,23 @@ require_once __DIR__."./../functions.php";
             $this->country=$row['country'];
             $this->address=$row['address'];
             $this->phone=$row['phone'];
+            $this->state=$row['state'];
+            $this->id=$row['id'];
         }
 
+        public function deleteUser($id){
+            $connection = connectDB();
+
+            $deleteUser = $connection->prepare("DELETE FROM member WHERE id = ".$id);
+            $deleteUser->execute();
+        }
+
+        public function modifyLaw($id, $state){
+            $connection = connectDB();
+
+            $user = $connection->prepare("UPDATE member SET state = :state WHERE id=".$id);
+            $user->execute(array(
+                "state"=>$state
+            ));
+        }
 }
