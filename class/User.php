@@ -1,7 +1,7 @@
 
 <?php
 
-require_once "C:\wamp64\www\hireAndGo/functions.php";
+require_once __DIR__."./../functions.php";
 
     class USER{
         private $id;
@@ -16,6 +16,7 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
         private $address;
         private $phone;
         private $registration_date;
+        private $type = "FRONT";
 
         public function __get($property) {
             if('name' === $property) {
@@ -40,6 +41,10 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
                 return $this->phone;
             } else if('registration_date' === $property) {
                 return $this->registration_date;
+            } else if('type' === $property) {
+                return $this->type;
+            } else if('id' === $property) {
+                return $this->id;
             } else {
                 throw new Exception('Propriété invalide !');
             }
@@ -83,7 +88,7 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
         public function addUser($newEmail, $newPassword, $name,$firstname,$birthday,$postalCode,$city,$country,$address,$phone,$registration_date){
             $connection = connectDB();
 
-            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date)");
+            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date,type) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:type)");
             $insertUser ->execute(array
                                     ("email"=> $newEmail,
                                      "pwd"=>$newPassword,
@@ -95,7 +100,8 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
                                      "country"=>$country,
                                      "address"=>$address,
                                      "phone"=>$phone,
-                                     "registration_date"=>$registration_date
+                                     "registration_date"=>$registration_date,
+                                     "type"=>$this->type
                                     ));
 
             header('Location: ../login.php');
@@ -107,7 +113,7 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone
+                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone,type
                 FROM member
                 WHERE id=" . $id
                 );
@@ -124,6 +130,23 @@ require_once "C:\wamp64\www\hireAndGo/functions.php";
             $this->country=$row['country'];
             $this->address=$row['address'];
             $this->phone=$row['phone'];
+            $this->type=$row['type'];
+            $this->id=$row['id'];
         }
 
+        public function deleteUser($id){
+            $connection = connectDB();
+
+            $deleteUser = $connection->prepare("DELETE FROM member WHERE id = ".$id);
+            $deleteUser->execute();
+        }
+
+        public function modifyRigths($id, $type){
+            $connection = connectDB();
+
+            $user = $connection->prepare("UPDATE member SET type = :type WHERE id=".$id);
+            $user->execute(array(
+                "type"=>$type
+            ));
+        }
 }

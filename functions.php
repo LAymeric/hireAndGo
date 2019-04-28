@@ -54,3 +54,11 @@ function sqlSelect($query) {
 
   return $result;
 }
+
+function selectAll($query) {
+    $connection = connectDB();
+    $sql = $connection->prepare($query);
+    $sql->execute();
+    $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

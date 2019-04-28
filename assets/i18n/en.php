@@ -8,6 +8,7 @@
   define('BOOKING', 'Booking');
   define('LOGOUT', 'Logout');
   define('LOGIN', 'Login');
+  define('ADMIN', 'Administrator');
   define('LANGUAGE', 'Language');
   define('NEWSLETTER', 'Subscribe to the Newsletter');
   define('EMAIL_PLACEHOLDER', 'Enter your email');
@@ -29,7 +30,7 @@
   define('CGU', 'Using Conditions');
   define('ALREADY_REGISTER', 'Already Register?');
   define('VALIDATE', 'Validate');
-  define('CANCEL', 'Canccel');
+  define('CANCEL', 'Cancel');
   define('INVALID_NAME', 'Invalide name(between 2 and 60 characters)');
   define('INVALID_FIRSTNAME', 'Invalide firstname(between 2 and 60 characters)');
   define('INVALID_BIRTHDATE', 'You must be older than 18');
@@ -64,5 +65,22 @@
   define('TOWN_DESTINATION','Destination town');
   define('UPDATE','Update');
   define('AVATAR','Change your avatar');
-
+  define('REGISTRATION', 'Registration');
+  define('DESCRIPTION','Description');
+  define('PRICE', 'Price');
+  define('SUBSCRIPTION','Subscription');
+  define('MEMBER', 'Member');
+  define('ACTION', 'Action');
+  define('PICTURE', 'Picture');
+  define('QUANTITY', 'Quantity');
+  define('PRODUCT', 'Product');
+  define('ADD_SUBSCRIPTION', 'Add a subscription');
+  define('MODIFY','Modify');
+  define('DELETE','Delete');
+  define('EMPTY_SUBSCRIPTION', 'There is no subscription');
+  define('ADD_PRODUCT','Add a product');
+  define('EMPTY_PRODUCT','There is no product');
+  define('CHANGE_RIGTHS','Change rigths');
+  define('SAVE','Save');
+  define('RETURN_HOME_ADMIN','Return');
 ?>
