@@ -89,6 +89,12 @@ nav a:hover {
   height: 450px;
 }
 
+#wrapper-admin {
+  background-image: url("../vendor/images/welcomepage/background/admin_background.jpg");
+  height: 450px;
+}
+
+
 .wrapper h1 {
   font-size: 72px;
   font-weight: normal;
@@ -153,4 +159,27 @@ h4{
 .picture2{
   width: 100px;
   height: 100px;
+}
+
+/*dashboard*/
+.tile:hover{
+  background-color: #7b8b97;
+}
+.tile{
+  background-color:#00bcd4;
+  transition: background-color 1s;
+  border-radius:5px;
+  margin:auto;
+  height:200px;
+  margin-top:20px;
+  margin-right:20px;
+  margin-left:20px;
+  color:#ffffff;
+  padding:10px;
+  text-align:center;
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column;
+  cursor:pointer;
 }

@@ -83,4 +83,6 @@
   define('CHANGE_RIGTHS','Change rigths');
   define('SAVE','Save');
   define('RETURN_HOME_ADMIN','Return');
+  define('TYPE','Acount type');
+  define('MAIN_SUBTITLE_ADMIN','Back-office');
 ?>

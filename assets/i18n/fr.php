@@ -68,7 +68,7 @@
   define('DESCRIPTION','Description');
   define('PRICE', 'Prix');
   define('SUBSCRIPTION','Abonnement');
-  define('MEMBER','Menbre');
+  define('MEMBER','Membre');
   define('ADMIN', 'Administrateur');
   define('ACTION', 'Action');
   define('PICTURE', 'Image');
@@ -83,4 +83,6 @@
   define('CHANGE_RIGTHS','Changer les droits');
   define('SAVE','Enregistrer');
   define('RETURN_HOME_ADMIN','Retour');
+  define('TYPE','Type de compte');
+  define('MAIN_SUBTITLE_ADMIN','Back-office');
 ?>
