@@ -41,14 +41,14 @@ if(!isset($navbarItem)) $navbarItem = 'home';
               <li class="nav-item">
                   <a class="nav-link" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>logout.php"><?php echo LOGOUT; ?></a>
               </li>
-              <?php if($_SESSION["state"] == 1){?>
+              <?php if($_SESSION["type"] == "ADMIN"){?>
                   <li class="nav-item">
                       <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "./" : "admin/"; ?>admin.php"><?php echo ADMIN; ?></a>
                   </li>
               <?php }
           } else{?>
               <li class="nav-item">
-                  <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="<?php echo $address;?>login.php"><?php echo LOGIN; ?></a>
+                  <a class="nav-link<?php if($navbarItem === 'login') echo ' active'?>" href="<?php echo $address."/";?>login.php"><?php echo LOGIN; ?></a>
               </li>
           <?php } ?>
               <li class="nav-item dropdown <?php if($navbarItem ==='new') echo ' active'?>">

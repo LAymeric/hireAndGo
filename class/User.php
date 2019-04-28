@@ -16,7 +16,7 @@ require_once __DIR__."./../functions.php";
         private $address;
         private $phone;
         private $registration_date;
-        private $state = 0;
+        private $type = "FRONT";
 
         public function __get($property) {
             if('name' === $property) {
@@ -41,8 +41,8 @@ require_once __DIR__."./../functions.php";
                 return $this->phone;
             } else if('registration_date' === $property) {
                 return $this->registration_date;
-            } else if('state' === $property) {
-                return $this->state;
+            } else if('type' === $property) {
+                return $this->type;
             } else if('id' === $property) {
                 return $this->id;
             } else {
@@ -88,7 +88,7 @@ require_once __DIR__."./../functions.php";
         public function addUser($newEmail, $newPassword, $name,$firstname,$birthday,$postalCode,$city,$country,$address,$phone,$registration_date){
             $connection = connectDB();
 
-            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date,state) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:state)");
+            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date,type) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:type)");
             $insertUser ->execute(array
                                     ("email"=> $newEmail,
                                      "pwd"=>$newPassword,
@@ -101,7 +101,7 @@ require_once __DIR__."./../functions.php";
                                      "address"=>$address,
                                      "phone"=>$phone,
                                      "registration_date"=>$registration_date,
-                                     "state"=>$this->state
+                                     "type"=>$this->type
                                     ));
 
             header('Location: ../login.php');
@@ -113,7 +113,7 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone,state
+                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone,type
                 FROM member
                 WHERE id=" . $id
                 );
@@ -130,7 +130,7 @@ require_once __DIR__."./../functions.php";
             $this->country=$row['country'];
             $this->address=$row['address'];
             $this->phone=$row['phone'];
-            $this->state=$row['state'];
+            $this->type=$row['type'];
             $this->id=$row['id'];
         }
 
@@ -141,12 +141,12 @@ require_once __DIR__."./../functions.php";
             $deleteUser->execute();
         }
 
-        public function modifyRigths($id, $state){
+        public function modifyRigths($id, $type){
             $connection = connectDB();
 
-            $user = $connection->prepare("UPDATE member SET state = :state WHERE id=".$id);
+            $user = $connection->prepare("UPDATE member SET type = :type WHERE id=".$id);
             $user->execute(array(
-                "state"=>$state
+                "type"=>$type
             ));
         }
 }

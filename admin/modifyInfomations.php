@@ -19,22 +19,22 @@
             echo "<label>".FIRSTNAME." ".NAME.": ".$member->__get('firstname')." ".$member->__get('name')."</label><br>";
             echo "<input type='hidden' name='id' value='".$member->__get("id")."'><br>";
             echo "<label>".ADMIN.": </label>";
-                echo "<select name='state'>";
-                    echo "<option value='0'";
-                    if ($member->__get('state')){
+                echo "<select name='type'>";
+                    echo "<option value='FRONT'";
+                    if ($member->__get('type')){
                         echo "selected='selected'";
                     } else {
                        echo "";
                     }
-                    echo ">0</option>";
+                    echo ">FRONT</option>";
 
-                    echo "<option value='1'";
-                    if ($member->__get('state')){
+                    echo "<option value='ADMIN'";
+                    if ($member->__get('type')){
                         echo "selected='selected'";
                     } else {
                         echo "";
                     }
-                    echo ">1</option>";
+                    echo ">ADMIN</option>";
                 echo "</select>";
                 echo "<button type='submit' class=\"btn btn-info btn-lg\">".SAVE."</button>";
             echo "</form></body>";
