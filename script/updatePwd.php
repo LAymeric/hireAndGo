@@ -26,7 +26,7 @@
           $connection = connectDB();
 
           // Query that update the member's token and password
-          $query = $connection->prepare("UPDATE member SET pwd=? WHERE id=? ");
+          $query = $connection->prepare("UPDATE user SET password=? WHERE id=? ");
 
 
           // Execute the query

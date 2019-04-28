@@ -58,7 +58,7 @@ require_once "../class/User.php";
       $connection = connectDB();
 
       // Query that returns 1 every time it founds this email
-      $query = $connection->prepare("SELECT 1 FROM member WHERE email= :email");
+      $query = $connection->prepare("SELECT 1 FROM user WHERE email= :email");
 
       // Execute
       $query->execute(["email" => $_POST["email"]]);

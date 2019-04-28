@@ -7,11 +7,12 @@
 
     $_POST["email"] = strtolower($_POST["email"]);
 
-    $data = sqlSelect("SELECT * FROM member WHERE email='{$_POST['email']}'");
+    $data = sqlSelect("SELECT * FROM user WHERE email='{$_POST['email']}'");
 
-    if (password_verify($_POST["pwd"], $data["pwd"])) {
+    if (password_verify($_POST["pwd"], $data["password"])) {
         $_SESSION["auth"]  = true;
         $_SESSION["id"]    = $data["id"];
+        $_SESSION["email"]    = $data["email"];
         $_SESSION["type"] = $data["type"];
         header("Location: ../profile.php");
       }else {

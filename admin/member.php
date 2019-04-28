@@ -13,7 +13,7 @@
                 <h1><a href="admin.php" role="button" class="btn  btn-lg btn-return"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a><?php echo " ".MEMBER?></h1>
 
                 <?php
-                $query = "SELECT id, name, firstname, email, birthday, city, country, address, phone, registration_date , type FROM member";
+                $query = "SELECT id, name, firstname, email, birthdate, city, country, address, phone, registration_date , type FROM member";
                 $result = selectAll($query);
                 echo "<table class='table table-bordered table-responsive'>";
                 if ($result != null){

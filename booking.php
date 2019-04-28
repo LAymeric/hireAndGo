@@ -81,7 +81,7 @@
         <div id="finalEnd"></div>
         <div id="finalStart"></div>
         <div class="form-group" style="text-align:center;">
-            <button type="button"  onclick="searchAddress()" class="btn btn-info"><?php echo VALIDATE?></button>
+            <button type="button"  onclick="searchAddress('<?php echo $_SESSION['email'] ?>')" class="btn btn-info"><?php echo VALIDATE?></button>
         </div>
         <div id="map" style="width:100%; height:800px; margin-top:20px"></div>
         <script src="js/map.js">

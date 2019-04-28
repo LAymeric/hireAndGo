@@ -41,8 +41,8 @@
 
           // Query that inserts the new member
           $updateQuery = $connection->prepare(
-              "UPDATE member
-                        SET email=:email,name=:name,firstname=:firstname,phone=:phone,city=:city,postalCode=:postalCode,address=:address,country=:country
+              "UPDATE user
+                        SET email=:email,lastname=:name,firstname=:firstname,phone=:phone,city=:city,postal_code=:postalCode,address=:address,country=:country
                         WHERE id=:id"
           );
 

@@ -31,7 +31,7 @@ var endPC = document.getElementById("endPC");
 var endCity = document.getElementById("endCity");
 var reservation_time = document.getElementById("reservation_time");
 var reservation_date = document.getElementById("reservation_date");
-function searchAddress() {
+function searchAddress(email) {
     var finalStart = document.getElementById("finalStart");
     var finalEnd = document.getElementById("finalEnd");
     var requestStart = {
@@ -62,10 +62,10 @@ function searchAddress() {
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
 
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, email);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay, email) {
     directionsService.route({
         origin: startAddress.value + " " + startPC.value + " " + startCity.value + " " ,
         destination: endAddress.value + " " + endPC.value + " " + endCity.value,
@@ -80,18 +80,20 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 totalDistance += legs[i].distance.value;
                 totalDuration += legs[i].duration.value;
             }
-            $.ajax({ url: 'script/saveReservation.php',
-                data: {
-                    reservation_time: reservation_time.value,
-                    reservation_date: reservation_date.value,
-                    departure_address: startAddress.value,
-                    departure_postal_code: startPC.value,
-                    departure_city: startCity.value,
-                    arrival_address: endAddress.value,
-                    arrival_postal_code: endPC.value,
-                    arrival_city: endCity.value,
+            $.ajax({ url: 'http://localhost:8080/api/command/new',
+                data: JSON.stringify({
+                    email:email,
+                    start: startAddress.value + " " + startPC.value + " " + startCity.value,
+                    end : endAddress.value + " " + endPC.value + " " + endCity.value,
                     distance:totalDistance/1000,
-                    duration:totalDuration
+                    duration:totalDuration/60,
+                    startTime: reservation_date.value + " " + reservation_time.value
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    'Access-Control-Allow-Credentials':true
                 },
                 type: 'POST',
                 dataType: "json",

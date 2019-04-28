@@ -88,7 +88,7 @@ require_once __DIR__."./../functions.php";
         public function addUser($newEmail, $newPassword, $name,$firstname,$birthday,$postalCode,$city,$country,$address,$phone,$registration_date){
             $connection = connectDB();
 
-            $insertUser = $connection->prepare("INSERT INTO member (email, pwd, name,firstname,birthday,postalCode,city,country,address,phone,registration_date,type) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:type)");
+            $insertUser = $connection->prepare("INSERT INTO user (email, password, lastname,firstname,birthdate,postal_code,city,country,address,phone,registration_date,type) VALUES(:email,:pwd,:name,:firstname,:birthday,:postalCode,:city,:country,:address,:phone,:registration_date,:type)");
             $insertUser ->execute(array
                                     ("email"=> $newEmail,
                                      "pwd"=>$newPassword,
@@ -113,8 +113,8 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, name,firstname,birthday,postalCode,city,country,address,phone,type
-                FROM member
+                "SELECT id,email, lastname,firstname,birthdate,postal_code,city,country,address,phone,type
+                FROM user
                 WHERE id=" . $id
                 );
             }
@@ -122,10 +122,10 @@ require_once __DIR__."./../functions.php";
             $result = $query->execute();
             $row = $query->fetch(PDO::FETCH_BOTH);
             $this->email=$row['email'];
-            $this->name=$row['name'];
+            $this->name=$row['lastname'];
             $this->firstname=$row['firstname'];
-            $this->birthday=$row['birthday'];
-            $this->postalCode=$row['postalCode'];
+            $this->birthday=$row['birthdate'];
+            $this->postalCode=$row['postal_code'];
             $this->city=$row['city'];
             $this->country=$row['country'];
             $this->address=$row['address'];
@@ -137,14 +137,14 @@ require_once __DIR__."./../functions.php";
         public function deleteUser($id){
             $connection = connectDB();
 
-            $deleteUser = $connection->prepare("DELETE FROM member WHERE id = ".$id);
+            $deleteUser = $connection->prepare("DELETE FROM user WHERE id = ".$id);
             $deleteUser->execute();
         }
 
         public function modifyRigths($id, $type){
             $connection = connectDB();
 
-            $user = $connection->prepare("UPDATE member SET type = :type WHERE id=".$id);
+            $user = $connection->prepare("UPDATE user SET type = :type WHERE id=".$id);
             $user->execute(array(
                 "type"=>$type
             ));

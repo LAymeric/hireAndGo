@@ -47,7 +47,7 @@ if (count($_POST) === 1) {
                     $result = move_uploaded_file($fileTmpName, $fileDestination);
 
                     if ($result) {
-                        $query = $connection->prepare('UPDATE member SET profile_photo_filename=:profile_photo_filename WHERE id=:id');
+                        $query = $connection->prepare('UPDATE user SET profile_photo_filename=:profile_photo_filename WHERE id=:id');
 
                         $query->execute([
                             'profile_photo_filename' => $fileNewName,
