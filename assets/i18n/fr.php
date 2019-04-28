@@ -85,4 +85,6 @@
   define('RETURN_HOME_ADMIN','Retour');
   define('TYPE','Type de compte');
   define('MAIN_SUBTITLE_ADMIN','Back-office');
+  define('SUCCES_COMMAND',' Votre course à été enregistré');
+  define('ERROR_COMMAND',' Une erreur s\'est produite');
 ?>

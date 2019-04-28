@@ -85,4 +85,6 @@
   define('RETURN_HOME_ADMIN','Return');
   define('TYPE','Acount type');
   define('MAIN_SUBTITLE_ADMIN','Back-office');
+  define('SUCCES_COMMAND',' Your trip has been saved !');
+define('ERROR_COMMAND',' An error occured');
 ?>

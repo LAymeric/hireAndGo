@@ -47,14 +47,14 @@ function searchAddress(email) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             finalStart.value = results[0].name
         }else {
-            alert("no result for start")
+            errorPopup()
         }
     });
     service.findPlaceFromQuery(requestEnd, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             finalEnd.value = results[0].name
         }else {
-            alert("no result for end")
+            errorPopup()
         }
     });
     //lancement de l'itinéraire
@@ -98,20 +98,45 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email) {
                 type: 'POST',
                 dataType: "json",
                 success : function(code, status){
-                    //todo afficher une popup de résumé de l'itinéraire enregistré
-                    //todo save nombre de km et temps de trajet !
+                    successPopup()
                 },
 
                 error : function(result, status, error){
-                    //todo afficher une popup d'erreur
+                    errorPopup()
                 },
 
                 complete : function(result, status){
                 }
+
             });
 
+
         } else {
-            alert('Directions request failed due to ' + status);
+            errorPopup()
         }
     });
+}
+
+var isShowing = false;
+function successPopup() {
+    if(!isShowing){
+        isShowing = true;
+        var popup = document.getElementById("successPopup");
+        popup.className="popuptext show";
+        setTimeout(function() {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        },5000);
+    }
+}
+function errorPopup() {
+    if(!isShowing) {
+        isShowing = true;
+        var popup = document.getElementById("errorPopup");
+        popup.className="popuptext show";
+        setTimeout(function () {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        }, 5000);
+    }
 }
