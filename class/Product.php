@@ -88,22 +88,24 @@ class Product{
 
     public function printProducts()
     {
-        $out = '';
+        $out = '<div class="container">
+                    <div class="row">';
         foreach ($this->getAllProducts() as $item)
         {
-            $out.='<div class="container">';
-                $out.='<div class="row">';
-                    $out.= '<div><div class="card" style="width: 18rem;">' ;
-                        $out.='<div class="card-body">' ;
-                            $out.= '<h5 class="card-title" style="text-align: center;">'.$item['name'].' <input type="hidden" value="'.$item['name'].'" id="name'.$item['id'].'"></h5><br>';
-                            $out.= '<p class="card-text" style="text-align: center">Prix : '.$item['price'].' <input type="hidden" value="'.$item['price'].'" id="price'.$item['id'].'">€</p><br>';
-                        $out.='</div>';
-                        $out.= '<input type="number" id="quantity'.$item['id'].'" min="1" placeholder="Quantité"><br>';
-                        $out .= '<button onclick="Add('.$item['id'].')">Ajouter au panier</button>';
-                    $out .= '</div><br>';
-                $out.='</div><br>';
-            $out.='</div><br>';
-            }
+            $out.= '<div class="col-sm-4" style="padding: 20px;">';
+            $out.= '<div class="card" style="width: 18rem; border-color: rgb(91,192,222)">' ;
+            $out.='<div class="card-body">' ;
+            $out.= '<h5 class="card-title" style="text-align: center;">'.$item['name'].' <input type="hidden" value="'.$item['name'].'" id="name'.$item['id'].'"></h5><br>';
+            $out.= '<p class="card-text" style="text-align: center">Prix : '.$item['price'].' <input type="hidden" value="'.$item['price'].'" id="price'.$item['id'].'">€</p><br>';
+            $out.= '<p style="text-align: center;"><input type="number" id="quantity'.$item['id'].'" min="1" placeholder="Quantité" style="text-align: center;"></p><br>';
+            $out .= '<p style="text-align: center;"><button onclick="Add('.$item['id'].')" style="text-align: center;">Ajouter au panier</button></p>';
+            $out.='</div>';
+            $out.='</div>';
+            $out.='</div>';
+        }
+        $out.= '     </div>
+                </div>';
+
         echo $out;
     }
 
