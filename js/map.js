@@ -98,9 +98,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                 type: 'POST',
                 dataType: "json",
                 success : function(code, status){
-                alert(isPremium);
-                    if(isPremium === 1){
-                        document.location.href="test.php"
+                    if(isPremium === "1"){
+                        document.location.href="cart/service.php"
                     }else {
                         successPopup()
                     }

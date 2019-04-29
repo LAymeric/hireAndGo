@@ -7,7 +7,7 @@
       <?php include "functions.php";
 
       $address = substr($_SERVER['PHP_SELF'], 0,strlen($_SERVER['PHP_SELF']) - strlen(strrchr($_SERVER['PHP_SELF'], '/')));
-      $path = ("/hireAndGo/admin" == $address) ? "../" : "";
+      $path = ("/hireAndGo/admin" == $address || "/hireAndGo/cart" == $address) ? "../" : "";
 
       ?>
     <!-- Favicon -->

@@ -87,4 +87,13 @@
   define('MAIN_SUBTITLE_ADMIN','Back-office');
   define('SUCCES_COMMAND',' Votre course à été enregistré');
   define('ERROR_COMMAND',' Une erreur s\'est produite');
+  define('MAIN_TITLE_SERVICE','Service');
+  define('MAIN_SUBTITLE_SERVICE','Selectionner des services');
+  define('SEE_CART',' Voir le panier');
+  define('PRICE_SERVICE','Prix : ');
+  define('ADD_CART',' Ajouter au panier');
+  define('MAIN_TITLE_CART','Mon panier');
+  define('UNIT_PRICE','Prix unitaire');
+  define('TOTAL_PRICE','Prix total');
+  define('DELETE_ALL','Tout supprimer');
 ?>

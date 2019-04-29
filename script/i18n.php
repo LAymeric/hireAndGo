@@ -6,7 +6,7 @@
  		 $lang = "fr";
     }
 
-  $backToParent = ("/hireAndGo/admin" == $address) ? "../" : "";
+  $backToParent = ("/hireAndGo/admin" == $address || "/hireAndGo/cart" == $address) ? "../" : "";
 
 	if ($lang=='fr') {
 		include($backToParent.'assets/i18n/fr.php');

@@ -89,6 +89,15 @@ nav a:hover {
   height: 450px;
 }
 
+#wrapper-service {
+  background-image: url("../vendor/images/welcomepage/background/service_background.jpg");
+  height: 450px;
+}
+#wrapper-cart {
+  background-image: url("../vendor/images/welcomepage/background/cart_background.png");
+  height: 500px;
+}
+
 #wrapper-admin {
   background-image: url("../vendor/images/welcomepage/background/admin_background.jpg");
   height: 450px;
