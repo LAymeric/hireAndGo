@@ -31,7 +31,7 @@ var endPC = document.getElementById("endPC");
 var endCity = document.getElementById("endCity");
 var reservation_time = document.getElementById("reservation_time");
 var reservation_date = document.getElementById("reservation_date");
-function searchAddress(email) {
+function searchAddress(email,isPremium) {
     var finalStart = document.getElementById("finalStart");
     var finalEnd = document.getElementById("finalEnd");
     var requestStart = {
@@ -62,10 +62,10 @@ function searchAddress(email) {
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
 
-    calculateAndDisplayRoute(directionsService, directionsDisplay, email);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, email, isPremium);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, email) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay, email, isPremium) {
     directionsService.route({
         origin: startAddress.value + " " + startPC.value + " " + startCity.value + " " ,
         destination: endAddress.value + " " + endPC.value + " " + endCity.value,
@@ -98,7 +98,12 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email) {
                 type: 'POST',
                 dataType: "json",
                 success : function(code, status){
-                    successPopup()
+                alert(isPremium);
+                    if(isPremium === 1){
+                        document.location.href="test.php"
+                    }else {
+                        successPopup()
+                    }
                 },
 
                 error : function(result, status, error){

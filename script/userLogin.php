@@ -13,6 +13,7 @@
         $_SESSION["auth"]  = true;
         $_SESSION["id"]    = $data["id"];
         $_SESSION["email"]    = $data["email"];
+        $_SESSION["isPremium"] = $data["is_premium"];
         $_SESSION["type"] = $data["type"];
         header("Location: ../profile.php");
       }else {
