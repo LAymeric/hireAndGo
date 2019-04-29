@@ -9,6 +9,7 @@
 
 	$user = new User($_SESSION["id"]);
 	$user->selectUser($_SESSION["id"]);
+	echo $user->__get("lastname");
 ?>
 
 <!doctype html>
@@ -56,7 +57,7 @@
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label><?php echo NAME.": ".$user->__get("name"); ?></label>
+													<label><?php echo NAME.": ".$user->__get("lastname"); ?></label>
 												</div>
 
                 								<div class="form-group">
@@ -92,7 +93,7 @@
 												</div>
 
                 								<div class="form-group">
-													<label><?php echo POSTAL_CODE.": ".$user->__get("postalCode"); ?></label>
+													<label><?php echo POSTAL_CODE.": ".$user->__get("postal_code"); ?></label>
 												</div>
 											</div>
 											 <div class="form-group paddingLeft">
@@ -183,7 +184,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="name"><?php echo NAME;?></label>
-                                            <input type="text" class="form-control"  name="name" value="<?php echo $user->__get("name"); ?>">
+                                            <input type="text" class="form-control"  name="name" value="<?php echo $user->__get("lastname"); ?>">
                                             <div id="errorName" class="error" style="display: none"> <?php echo INVALID_NAME ?></div>
                                         </div>
                                     </div>
@@ -228,7 +229,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="postalCode"><?php echo POSTAL_CODE;?></label>
-                                            <input type="text" class="form-control"  name="postalCode" value="<?php echo $user->__get("postalCode"); ?>" required="required">
+                                            <input type="text" class="form-control"  name="postalCode" value="<?php echo $user->__get("postal_code"); ?>" required="required">
                                             <div id="errorPostalCode" class="error" style="display:none">Code postale invalide</div>
                                         </div>
                                     </div>

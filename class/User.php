@@ -7,10 +7,10 @@ require_once __DIR__."./../functions.php";
         private $id;
         private $email;
         private $pwd;
-        private $name;
+        private $lastname;
         private $firstname;
         private $birthday;
-        private $postalCode;
+        private $postal_code;
         private $city;
         private $country;
         private $address;
@@ -19,8 +19,8 @@ require_once __DIR__."./../functions.php";
         private $type = "FRONT";
 
         public function __get($property) {
-            if('name' === $property) {
-                return $this->name;
+            if('lastname' === $property) {
+                return $this->lastname;
             } else if('email' === $property) {
                 return $this->email;
             } else if('pwd' === $property) {
@@ -29,8 +29,8 @@ require_once __DIR__."./../functions.php";
                 return $this->firstname;
             } else if('birthday' === $property) {
                 return $this->birthday;
-            } else if('postalCode' === $property) {
-                return $this->postalCode;
+            } else if('postal_code' === $property) {
+                return $this->postal_code;
             } else if('city' === $property) {
                 return $this->city;
             } else if('country' === $property) {
@@ -70,10 +70,10 @@ require_once __DIR__."./../functions.php";
         private function fonction11($e, $p,$n,$f,$b,$postal,$c,$country,$a,$phone,$registration_date){
             $this->email=$e;
             $this->pwd=$p;
-            $this->name=$a;
+            $this->lastname=$a;
             $this->firstname=$f;
             $this->birthday=$b;
-            $this->postalCode=$postal;
+            $this->postal_code=$postal;
             $this->city=$c;
             $this->country=$country;
             $this->address=$a;
@@ -122,10 +122,10 @@ require_once __DIR__."./../functions.php";
             $result = $query->execute();
             $row = $query->fetch(PDO::FETCH_BOTH);
             $this->email=$row['email'];
-            $this->name=$row['lastname'];
+            $this->lastname=$row['lastname'];
             $this->firstname=$row['firstname'];
             $this->birthday=$row['birthdate'];
-            $this->postalCode=$row['postal_code'];
+            $this->postal_code=$row['postal_code'];
             $this->city=$row['city'];
             $this->country=$row['country'];
             $this->address=$row['address'];
