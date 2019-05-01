@@ -21,7 +21,10 @@ function Add(id)
 
     //alert("ID : "+id+" Name : "+name+" Price : "+price+" Qunatity : "+quantity);
     var action = "add";
-
+    if(quantity === ""){
+        errorPopup()
+        return
+    }
     $.ajax({
         url:'../cart/actionCart.php',
         type:'POST',
