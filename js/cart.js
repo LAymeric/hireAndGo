@@ -102,6 +102,105 @@ function update(id)
 
 }
 
+function validateCart(id, idCommand)
+{
+    var arrayServices = []
+
+    var table = document.getElementById("table")
+    var   tr = table.getElementsByTagName("tr")
+    for(let i = 1; i < tr.length-1 ; i++){
+        var td = tr[i].getElementsByTagName("td")
+        arrayServices.push({
+            idService : td[0].id,
+            quantity: td[2].getElementsByTagName("input")[0].value
+        })
+    }
+
+    $.ajax({ url: 'http://localhost:8080/api/command/update',
+                data: JSON.stringify({
+                    idUser:id,
+                    services: arrayServices,
+                    idCommand : idCommand
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    'Access-Control-Allow-Credentials':true
+                },
+                type: 'POST',
+                dataType: "json",
+                success : function(code, status){
+                    document.location.href="reservationFinal.php?idCommand="+idCommand
+
+                },
+
+                error : function(result, status, error){
+                    errorPopup()
+                },
+
+                complete : function(result, status){
+                }
+
+            });
+
+}
+
+function downloadDevis( idCommand)//TODO
+{
+    $.ajax({ url: 'http://localhost:8080/api/command/devis/'+idCommand,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    'Access-Control-Allow-Credentials':true
+                },
+                type: 'GET',
+                dataType: "json",
+                success : function(code, status){
+                    //TODO
+
+                },
+
+                error : function(result, status, error){
+                    errorPopup()
+                },
+
+                complete : function(result, status){
+                }
+
+            });
+
+}
+
+
+function validateCommand( idCommand)//TODO
+{
+    $.ajax({ url: 'http://localhost:8080/api/command/validate/'+idCommand,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    'Access-Control-Allow-Credentials':true
+                },
+                type: 'GET',
+                dataType: "json",
+                success : function(code, status){
+                    //TODO
+
+                },
+
+                error : function(result, status, error){
+                    errorPopup()
+                },
+
+                complete : function(result, status){
+                }
+
+            });
+
+}
+
 
 var isShowing = false;
 function successPopup() {

@@ -39,16 +39,15 @@ class item
         return $this->quantity_item;
     }
 
-    public function setQuantityItem($quantity_item)
-    {
-        $this->quantity_item = $quantity_item;
-    }
-
     public function getIdItem()
     {
         return $this->id_item;
     }
 
+    public function setQuantityItem($quantity_item)
+    {
+        $this->quantity_item = $quantity_item;
+    }
 
     public function setIdItem($id_item)
     {

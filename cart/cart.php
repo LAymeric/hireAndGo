@@ -32,6 +32,9 @@ include "../navbar.php";
         <div id="panier">
         </div>
     </div>
+    <div class="form-group" style="text-align:center;">
+        <button type="button"  onclick="validateCart('<?php echo $_SESSION['front_id']  ?>', '<?php echo $_GET['idCommand']?>')" class="btn btn-info"><?php echo VALIDATE?></button>
+    </div>
 </body>
 </html>
 

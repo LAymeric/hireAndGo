@@ -99,4 +99,7 @@
   define('NO_SUBSCRIPTION','You don\'t have any subscription');
   define('SUCCESS_ADD_SERVICE','Service added');
   define('ERROR_ADD_SERVICE','Impossible to add the service');
+  define('MAIN_TITLE_BOOKING_END','Reservation resume');
+  define('DOWNLOAD_DEVIS','Download bill');
+  define('VALIDATE_COURSE','Validate course');
 ?>

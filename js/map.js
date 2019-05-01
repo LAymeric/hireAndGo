@@ -99,7 +99,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                 dataType: "json",
                 success : function(code, status){
                     if(isPremium === "1"){
-                        document.location.href="cart/service.php"
+                        document.location.href="cart/service.php?idCommand="+code.id
                     }else {
                         successPopup()
                     }

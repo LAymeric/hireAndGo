@@ -13,7 +13,7 @@ require_once '../head.php';
 
 $unser = unserialize($_SESSION['front_panier']);
 
-$tab = '<table class="table table-bordered">
+$tab = '<table class="table table-bordered" id="table">
                     <thead style="background-color: rgb(91,192,222); color: #FFFFFF">
                         <tr>
                             <th>'.NAME.'</th>
@@ -30,10 +30,10 @@ $totalPrice = 0;
 foreach ($unser->getItemList() as $value)
 {
     $tab.='<tr>
-                    <td>'.$value->getNameItem().'</td>
+                    <td class="id" id="'.$value->getIdItem().'">'.$value->getNameItem().'</td>
                     <td>'.$value->getPriceItem().'€</td>
                     <td><input type="number" min="1" value="'.$value->getQuantityItem().'" id="quantite'.$value->getIdItem().'" onchange="update('.$value->getIdItem().')"></td>
-                    <td>'.$value->getQuantityItem()*$value->getPriceItem().'€</td>
+                    <td class="quantity" >'.$value->getQuantityItem()*$value->getPriceItem().'€</td>
                     <td><button class="btn btn-danger" onclick="del('.$value->getIdItem().')">'.DELETE.'</button></td>
                 </tr>';
     $totalPrice+=$value->getQuantityItem()*$value->getPriceItem();

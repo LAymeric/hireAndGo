@@ -99,4 +99,7 @@
   define('NO_SUBSCRIPTION','Vous n\'avez pas d\'abonnement');
   define('SUCCESS_ADD_SERVICE','Service ajouté');
   define('ERROR_ADD_SERVICE','Impossible d\'ajouter le service');
+  define('MAIN_TITLE_BOOKING_END','Résumé de la reservation');
+  define('DOWNLOAD_DEVIS','Télécharger le devis');
+  define('VALIDATE_COURSE','Valider la course');
 ?>

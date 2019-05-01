@@ -50,7 +50,7 @@ require_once __DIR__."./../functions.php";
 
     <div class="push"></div>
     <div class="form-group" style="text-align:center;">
-        <button type="submit" class="btn btn-info" onclick="document.location.href='cart.php'"><i class="fas fa-shopping-cart"></i><?php echo SEE_CART;?></span></button>
+        <button type="submit" class="btn btn-info" onclick="document.location.href='cart.php?idCommand=<?php echo $_GET["idCommand"]?>'"><i class="fas fa-shopping-cart"></i><?php echo SEE_CART;?></span></button>
     </div>
 </div>
 
