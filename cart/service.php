@@ -28,7 +28,6 @@ require_once __DIR__."./../functions.php";
     </div>
 
     <div class="push"></div>
-    <?php
     <div class="form-group" style="text-align:center;">
         <div class="popup">
             <span class="popuptext" id="successPopup"><i class="far fa-check-circle"></i><?php echo SUCCESS_ADD_SERVICE;?></span>
@@ -37,6 +36,7 @@ require_once __DIR__."./../functions.php";
             <span class="popuptext" id="errorPopup"><i class="far fa-times-circle"></i><?php echo ERROR_ADD_SERVICE;?></span>
         </div>
     </div>
+    <?php
     if (!isset($_SESSION['front_panier']))
     {
         $panier = new Cart();
