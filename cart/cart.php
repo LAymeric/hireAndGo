@@ -24,7 +24,7 @@ include "../navbar.php";
 </head>
 <body>
 
-    <div class="wrapper" id="wrapper-cart">
+    <div class="wrapper">
         <h1><?php echo MAIN_TITLE_CART; ?></h1>
     </div>
     <div class="push"></div>

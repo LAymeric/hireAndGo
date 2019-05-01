@@ -97,4 +97,6 @@
   define('TOTAL_PRICE','Total price');
   define('DELETE_ALL','Delete all');
   define('NO_SUBSCRIPTION','You don\'t have any subscription');
+  define('SUCCESS_ADD_SERVICE','Service added');
+  define('ERROR_ADD_SERVICE','Impossible to add the service');
 ?>

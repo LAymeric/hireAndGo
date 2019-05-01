@@ -4,7 +4,6 @@ function fetchPanier()
         url:'../cart/buildCart.php',
         method:'POST',
         success:function (data) {
-            document.getElementById('panier').innerHTML = "";
             document.getElementById('panier').innerHTML = data;
         }
     });
@@ -33,6 +32,16 @@ function Add(id)
             id:id,
             action:action
         },
+        success : function(code, status){
+            successPopup()
+        },
+
+        error : function(result, status, error){
+            errorPopup()
+        },
+
+        complete : function(result, status){
+        }
     })
 }
 
