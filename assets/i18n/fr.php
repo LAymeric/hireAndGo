@@ -98,5 +98,5 @@
   define('DELETE_ALL','Tout supprimer');
   define('NO_SUBSCRIPTION','Vous n\'avez pas d\'abonnement');
   define('SUCCESS_ADD_SERVICE','Service ajouté');
-  define('ERROR_ADD_SERVICE','Impossible d'ajouter le service');
+  define('ERROR_ADD_SERVICE','Impossible d\'ajouter le service');
 ?>
