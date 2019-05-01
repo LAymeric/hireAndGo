@@ -98,3 +98,28 @@ function update(id)
     });
 
 }
+
+
+var isShowing = false;
+function successPopup() {
+    if(!isShowing){
+        isShowing = true;
+        var popup = document.getElementById("successPopup");
+        popup.className="popuptext show";
+        setTimeout(function() {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        },5000);
+    }
+}
+function errorPopup() {
+    if(!isShowing) {
+        isShowing = true;
+        var popup = document.getElementById("errorPopup");
+        popup.className="popuptext show";
+        setTimeout(function () {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        }, 5000);
+    }
+}

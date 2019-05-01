@@ -29,7 +29,14 @@ require_once __DIR__."./../functions.php";
 
     <div class="push"></div>
     <?php
-
+    <div class="form-group" style="text-align:center;">
+        <div class="popup">
+            <span class="popuptext" id="successPopup"><i class="far fa-check-circle"></i><?php echo SUCCESS_ADD_SERVICE;?></span>
+        </div>
+        <div class="popupError">
+            <span class="popuptext" id="errorPopup"><i class="far fa-times-circle"></i><?php echo ERROR_ADD_SERVICE;?></span>
+        </div>
+    </div>
     if (!isset($_SESSION['front_panier']))
     {
         $panier = new Cart();
@@ -40,14 +47,7 @@ require_once __DIR__."./../functions.php";
     $product->printProducts();
 
     ?>
-    <div class="form-group" style="text-align:center;">
-        <div class="popup">
-            <span class="popuptext" id="successPopup"><i class="far fa-check-circle"></i><?php echo SUCCESS_ADD_SERVICE;?></span>
-        </div>
-        <div class="popupError">
-            <span class="popuptext" id="errorPopup"><i class="far fa-times-circle"></i><?php echo ERROR_ADD_SERVICE;?></span>
-        </div>
-    </div>
+
     <div class="push"></div>
     <div class="form-group" style="text-align:center;">
         <button type="submit" class="btn btn-info" onclick="document.location.href='cart.php'"><i class="fas fa-shopping-cart"></i><?php echo SEE_CART;?></span></button>
