@@ -109,23 +109,6 @@
 
 		                            </div>
 		                            <div class="tab-pane" id="subscribs">
-                                            <?php
-                                                $query = "SELECT name, description, price FROM subscription";
-                                                $result = selectAll($query);
-                                                if ($result != null) {
-                                                    foreach ($result as $value) {
-                                                        echo "<div class='col-lg-12'>";
-                                                        echo "<label>" . NAME . ": " . $value["name"] . "</label>";
-                                                        echo "<p>" . DESCRIPTION . ": " . $value["description"] . "</p>";
-                                                        echo "<label>" . PRICE . ": " . $value["price"] . "€</label>";
-                                                        echo "</div>";
-                                                    }
-                                                }else{
-                                                    echo "<div class='col-lg-12'>";
-                                                    echo NO_SUBSCRIPTION;
-                                                    echo "</div>";
-                                                }
-                                            ?>
 
 		                            </div>
 		                        </div>
