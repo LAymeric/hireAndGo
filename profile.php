@@ -7,9 +7,8 @@
     include "class/Subscrpition.php";
     require_once __DIR__."./functions.php";
 
-	$user = new User($_SESSION["id"]);
-	$user->selectUser($_SESSION["id"]);
-	echo $user->__get("lastname");
+	$user = new User($_SESSION["front_id"]);
+	$user->selectUser($_SESSION["front_id"]);
 ?>
 
 <!doctype html>
@@ -110,32 +109,24 @@
 
 		                            </div>
 		                            <div class="tab-pane" id="subscribs">
-                                        <?php
-                                        if (true){ ?>
-                                            <div class="col-lg-12">
-                                                <h2>Vous n'avez aucun abonnenemt</h2>
-                                            </div>
                                             <?php
-                                            $query = "SELECT name, description, price FROM subscription";
-                                            $result = selectAll($query);
-                                            if ($result != null) {
-                                                foreach ($result as $value) {
+                                                $query = "SELECT name, description, price FROM subscription";
+                                                $result = selectAll($query);
+                                                if ($result != null) {
+                                                    foreach ($result as $value) {
+                                                        echo "<div class='col-lg-12'>";
+                                                        echo "<label>" . NAME . ": " . $value["name"] . "</label>";
+                                                        echo "<p>" . DESCRIPTION . ": " . $value["description"] . "</p>";
+                                                        echo "<label>" . PRICE . ": " . $value["price"] . "€</label>";
+                                                        echo "</div>";
+                                                    }
+                                                }else{
                                                     echo "<div class='col-lg-12'>";
-                                                    echo "<label>" . NAME . ": " . $value["name"] . "</label>";
-                                                    echo "<p>" . DESCRIPTION . ": " . $value["description"] . "</p>";
-                                                    echo "<label>" . PRICE . ": " . $value["price"] . "€</label>";
+                                                    echo NO_SUBSCRIPTION;
                                                     echo "</div>";
                                                 }
-                                            }
-                                        } else {
-                                            $query = "SELECT name, description, price FROM subscription WHERE id = 4";
-                                            $result = sqlSelect($query);
-                                            echo "<div class='col-lg-12'>";
-                                            echo "<label>" . NAME . ": " . $result["name"] . "</label>";
-                                            echo "<p>" . DESCRIPTION . ": " . $result["description"] . "</p>";
-                                            echo "<label>" . PRICE . ": " . $result["price"] . "€</label>";
-                                            echo "</div>";
-                                        } ?>
+                                            ?>
+
 		                            </div>
 		                        </div>
 							</form>

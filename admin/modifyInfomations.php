@@ -16,7 +16,7 @@
             $member = new USER(null);
             $member->selectUser($_GET['id']);
             echo "<body style='padding-top: 100px'><form action='../script/updateRigths.php' method='post'>";
-            echo "<label>".FIRSTNAME." ".NAME.": ".$member->__get('firstname')." ".$member->__get('name')."</label><br>";
+            echo "<label>".FIRSTNAME." ".NAME.": ".$member->__get('firstname')." ".$member->__get('lastname')."</label><br>";
             echo "<input type='hidden' name='id' value='".$member->__get("id")."'><br>";
             echo "<label>".ADMIN.": </label>";
                 echo "<select name='type'>";

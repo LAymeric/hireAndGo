@@ -12,30 +12,30 @@ session_start();
 
 if($_POST['action'] == 'add')
 {
-    $rar = unserialize($_SESSION['Panier']);
+    $rar = unserialize($_SESSION['front_panier']);
     $rar->addItem($_POST['name'],$_POST['price'],$_POST['quantity'],$_POST['id']);
-    $_SESSION['Panier'] = serialize($rar);
+    $_SESSION['front_panier'] = serialize($rar);
 }
 
 if($_POST['action'] == 'del')
 {
-    $rar = unserialize($_SESSION['Panier']);
+    $rar = unserialize($_SESSION['front_panier']);
     $rar->delItem($_POST['id']);
-    $_SESSION['Panier'] = serialize($rar);
+    $_SESSION['front_panier'] = serialize($rar);
 }
 
 if($_POST['action'] == 'delAll')
 {
-    $rar = unserialize($_SESSION['Panier']);
+    $rar = unserialize($_SESSION['front_panier']);
     $rar->deleteAll($_POST['id']);
-    $_SESSION['Panier'] = serialize($rar);
+    $_SESSION['front_panier'] = serialize($rar);
 }
 
 if($_POST['action'] == 'upd')
 {
-    $rar = unserialize($_SESSION['Panier']);
+    $rar = unserialize($_SESSION['front_panier']);
     $rar->updateItem($_POST['quantity'],$_POST['id']);
-    $_SESSION['Panier'] = serialize($rar);
+    $_SESSION['front_panier'] = serialize($rar);
 }
 
 

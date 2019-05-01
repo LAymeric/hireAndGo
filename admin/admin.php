@@ -4,23 +4,6 @@
     include "../navbar.php";
 ?>
 
-<!-- <div class="container" ">
-        <div class="row justify-content-center">
-            <div class="col-sm">
-                <a href="member.php"><?php /*echo MEMBER */?></a>
-            </div>
-            <div class="col-sm">
-                <a href="subscription.php"><?php /*echo SUBSCRIPTION */?></a>
-            </div>
-            <div class="col-sm">
-                <a href="product.php"><?php /*echo PRODUCT */?>
-            </div>
-            <div class="col-sm">bin test 4</div>
-        </div>
-    </div>-->
-
-
-
 <div class="wrapper" id="wrapper-admin">
     <h1><?php echo ADMIN; ?></h1>
     <h2><?php echo MAIN_SUBTITLE_ADMIN; ?></h2>

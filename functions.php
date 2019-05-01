@@ -38,7 +38,7 @@ function createToken($length) {
 // Check if a user is connected
 function isConnected() {
 
-  if (isset($_SESSION["auth"])){
+  if (isset($_SESSION["front_auth"])){
     return true;
   }
 

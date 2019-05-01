@@ -39,7 +39,7 @@ if (count($_POST) === 1) {
                 // Check if the file size doesn't exceed 2MB
                 if ($fileSize < 2097152) {
 
-                    $fileNewName = $_SESSION['id'] . "-" . uniqid() . "." . $fileExtension;
+                    $fileNewName = $_SESSION['front_id'] . "-" . uniqid() . "." . $fileExtension;
                     $fileDestination = "../uploads/member/avatar/" . $fileNewName;
 
                     // Move the upload file from its tmp directory to its final destination
@@ -51,13 +51,13 @@ if (count($_POST) === 1) {
 
                         $query->execute([
                             'profile_photo_filename' => $fileNewName,
-                            'id'                     => $_SESSION['id']
+                            'id'                     => $_SESSION['front_id']
                         ]);
 
                         unset($_FILES);
                         unset($_POST['submit-avatar']);
 
-                        $_SESSION["successUpdate"]["avatar"] = true;
+                        $_SESSION["front_successUpdate"]["avatar"] = true;
 
                         header('Location: ../edit-profile.php');
                     }
@@ -76,8 +76,8 @@ if (count($_POST) === 1) {
         }
 
         if ($error) {
-            $_SESSION["errorForm"] = $listOfErrors;
-            $_SESSION["postForm"] = $_POST;
+            $_SESSION["front_errorForm"] = $listOfErrors;
+            $_SESSION["front_postForm"] = $_POST;
 
             header("Location: ../edit-profile.php");
         }

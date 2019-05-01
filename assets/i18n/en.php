@@ -96,4 +96,5 @@
   define('UNIT_PRICE','Unit price');
   define('TOTAL_PRICE','Total price');
   define('DELETE_ALL','Delete all');
+  define('NO_SUBSCRIPTION','You don\'t have any subscription');
 ?>

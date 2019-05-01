@@ -30,10 +30,10 @@ require_once __DIR__."./../functions.php";
     <div class="push"></div>
     <?php
 
-    if (!isset($_SESSION['Panier']))
+    if (!isset($_SESSION['front_panier']))
     {
         $panier = new Cart();
-        $_SESSION['Panier'] = serialize($panier);
+        $_SESSION['front_panier'] = serialize($panier);
     }
 
     $product = new Product(NULL,NULL,NULL,NULL);

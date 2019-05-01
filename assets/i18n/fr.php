@@ -96,4 +96,5 @@
   define('UNIT_PRICE','Prix unitaire');
   define('TOTAL_PRICE','Prix total');
   define('DELETE_ALL','Tout supprimer');
+  define('NO_SUBSCRIPTION','Vous n\'avez pas d\'abonnement');
 ?>

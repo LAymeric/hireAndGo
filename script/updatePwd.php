@@ -32,7 +32,7 @@
           // Execute the query
           $query->execute([
               password_hash($_POST["pwd"], PASSWORD_DEFAULT),
-              $_SESSION["id"],
+              $_SESSION["front_id"],
           ]);
 
 

@@ -28,7 +28,7 @@
       // Cleaning string values
 
       $_POST["name"]     = trim($_POST["name"]);
-      $_POST["firstname"] = strtolower(trim($_POST["firstname"]));
+      $_POST["firstname"] = trim($_POST["firstname"]);
       $_POST["email"]    = strtolower(trim($_POST["email"]));
 
 
@@ -56,7 +56,7 @@
               "postalCode" => $_POST["postalCode"],
               "address" => $_POST["address"],
               "country" => $_POST["country"],
-              "id" => $_SESSION["id"]
+              "id" => $_SESSION["front_id"]
 
           ]);
 
