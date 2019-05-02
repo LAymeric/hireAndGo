@@ -148,7 +148,7 @@ function validateCart(id, idCommand)
 
 function downloadDevis( idCommand)//TODO
 {
-    $.ajax({ url: 'http://localhost:8080/api/command/devis/'+idCommand,
+    $.ajax({ url: 'http://localhost:8080/api/command/pdf/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ function downloadDevis( idCommand)//TODO
                 type: 'GET',
                 dataType: "json",
                 success : function(code, status){
-                    //TODO
+                    downloadPDF(code)
 
                 },
 
@@ -173,7 +173,15 @@ function downloadDevis( idCommand)//TODO
 
 }
 
+function downloadPDF(file) {
+    const linkSource = `data:application/pdf;base64,${file.base64}`;
+    const downloadLink = document.createElement("a");
+    const fileName = file.fileName;
 
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+}
 function validateCommand( idCommand)//TODO
 {
     $.ajax({ url: 'http://localhost:8080/api/command/validate/'+idCommand,
