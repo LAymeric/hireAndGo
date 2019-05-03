@@ -202,6 +202,30 @@ function validateCommand( idCommand)//TODO
             });
 
 }
+function paidCourse( idCommand)//TODO
+{
+    $.ajax({ url: 'http://localhost:8080/api/command/paid/'+idCommand,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: 'GET',
+                dataType: "json",
+                success : function(code, status){
+                    //TODO
+
+                },
+
+                error : function(result, status, error){
+                    errorPopup()
+                },
+
+                complete : function(result, status){
+                }
+
+            });
+
+}
 
 
 var isShowing = false;
