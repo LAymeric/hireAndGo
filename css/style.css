@@ -277,7 +277,7 @@ h4{
   box-sizing: border-box;
     width: 400px;
   height: 40px;
-
+    margin:auto;
   padding: 10px 12px;
 
   border: 1px solid transparent;
@@ -299,4 +299,8 @@ h4{
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.card-element{
+  width: 200px;
 }
