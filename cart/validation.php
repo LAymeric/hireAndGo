@@ -8,9 +8,10 @@
       <h1><?php echo VALIDATION;?></h1>
       <h2><?php echo BRAVO;?></h2>
     </div>
+<script src="./../js/cart.js"></script>
 <script>
 $(document).ready(function(){
-    paidCourse('<?php echo $_GET["idCommand"]?>')
+    paidCourse('<?php echo $_GET["commandId"];?>')
 })
 </script>
 <?php
