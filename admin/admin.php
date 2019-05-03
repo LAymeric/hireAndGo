@@ -24,6 +24,9 @@
             <div class="tile col" onclick="window.location.href='./product.php'">
                 <i class="fab fa-opencart fa-2x"></i><?php echo PRODUCT ?>
             </div>
+            <div class="tile col" onclick="window.location.href='./export.php'">
+                <i class="fas fa-file-export fa-2x"></i><?php echo EXPORT ?>
+            </div>
         </div>
         <div>
         </div>

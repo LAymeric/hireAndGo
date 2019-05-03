@@ -105,4 +105,7 @@
   define('VALIDATION','Course validated');
   define('BRAVO','Bravo !');
   define('GO_BACK','Go back on that course');
+  define('EXPORT','Export');
+  define('DOWNLOAD_EXPORT','Export data');
+  define('EXPORT_EXPLANATION','Export data of every courses for your accounting');
 ?>

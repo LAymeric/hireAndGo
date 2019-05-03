@@ -105,4 +105,7 @@
   define('VALIDATION','Course validée');
   define('BRAVO','Bravo !');
   define('GO_BACK','Retourner sur cette course');
+  define('EXPORT','Export');
+  define('DOWNLOAD_EXPORT','Exporter les données');
+  define('EXPORT_EXPLANATION','Exporter les données de toutes les courses et des montants associés pour votre comptabilité');
 ?>
