@@ -9,6 +9,9 @@
 
 	$user = new User($_SESSION["front_id"]);
 	$user->selectUser($_SESSION["front_id"]);
+	$user->getReservations($_SESSION["front_id"]);
+
+
 ?>
 
 <!doctype html>
@@ -106,7 +109,22 @@
 										</div>
 		                            </div>
 		                            <div class="tab-pane" id="bookings">
+                                        <?php
+                                            $registrations = $user->__get("registrations");
+                                            foreach($registrations as $registration){
+                                                echo "<div class=\"reservationContainer\">";
+                                                echo $registration['start']."<br/>";
+                                                echo $registration['end']."<br/>";
+                                                echo $registration['start_time']."<br/>";
+                                                echo $registration['status']."<br/>";
+                                                if($registration['status'] == "INCOMPLETE"){
+                                                    echo "<div class=\"form-group\" style=\"text-align:center;\">";
+                                                    echo "<button type=\"button\" onclick=\"document.location.href='./cart/service.php?idCommand=".$registration['id']."'\" class=\"btn btn-info\">".GO_BACK."</button></div>";
+                                                }
+                                                echo "</div>";
+                                            }
 
+                                        ?>
 		                            </div>
 		                            <div class="tab-pane" id="subscribs">
 

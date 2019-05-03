@@ -259,6 +259,16 @@ h4{
     margin-top:100px;
     margin-left:100px;
 }
+.reservationContainer{
+    width:300px;
+    text-align:center;
+    padding:10px;
+    border-radius:5px;
+    border: solid 1px;
+    margin:10px;
+    float:left;
+    min-height:205px;
+}
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.

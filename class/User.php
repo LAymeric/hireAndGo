@@ -16,6 +16,7 @@ require_once __DIR__."./../functions.php";
         private $address;
         private $phone;
         private $registration_date;
+        private $registrations = "";
         private $type = "FRONT";
 
         public function __get($property) {
@@ -45,6 +46,8 @@ require_once __DIR__."./../functions.php";
                 return $this->type;
             } else if('id' === $property) {
                 return $this->id;
+            }  else if('registrations' === $property) {
+                return $this->registrations;
             } else {
                 throw new Exception('Propriété invalide !');
             }
@@ -79,6 +82,7 @@ require_once __DIR__."./../functions.php";
             $this->address=$a;
             $this->phone=$phone;
             $this->registration_date = $registration_date;
+            $this->registrations = "";
         }
 
         private function fonction1($id){
@@ -132,6 +136,28 @@ require_once __DIR__."./../functions.php";
             $this->phone=$row['phone'];
             $this->type=$row['type'];
             $this->id=$row['id'];
+        }
+
+        public function getReservations($id){
+            $connection = connectDB();
+            if (!isConnected()) {
+                header("Location: login.php");
+            } else {
+                $query = $connection->prepare(
+                "SELECT command.id, command.start_time, command.start, command.end, command.duration, command.distance, command.status
+                FROM command
+                WHERE command.id_user_front=" . $id
+                );
+            }
+
+            $result = $query->execute();
+            $this->registrations = [];
+            while ($row = $query->fetch())
+            {
+            	$this->registrations[]=$row;
+            }
+
+            $query->closeCursor();
         }
 
         public function deleteUser($id){

@@ -104,4 +104,5 @@
   define('VALIDATE_COURSE','Valider la course');
   define('VALIDATION','Course validée');
   define('BRAVO','Bravo !');
+  define('GO_BACK','Retourner sur cette course');
 ?>
