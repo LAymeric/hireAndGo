@@ -26,10 +26,10 @@ require_once "../class/User.php";
     // Cleaning string values
 
     $_POST["name"]         = trim($_POST["name"]);
-    $_POST["firstname"]     = strtolower(trim($_POST["firstname"]));
+    $_POST["firstname"]     = trim($_POST["firstname"]);
     $_POST["email"]        = strtolower(trim($_POST["email"]));
-    $_POST["city"]        = strtolower(trim($_POST["city"]));
-    $_POST["address"]        = strtolower(trim($_POST["address"]));
+    $_POST["city"]        = trim($_POST["city"]);
+    $_POST["address"]        = trim($_POST["address"]);
 
 
     // Check values one by one
@@ -58,7 +58,7 @@ require_once "../class/User.php";
       $connection = connectDB();
 
       // Query that returns 1 every time it founds this email
-      $query = $connection->prepare("SELECT 1 FROM member WHERE email= :email");
+      $query = $connection->prepare("SELECT 1 FROM user WHERE email= :email");
 
       // Execute
       $query->execute(["email" => $_POST["email"]]);

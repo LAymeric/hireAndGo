@@ -85,4 +85,23 @@
   define('RETURN_HOME_ADMIN','Return');
   define('TYPE','Acount type');
   define('MAIN_SUBTITLE_ADMIN','Back-office');
+  define('SUCCES_COMMAND',' Your trip has been saved !');
+  define('ERROR_COMMAND',' An error occured');
+  define('MAIN_TITLE_SERVICE','Service');
+  define('MAIN_SUBTITLE_SERVICE','select services');
+  define('SEE_CART',' See cart');
+  define('PRICE_SERVICE','Price : ');
+  define('ADD_CART',' Add to cart');
+  define('MAIN_TITLE_CART','My Cart');
+  define('UNIT_PRICE','Unit price');
+  define('TOTAL_PRICE','Total price');
+  define('DELETE_ALL','Delete all');
+  define('NO_SUBSCRIPTION','You don\'t have any subscription');
+  define('SUCCESS_ADD_SERVICE','Service added');
+  define('ERROR_ADD_SERVICE','Impossible to add the service');
+  define('MAIN_TITLE_BOOKING_END','Reservation resume');
+  define('DOWNLOAD_DEVIS','Download bill');
+  define('VALIDATE_COURSE','Validate course');
+  define('VALIDATION','Course validated');
+  define('BRAVO','Bravo !');
 ?>

@@ -7,15 +7,17 @@
 
     $_POST["email"] = strtolower($_POST["email"]);
 
-    $data = sqlSelect("SELECT * FROM member WHERE email='{$_POST['email']}'");
+    $data = sqlSelect("SELECT * FROM user WHERE email='{$_POST['email']}'");
 
-    if (password_verify($_POST["pwd"], $data["pwd"])) {
-        $_SESSION["auth"]  = true;
-        $_SESSION["id"]    = $data["id"];
-        $_SESSION["type"] = $data["type"];
+    if (password_verify($_POST["pwd"], $data["password"])) {
+        $_SESSION["front_auth"]  = true;
+        $_SESSION["front_id"]    = $data["id"];
+        $_SESSION["front_email"]    = $data["email"];
+        $_SESSION["front_isPremium"] = $data["is_premium"];
+        $_SESSION["front_type"] = $data["type"];
         header("Location: ../profile.php");
       }else {
-        $_SESSION["failedLogin"] = "Error: Your username or password is wrong.";
+        $_SESSION["front_failedLogin"] = "Error: Your username or password is wrong.";
         header("Location: ../login.php");
     }
     }

@@ -11,15 +11,15 @@
     <div class="push"></div>
 
     <div class="container center_div register-form" >
-        <?php if (isset($_SESSION["failedLogin"])) {
+        <?php if (isset($_SESSION["front_failedLogin"])) {
             echo '<div class="push"></div>';
             echo '<div class="container-fluid">';
             echo '<div class="alert alert-danger">';
-            echo $_SESSION["failedLogin"];
+            echo $_SESSION["front_failedLogin"];
             echo '</div>';
             echo '</div>';
         }
-        unset($_SESSION["failedLogin"]);
+        unset($_SESSION["front_failedLogin"]);
         ?>
 
         <form method="POST" action="script/userLogin.php">

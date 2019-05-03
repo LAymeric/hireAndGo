@@ -85,4 +85,23 @@
   define('RETURN_HOME_ADMIN','Retour');
   define('TYPE','Type de compte');
   define('MAIN_SUBTITLE_ADMIN','Back-office');
+  define('SUCCES_COMMAND',' Votre course à été enregistré');
+  define('ERROR_COMMAND',' Une erreur s\'est produite');
+  define('MAIN_TITLE_SERVICE','Service');
+  define('MAIN_SUBTITLE_SERVICE','Selectionner des services');
+  define('SEE_CART',' Voir le panier');
+  define('PRICE_SERVICE','Prix : ');
+  define('ADD_CART',' Ajouter au panier');
+  define('MAIN_TITLE_CART','Mon panier');
+  define('UNIT_PRICE','Prix unitaire');
+  define('TOTAL_PRICE','Prix total');
+  define('DELETE_ALL','Tout supprimer');
+  define('NO_SUBSCRIPTION','Vous n\'avez pas d\'abonnement');
+  define('SUCCESS_ADD_SERVICE','Service ajouté');
+  define('ERROR_ADD_SERVICE','Impossible d\'ajouter le service');
+  define('MAIN_TITLE_BOOKING_END','Résumé de la reservation');
+  define('DOWNLOAD_DEVIS','Télécharger le devis');
+  define('VALIDATE_COURSE','Valider la course');
+  define('VALIDATION','Course validée');
+  define('BRAVO','Bravo !');
 ?>

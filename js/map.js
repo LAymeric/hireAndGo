@@ -31,7 +31,7 @@ var endPC = document.getElementById("endPC");
 var endCity = document.getElementById("endCity");
 var reservation_time = document.getElementById("reservation_time");
 var reservation_date = document.getElementById("reservation_date");
-function searchAddress() {
+function searchAddress(email,isPremium) {
     var finalStart = document.getElementById("finalStart");
     var finalEnd = document.getElementById("finalEnd");
     var requestStart = {
@@ -47,14 +47,14 @@ function searchAddress() {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             finalStart.value = results[0].name
         }else {
-            alert("no result for start")
+            errorPopup()
         }
     });
     service.findPlaceFromQuery(requestEnd, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             finalEnd.value = results[0].name
         }else {
-            alert("no result for end")
+            errorPopup()
         }
     });
     //lancement de l'itinéraire
@@ -62,10 +62,10 @@ function searchAddress() {
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
 
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, email, isPremium);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay, email, isPremium) {
     directionsService.route({
         origin: startAddress.value + " " + startPC.value + " " + startCity.value + " " ,
         destination: endAddress.value + " " + endPC.value + " " + endCity.value,
@@ -80,36 +80,65 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 totalDistance += legs[i].distance.value;
                 totalDuration += legs[i].duration.value;
             }
-            $.ajax({ url: 'script/saveReservation.php',
-                data: {
-                    reservation_time: reservation_time.value,
-                    reservation_date: reservation_date.value,
-                    departure_address: startAddress.value,
-                    departure_postal_code: startPC.value,
-                    departure_city: startCity.value,
-                    arrival_address: endAddress.value,
-                    arrival_postal_code: endPC.value,
-                    arrival_city: endCity.value,
+            $.ajax({ url: 'http://localhost:8080/api/command/new',
+                data: JSON.stringify({
+                    email:email,
+                    start: startAddress.value + " " + startPC.value + " " + startCity.value,
+                    end : endAddress.value + " " + endPC.value + " " + endCity.value,
                     distance:totalDistance/1000,
-                    duration:totalDuration
+                    duration:totalDuration/60,
+                    startTime: reservation_date.value + " " + reservation_time.value
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 type: 'POST',
                 dataType: "json",
                 success : function(code, status){
-                    //todo afficher une popup de résumé de l'itinéraire enregistré
-                    //todo save nombre de km et temps de trajet !
+                    if(isPremium === "1"){
+                        document.location.href="cart/service.php?idCommand="+code.id
+                    }else {
+                        document.location.href="cart/paiement.php?idCommand="+code.id
+                    }
                 },
 
                 error : function(result, status, error){
-                    //todo afficher une popup d'erreur
+                    errorPopup()
                 },
 
                 complete : function(result, status){
                 }
+
             });
 
+
         } else {
-            alert('Directions request failed due to ' + status);
+            errorPopup()
         }
     });
+}
+
+var isShowing = false;
+function successPopup() {
+    if(!isShowing){
+        isShowing = true;
+        var popup = document.getElementById("successPopup");
+        popup.className="popuptext show";
+        setTimeout(function() {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        },5000);
+    }
+}
+function errorPopup() {
+    if(!isShowing) {
+        isShowing = true;
+        var popup = document.getElementById("errorPopup");
+        popup.className="popuptext show";
+        setTimeout(function () {
+            popup.className="popuptext invisible";
+            isShowing = false;
+        }, 5000);
+    }
 }

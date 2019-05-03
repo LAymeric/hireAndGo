@@ -89,6 +89,15 @@ nav a:hover {
   height: 450px;
 }
 
+#wrapper-service {
+  background-image: url("../vendor/images/welcomepage/background/service_background.jpg");
+  height: 450px;
+}
+#wrapper-cart {
+  background-image: url("../vendor/images/welcomepage/background/cart_background.png");
+  height: 500px;
+}
+
 #wrapper-admin {
   background-image: url("../vendor/images/welcomepage/background/admin_background.jpg");
   height: 450px;
@@ -182,4 +191,102 @@ h4{
   align-content:center;
   flex-direction:column;
   cursor:pointer;
+}
+
+/*popup*/
+.popup, .popupError{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 340px;
+  background-color: #10d434;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -160px;
+}
+.popupError .popuptext {
+  visibility: hidden;
+  width: 340px;
+  background-color: #d41824;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -160px;
+}
+
+
+/* Toggle this class - hide and show the popup */
+.popup .show, .popupError .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.popup .invisible, .popupError .invisible{
+  visibility: hidden;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+.margin-container{
+    margin-top:100px;
+    margin-left:100px;
+}
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+    width: 400px;
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }

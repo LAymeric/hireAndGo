@@ -16,7 +16,7 @@ require_once __DIR__."./../functions.php";
                     <a href="admin.php" role="button" class="btn btn-info btn-lg"><?php echo RETURN_HOME_ADMIN?></a>
                 </p>
                 <?php
-                $query = "SELECT * FROM product";
+                $query = "SELECT * FROM service";
                 $result = selectAll($query);
                 echo "<table class='table table-bordered table-responsive'>";
                 if ($result != null){

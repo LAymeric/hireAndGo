@@ -1,6 +1,7 @@
 <?php
     ini_set('display_errors',1);
-    require_once "../class/Product.php";
+include "../functions.php";
+    require_once "../class/Service.php";
 
     if (!empty($_POST["name"])
         && !empty($_POST["quantity"])
@@ -28,12 +29,12 @@
                 echo "L'extension de l'image n'est pas bonne";
             }
         } else {
-            $oldProduct = new Product(null,null,null, null);
+            $oldProduct = new Service(null,null,null, null);
             $oldProduct->getProduct($_POST['id']);
             $currentPicture = $oldProduct->__get('picture');
         }
 
-        $product = new Product($name, (empty($_FILES["picture"]["name"]))?$currentPicture:$_FILES["picture"]["name"], $_POST['quantity'], $_POST["price"]);
+        $product = new Service($name, (empty($_FILES["picture"]["name"]))?$currentPicture:$_FILES["picture"]["name"], $_POST['quantity'], $_POST["price"]);
         $product->modifyProduct($_POST["id"]);
 
         header("Location: ../admin/product.php");

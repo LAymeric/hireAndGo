@@ -7,8 +7,8 @@
     include "class/Subscrpition.php";
     require_once __DIR__."./functions.php";
 
-	$user = new User($_SESSION["id"]);
-	$user->selectUser($_SESSION["id"]);
+	$user = new User($_SESSION["front_id"]);
+	$user->selectUser($_SESSION["front_id"]);
 ?>
 
 <!doctype html>
@@ -56,7 +56,7 @@
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
-													<label><?php echo NAME.": ".$user->__get("name"); ?></label>
+													<label><?php echo NAME.": ".$user->__get("lastname"); ?></label>
 												</div>
 
                 								<div class="form-group">
@@ -92,7 +92,7 @@
 												</div>
 
                 								<div class="form-group">
-													<label><?php echo POSTAL_CODE.": ".$user->__get("postalCode"); ?></label>
+													<label><?php echo POSTAL_CODE.": ".$user->__get("postal_code"); ?></label>
 												</div>
 											</div>
 											 <div class="form-group paddingLeft">
@@ -109,32 +109,7 @@
 
 		                            </div>
 		                            <div class="tab-pane" id="subscribs">
-                                        <?php
-                                        if (true){ ?>
-                                            <div class="col-lg-12">
-                                                <h2>Vous n'avez aucun abonnenemt</h2>
-                                            </div>
-                                            <?php
-                                            $query = "SELECT name, description, price FROM subscription";
-                                            $result = selectAll($query);
-                                            if ($result != null) {
-                                                foreach ($result as $value) {
-                                                    echo "<div class='col-lg-12'>";
-                                                    echo "<label>" . NAME . ": " . $value["name"] . "</label>";
-                                                    echo "<p>" . DESCRIPTION . ": " . $value["description"] . "</p>";
-                                                    echo "<label>" . PRICE . ": " . $value["price"] . "€</label>";
-                                                    echo "</div>";
-                                                }
-                                            }
-                                        } else {
-                                            $query = "SELECT name, description, price FROM subscription WHERE id = 4";
-                                            $result = sqlSelect($query);
-                                            echo "<div class='col-lg-12'>";
-                                            echo "<label>" . NAME . ": " . $result["name"] . "</label>";
-                                            echo "<p>" . DESCRIPTION . ": " . $result["description"] . "</p>";
-                                            echo "<label>" . PRICE . ": " . $result["price"] . "€</label>";
-                                            echo "</div>";
-                                        } ?>
+
 		                            </div>
 		                        </div>
 							</form>
@@ -183,7 +158,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="name"><?php echo NAME;?></label>
-                                            <input type="text" class="form-control"  name="name" value="<?php echo $user->__get("name"); ?>">
+                                            <input type="text" class="form-control"  name="name" value="<?php echo $user->__get("lastname"); ?>">
                                             <div id="errorName" class="error" style="display: none"> <?php echo INVALID_NAME ?></div>
                                         </div>
                                     </div>
@@ -228,7 +203,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="postalCode"><?php echo POSTAL_CODE;?></label>
-                                            <input type="text" class="form-control"  name="postalCode" value="<?php echo $user->__get("postalCode"); ?>" required="required">
+                                            <input type="text" class="form-control"  name="postalCode" value="<?php echo $user->__get("postal_code"); ?>" required="required">
                                             <div id="errorPostalCode" class="error" style="display:none">Code postale invalide</div>
                                         </div>
                                     </div>

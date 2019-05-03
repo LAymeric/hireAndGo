@@ -80,8 +80,18 @@
         </div>
         <div id="finalEnd"></div>
         <div id="finalStart"></div>
+
         <div class="form-group" style="text-align:center;">
-            <button type="button"  onclick="searchAddress()" class="btn btn-info"><?php echo VALIDATE?></button>
+            <div class="popup">
+                <span class="popuptext" id="successPopup"><i class="far fa-check-circle"></i><?php echo SUCCES_COMMAND;?></span>
+            </div>
+            <div class="popupError">
+                <span class="popuptext" id="errorPopup"><i class="far fa-times-circle"></i><?php echo ERROR_COMMAND;?></span>
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:center;">
+            <button type="button"  onclick="searchAddress('<?php echo $_SESSION['front_email']  ?>', '<?php echo $_SESSION['front_isPremium']?>')" class="btn btn-info"><?php echo VALIDATE?></button>
         </div>
         <div id="map" style="width:100%; height:800px; margin-top:20px"></div>
         <script src="js/map.js">
