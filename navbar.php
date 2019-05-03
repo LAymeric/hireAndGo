@@ -39,11 +39,11 @@ if(!isset($navbarItem)) $navbarItem = 'home';
                   <a class="nav-link<?php if($navbarItem === 'booking') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address  || "/hireAndGo/cart" == $address) ? "../" : ""; ?>booking.php"><?php echo BOOKING; ?></a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="<?php echo ("/hireAndGo/admin" == $address) ? "../" : ""; ?>logout.php"><?php echo LOGOUT; ?></a>
+                  <a class="nav-link" href="<?php echo ("/hireAndGo/admin" == $address || "/hireAndGo/cart" == $address) ? "../" : ""; ?>logout.php"><?php echo LOGOUT; ?></a>
               </li>
               <?php if($_SESSION["front_type"] == "ADMIN"){?>
                   <li class="nav-item">
-                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address ) ? "./" : ("/hireAndGo/cart" == $address ? "../admin/" : "admin/"); ?>admin.php"><?php echo ADMIN; ?></a>
+                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address || "/hireAndGo/cart" == $address ) ? "./" : ("/hireAndGo/cart" == $address ? "../admin/" : "admin/"); ?>admin.php"><?php echo ADMIN; ?></a>
                   </li>
               <?php }
           } else{?>
