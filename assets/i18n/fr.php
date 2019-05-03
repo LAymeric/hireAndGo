@@ -102,4 +102,6 @@
   define('MAIN_TITLE_BOOKING_END','Résumé de la reservation');
   define('DOWNLOAD_DEVIS','Télécharger le devis');
   define('VALIDATE_COURSE','Valider la course');
+  define('VALIDATION','Course validée');
+  define('BRAVO','Bravo !');
 ?>

@@ -91,9 +91,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                 }),
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    'Access-Control-Allow-Credentials':true
+                    'Content-Type': 'application/json'
                 },
                 type: 'POST',
                 dataType: "json",
@@ -101,7 +99,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                     if(isPremium === "1"){
                         document.location.href="cart/service.php?idCommand="+code.id
                     }else {
-                        successPopup()
+                        document.location.href="cart/paiement.php?idCommand="+code.id
                     }
                 },
 

@@ -102,4 +102,6 @@
   define('MAIN_TITLE_BOOKING_END','Reservation resume');
   define('DOWNLOAD_DEVIS','Download bill');
   define('VALIDATE_COURSE','Validate course');
+  define('VALIDATION','Course validated');
+  define('BRAVO','Bravo !');
 ?>

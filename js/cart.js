@@ -124,9 +124,7 @@ function validateCart(id, idCommand)
                 }),
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    'Access-Control-Allow-Credentials':true
+                    'Content-Type': 'application/json'
                 },
                 type: 'POST',
                 dataType: "json",
@@ -151,9 +149,7 @@ function downloadDevis( idCommand)//TODO
     $.ajax({ url: 'http://localhost:8080/api/command/pdf/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    'Access-Control-Allow-Credentials':true
+                    'Content-Type': 'application/json'
                 },
                 type: 'GET',
                 dataType: "json",
@@ -187,9 +183,7 @@ function validateCommand( idCommand)//TODO
     $.ajax({ url: 'http://localhost:8080/api/command/validate/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    'Access-Control-Allow-Credentials':true
+                    'Content-Type': 'application/json'
                 },
                 type: 'GET',
                 dataType: "json",
