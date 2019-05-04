@@ -129,6 +129,8 @@ $(document).ready(function(){
 
     // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
+        document.getElementById('savePicture').style.display='block'
+        console.log($('#savePicture'))
         readURL(this);
     });
 
@@ -161,7 +163,6 @@ $(document).ready(function(){
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
         }
@@ -241,6 +242,39 @@ materialDesign = {
                 }
         }, 17)
 
+}
+function saveImageProfile(userId){
+    const image = document.getElementById("wizard-picture").files[0];
+    var reader = new FileReader();
+    reader.readAsBinaryString(image);
+
+    reader.onload = function() {
+        var base64 = btoa(reader.result);
+        console.log({
+                                            userId:userId,
+                                            image:base64
+                                        })
+        $.ajax({
+                    url: './script/saveProfilPicture.php',
+                    type: 'POST',
+                    data:{
+                        userId:userId,
+                        image:base64
+                    },
+
+                    success: function (code, status) {
+                        document.location.href="profile.php"
+                    },
+
+                    error: function (result, status, error) {
+                        //todo afficher une popup d'erreur
+                        console.log("error " +JSON.stringify(result))
+                    },
+
+                    complete: function (result, status) {
+                    }
+                })
+    };
 }
 
 function debounce(func, wait, immediate) {

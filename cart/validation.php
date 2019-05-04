@@ -2,7 +2,7 @@
     $navbarItem = "booking";
     include "../head.php";
     include "../navbar.php";
-
+    $_SESSION["front_panier"]=null;
 ?>
     <div class="wrapper" id="wrapper-booking">
       <h1><?php echo VALIDATION;?></h1>
