@@ -23,9 +23,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
               <span class="sr-only">(current)</span>
             </a>
           </li>
-            <li class="nav-item">
-                <a class="nav-link" href="contact.php"><?php echo CONTACT; ?></a>
-            </li>
+
           <?php if (isConnected()){?>
               <li class="nav-item">
                   <a class="nav-link<?php if($navbarItem === 'profile') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address  || "/hireAndGo/cart" == $address) ? "../" : ""; ?>profile.php"><?php echo PROFILE; ?></a>
