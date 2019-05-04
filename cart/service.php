@@ -22,7 +22,7 @@ require_once __DIR__."./../functions.php";
 <div>
 
 
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper-service">
         <h1><?php echo MAIN_TITLE_SERVICE; ?></h1>
         <h2><?php echo MAIN_SUBTITLE_SERVICE; ?></h2>
     </div>
