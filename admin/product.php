@@ -10,21 +10,17 @@ require_once __DIR__."./../functions.php";
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-auto">
-                <h1><?php echo PRODUCT ?></h1>
-                <p style="text-align: center">
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#productModal"><?php echo ADD_PRODUCT?></button>
-                    <a href="admin.php" role="button" class="btn btn-info btn-lg"><?php echo RETURN_HOME_ADMIN?></a>
-                </p>
+                <h1><a href="admin.php" role="button" class="btn  btn-lg btn-icone"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a><?php echo PRODUCT ?> <a role="button" class="btn  btn-lg btn-icone" data-toggle="modal" data-target="#productModal"><i class="fas fa-plus-circle fa-2x"></i></a></h1>
                 <?php
                 $query = "SELECT * FROM service";
                 $result = selectAll($query);
                 echo "<table class='table table-bordered table-responsive'>";
                 if ($result != null){
-                    echo "<tr><th>".PICTURE."</th><th>".NAME."</th><th>".PRICE."</th><th>".QUANTITY."</th><th>".ACTION."</th></tr>";
+                    echo "<tr class='myTable'><th>".PICTURE."</th><th>".NAME."</th><th>".PRICE."</th><th>".QUANTITY."</th><th>".ACTION."</th></tr>";
                     foreach ($result as $value){
-                        echo "<tr><th><img src='../picture/".$value["picture"]."' class='picture2'></th><th>".$value["name"]."</th><th>".$value["price"]."€</th><th>".$value["quantity"]."</th>";
-                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</a>
-                                <a href='../script/deleteProduct.php?id=".$value["id"]."'>".DELETE."</a></th>";
+                        echo "<tr><td><img src='../picture/".$value["picture"]."' class='picture2'></td><td>".$value["name"]."</td><td>".$value["price"]."€</td><td>".$value["quantity"]."</td>";
+                        echo "<td><button class='btn btn-info btn-ls' onclick=document.location.href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</button>
+                                <button class='btn btn-danger btn-ls' onclick=document.location.href='../script/deleteProduct.php?id=".$value["id"]."'>".DELETE."</button></td>";
                         echo "</tr>";
                     }
                 } else {

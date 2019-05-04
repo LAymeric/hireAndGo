@@ -10,21 +10,21 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-auto">
-                <h1><?php echo SUBSCRIPTION?></h1>
-            <p style="text-align: center">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#subscriptionModal"><?php echo ADD_SUBSCRIPTION?></button>
-                <a href="admin.php" role="button" class="btn btn-info btn-lg"><?php echo RETURN_HOME_ADMIN?></a>
-            </p>
+                <h1>
+                    <a href="admin.php" role="button" class="btn  btn-lg btn-icone"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a><?php echo SUBSCRIPTION?>
+                    <a role="button" class="btn  btn-lg btn-icone" data-toggle="modal" data-target="#subscriptionModal"><i class="fas fa-plus-circle fa-2x"></i></a>
+                </h1>
+
             <?php
                 $query = "SELECT * FROM subscription";
                 $result = selectAll($query);
                 echo "<table class='table table-bordered table-responsive'>";
                 if ($result != null){
-                    echo "<tr><th>".NAME."</th><th>".DESCRIPTION."</th><th>".PRICE."</th><th>".ACTION."</th></tr>";
+                    echo "<tr class='myTable'><th>".NAME."</th><th>".DESCRIPTION."</th><th>".PRICE."</th><th>".ACTION."</th></tr>";
                     foreach ($result as $value){
-                        echo "<tr><th>".$value["name"]."</th><th>".$value["description"]."</th><th>".$value["price"]."€</th>";
-                        echo "<th><a href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</a>
-                                <a href='../script/deleteSubscription.php?id=".$value["id"]."'>".DELETE."</a></th>";
+                        echo "<tr><td>".$value["name"]."</td><td>".$value["description"]."</td><td>".$value["price"]."€</td>";
+                        echo "<th><button class='btn btn-info btn-ls' onclick=document.location.href='modifyInfomations.php?id=".$value["id"]."'>".MODIFY."</button>
+                                <button class='btn btn-danger btn-ls' onclick=document.location.href='../script/deleteSubscription.php?id=".$value["id"]."'>".DELETE."</button></th>";
                         echo "</tr>";
                     }
                 } else {

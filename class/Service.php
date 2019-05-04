@@ -1,6 +1,7 @@
 <?php
 class Service{
 
+
     private $id;
     private $name;
     private $picture;
@@ -13,6 +14,13 @@ class Service{
         $this->quantity = $quantity;
         $this->price = $price;
 
+    }
+
+    public function deleteProduct($id){
+        $connection = connectDB();
+
+        $deleteProduct = $connection->prepare("DELETE FROM service WHERE id =".$id);
+        $deleteProduct->execute();
     }
 
     public function addProduce(){
@@ -40,12 +48,6 @@ class Service{
         ));
     }
 
-    public function deleteProduct($id){
-        $connection = connectDB();
-
-        $deleteProduct = $connection->prepare("DELETE FROM service WHERE id =".$id);
-        $deleteProduct->execute();
-    }
 
     public function getProduct($id){
         $this->id = $id;

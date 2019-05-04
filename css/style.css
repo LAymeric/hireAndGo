@@ -16,6 +16,9 @@ nav a:hover {
   color:  rgb(91,192,222);
 }
 
+.btn-icone{
+  color: rgb(91,192,222)!important;
+}
 /* WRAPPER */
 
 .wrapper {
@@ -85,7 +88,7 @@ footer {
 }
 
 footer a {
-  color: rgb(91,192,222);;
+  color: rgb(91,192,222);
 }
 
 footer a:hover {
@@ -256,4 +259,11 @@ h4{
 
 .card-element{
   width: 300px;
+}
+
+/*Tableau*/
+
+.myTable{
+  background-color: rgb(91,192,222);
+  color: #FFFFFF;
 }
