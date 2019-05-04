@@ -178,7 +178,7 @@
                     echo "</div>";
                     echo "<div class='col-sm-4'>";
                         echo "<div class='form-group'>";
-                            echo "<input type='file' name='picture'><br>";
+                            echo "<input id='file' type='file' class=\"input-file\" name='picture'><br>";
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";

@@ -1,5 +1,4 @@
 <?php
-    ini_set("display_errors", 1);
     $navbarItem = 'admin';
     include "../head.php";
     include "../navbar.php";

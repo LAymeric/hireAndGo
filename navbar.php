@@ -36,7 +36,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
               </li>
               <?php if($_SESSION["front_type"] == "ADMIN"){?>
                   <li class="nav-item">
-                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address || "/hireAndGo/cart" == $address ) ? "./" : ("/hireAndGo/cart" == $address ? "../admin/" : "admin/"); ?>admin.php"><?php echo ADMIN; ?></a>
+                      <a class="nav-link<?php if($navbarItem === 'admin') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address) ? "./" : ("/hireAndGo/cart" == $address ? "../admin/" : "admin/"); ?>admin.php"><?php echo ADMIN; ?></a>
                   </li>
               <?php }
           } else{?>
