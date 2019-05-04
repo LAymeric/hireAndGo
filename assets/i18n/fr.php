@@ -107,5 +107,6 @@
   define('GO_BACK','Retourner sur cette course');
   define('EXPORT','Export');
   define('DOWNLOAD_EXPORT','Exporter les données');
+  define('UPDATE_PICTURE','Mettre à jour l\'image');
   define('EXPORT_EXPLANATION','Exporter les données de toutes les courses et des montants associés pour votre comptabilité');
 ?>

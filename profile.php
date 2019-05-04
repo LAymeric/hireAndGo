@@ -11,6 +11,12 @@
 	$user->selectUser($_SESSION["front_id"]);
 	$user->getReservations($_SESSION["front_id"]);
 
+	$pictureSrc = "";
+    if($user->__get("picture") != null){
+        $pictureSrc="data:application/pdf;base64,".$user->__get("picture");
+    }else{
+        $pictureSrc="assets/img/default-avatar.png";
+    }
 
 ?>
 
@@ -52,10 +58,12 @@
 											<div class="col-sm-3">
                                                     <div class="picture-container">
                                                         <div class="picture">
-                                                            <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                                            <img src="<?php echo $pictureSrc; ?>" class="picture-src" id="wizardPicturePreview" title=""/>
                                                             <input type="file" id="wizard-picture">
+
                                                         </div>
                                                     </div>
+
 											</div>
 											<div class="col-sm-4">
                 								<div class="form-group">
@@ -98,6 +106,9 @@
 													<label><?php echo POSTAL_CODE.": ".$user->__get("postal_code"); ?></label>
 												</div>
 											</div>
+											<div class="form-group paddingLeft" style="text-align:center; display:none;" id="savePicture">
+                                                <button type="button" class="btn btn-info" onClick="saveImageProfile('<?php echo $_SESSION["front_id"];?>')"><?php echo UPDATE_PICTURE;?></button>
+                                            </div>
 											 <div class="form-group paddingLeft">
                 								<a href="#" data-toggle="modal" data-target="#updateModal"><?php echo EDIT_PROFILE?></a>
                                             </div>
@@ -105,7 +116,6 @@
                                             <div class="form-group paddingLeft">
                                                 <a href="#" data-toggle="modal" data-target="#updatePwd"><?php echo EDIT_PASSWORD?></a>
                                             </div>
-
 										</div>
 		                            </div>
 		                            <div class="tab-pane" id="bookings">

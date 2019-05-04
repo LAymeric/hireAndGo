@@ -16,6 +16,7 @@ require_once __DIR__."./../functions.php";
         private $address;
         private $phone;
         private $registration_date;
+        private $picture;
         private $registrations = "";
         private $type = "FRONT";
 
@@ -48,6 +49,8 @@ require_once __DIR__."./../functions.php";
                 return $this->id;
             }  else if('registrations' === $property) {
                 return $this->registrations;
+            }  else if('picture' === $property) {
+                return $this->picture;
             } else {
                 throw new Exception('Propriété invalide !');
             }
@@ -117,7 +120,7 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, lastname,firstname,birthdate,postal_code,city,country,address,phone,type
+                "SELECT id,email, lastname,firstname,birthdate,postal_code,city,country,address,phone,type, picture
                 FROM user
                 WHERE id=" . $id
                 );
@@ -136,6 +139,7 @@ require_once __DIR__."./../functions.php";
             $this->phone=$row['phone'];
             $this->type=$row['type'];
             $this->id=$row['id'];
+            $this->picture=$row['picture'];
         }
 
         public function getReservations($id){
@@ -173,6 +177,15 @@ require_once __DIR__."./../functions.php";
             $user = $connection->prepare("UPDATE user SET type = :type WHERE id=".$id);
             $user->execute(array(
                 "type"=>$type
+            ));
+        }
+       public function savePicture($image){
+            $connection = connectDB();
+
+            $user = $connection->prepare("UPDATE user SET picture = :picture WHERE id= :id");
+            $user->execute(array(
+                "picture"=>$image,
+                "id"=>$this->id
             ));
         }
 }

@@ -107,5 +107,6 @@
   define('GO_BACK','Go back on that course');
   define('EXPORT','Export');
   define('DOWNLOAD_EXPORT','Export data');
+  define('UPDATE_PICTURE','Update profile picture');
   define('EXPORT_EXPLANATION','Export data of every courses for your accounting');
 ?>
