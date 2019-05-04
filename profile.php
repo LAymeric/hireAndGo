@@ -106,16 +106,16 @@
 													<label><?php echo POSTAL_CODE.": ".$user->__get("postal_code"); ?></label>
 												</div>
 											</div>
-											<div class="form-group paddingLeft" style="text-align:center; display:none;" id="savePicture">
-                                                <button type="button" class="btn btn-info" onClick="saveImageProfile('<?php echo $_SESSION["front_id"];?>')"><?php echo UPDATE_PICTURE;?></button>
-                                            </div>
-											 <div class="form-group paddingLeft">
-                								<a href="#" data-toggle="modal" data-target="#updateModal"><?php echo EDIT_PROFILE?></a>
-                                            </div>
+                                           <div class="form-group paddingLeft" style="text-align:center; display:none;" id="savePicture">
+                                               <button type="button" class="btn btn-info" onClick="saveImageProfile('<?php echo $_SESSION["front_id"];?>')"><?php echo UPDATE_PICTURE;?></button>
+                                           </div>
+                                         <div class="form-group paddingLeft">
+                                            <a href="#" data-toggle="modal" data-target="#updateModal"><?php echo EDIT_PROFILE?></a>
+                                           </div>
 
-                                            <div class="form-group paddingLeft">
-                                                <a href="#" data-toggle="modal" data-target="#updatePwd"><?php echo EDIT_PASSWORD?></a>
-                                            </div>
+                                           <div class="form-group paddingLeft">
+                                               <a href="#" data-toggle="modal" data-target="#updatePwd"><?php echo EDIT_PASSWORD?></a>
+                                           </div>
 										</div>
 		                            </div>
 		                            <div class="tab-pane" id="bookings">
@@ -536,17 +536,16 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title" >Modifier mon mot de passe</h4>
+                        <h4 class="modal-title" ><?php echo EDIT_PASSWORD?></h4>
                     </div>
                     <div class="modal-body">
                         <form name="updateUserForm" method="POST" action="script/updatePwd.php" onsubmit="return validatePasswordForm()" >
-
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="pwd">Mot de passe</label>
+                                        <label for="pwd"><?php echo PASSWORD?></label>
                                         <input type="password" class="form-control" name="pwd" required="required">
-                                        <div id="errorPwd" class="error" style="display:none">Mot de passe invalide (mini 8 caractères)</div>
+                                        <div id="errorPwd" class="error" style="display:none"><?php echo INVALID_PASSWORD?></div>
                                     </div>
                                 </div>
                             </div>
@@ -554,9 +553,9 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="pwdConfirm">Confirmation</label>
+                                        <label for="pwdConfirm"><?php echo CONFIRMATION?></label>
                                         <input type="password" class="form-control" name="pwdConfirm" required="required">
-                                        <div id="errorPwdConfirm" class="error" style="display:none">Confirmation invalide</div>
+                                        <div id="errorPwdConfirm" class="error" style="display:none"><?php echo INVALID_CONFIRMATION?></div>
                                     </div>
                                 </div>
                             </div>

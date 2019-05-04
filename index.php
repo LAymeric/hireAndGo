@@ -9,7 +9,11 @@
 
       <!-- Trigger the modal with a button -->
       <p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal"><?php echo COMMAND_BUTTON; ?></button>
+          <?php if(isConnected()){ ?>
+              <button type="button" class="btn btn-info btn-lg" onclick="document.location.href='booking.php'"><?php echo COMMAND_BUTTON; ?></button>
+          <?php }else{?>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#registerModal"><?php echo COMMAND_BUTTON; ?></button>
+          <?php }?>
       </p>
     </div>
 

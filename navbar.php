@@ -16,12 +16,7 @@ if(!isset($navbarItem)) $navbarItem = 'home';
 
 
           <div class="collapse navbar-collapse" id="navbarResponsive">
-          <div class="d-flex justify-content-center h-100">
-            <div class="searchbar">
-              <input class="search_input" type="text" name="" placeholder="Search...">
-              <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-            </div>
-          </div>
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link<?php if($navbarItem === 'home') echo ' active'?>" href="<?php echo ("/hireAndGo/admin" == $address  || "/hireAndGo/cart" == $address) ? "../" : ""; ?>index.php"><?php echo HOME; ?>
