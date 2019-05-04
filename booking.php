@@ -11,9 +11,6 @@
     <div class="push"></div>
 
     <div class="container center_div register-form">
-        <div class="form-group" style="text-align: center;">
-            <progress id="bookingProgress" max="100" value="33"> 33% </progress>
-        </div>
 
         <div class="row">
             <div class="col-sm-6">
