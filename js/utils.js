@@ -126,6 +126,53 @@ function emailExist(email, error) {
 
     })
 }
+function cancelSubscription(idUser, idSubscription) {
+    $.ajax({
+        url: './script/cancelSubscription.php',
+        type: 'POST',
+        dataType: "json",
+        data: {
+            idUser: idUser,
+            idSubscription: idSubscription
+        },
+        success: function (code_html, statut) {
+            document.location.href="./profile.php"
+        },
+
+        error: function (resultat, statut, erreur) {
+            console.log(JSON.stringify(resultat))
+            document.location.href="./profile.php"
+        },
+
+        complete: function (resultat, statut) {
+        }
+
+    })
+}
+
+function addSubscription(idUser, idSubscription) {
+    $.ajax({
+        url: './script/addSubscription.php',
+        type: 'POST',
+        dataType: "json",
+        data: {
+            idUser: idUser,
+            idSubscription: idSubscription
+        },
+        success: function (code_html, statut) {
+            document.location.href="./profile.php"
+        },
+
+        error: function (resultat, statut, erreur) {
+            console.log(JSON.stringify(resultat))
+            document.location.href="./profile.php"
+        },
+
+        complete: function (resultat, statut) {
+        }
+
+    })
+}
 
 
 

@@ -171,6 +171,17 @@ require_once __DIR__."./../functions.php";
             $query->closeCursor();
             return $mySubscriptions;
         }
+         public function cancelSubscription($subscriptionId){
+            $connection = connectDB();
+            $deleteSubscription = $connection->prepare("DELETE FROM asso_subscription_user
+            WHERE id_subscription=".$subscriptionId." AND id_user=".$this->id );
+            $deleteSubscription->execute();
+         }
+         public function addSubscription($subscriptionId){
+            $connection = connectDB();
+            $deleteSubscription = $connection->prepare("INSERT INTO asso_subscription_user (id_subscription, id_user) VALUES(".$subscriptionId.", ".$this->id.") ");
+            $deleteSubscription->execute();
+         }
 
         public function fetchOtherSubscriptions(){
             $connection = connectDB();
@@ -178,7 +189,7 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT subscription.name, subscription.description, subscription.price, subscription.id
+                "SELECT subscription.name, subscription.description, subscription.price, subscription.id as subscriptionId
                 FROM subscription");
             }
 
