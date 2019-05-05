@@ -23,7 +23,7 @@ class Service{
         $deleteProduct->execute();
     }
 
-    public function addProduce(){
+    public function addProduct(){
         $connection = connectDB();
 
         $insertProduct = $connection->prepare("INSERT INTO service(name, picture, quantity, price) VALUES (:name, :picture, :quantity, :price)");
