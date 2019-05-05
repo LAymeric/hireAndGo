@@ -72,6 +72,22 @@
                                         echo "";
                                     }
                                     echo ">ADMIN</option>";
+
+                                    echo "<option value='DRIVER'";
+                                    if ($member->__get('type')){
+                                        echo "selected='selected'";
+                                    } else {
+                                        echo "";
+                                    }
+                                    echo ">DRIVER</option>";
+
+                                    echo "<option value='ACCOMPANIST'";
+                                    if ($member->__get('type')){
+                                        echo "selected='selected'";
+                                    } else {
+                                        echo "";
+                                    }
+                                    echo ">ACCOMPANIST</option>";
                                 echo "</select><br>";
                       echo "</div>";
                 echo "</div>";
