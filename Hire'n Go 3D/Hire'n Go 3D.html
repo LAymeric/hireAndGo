@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Hire'n GO 3D</title>
+		<link rel="shortcut icon" href="../vendor/images/favicon/favicon.ico" type="image/ico">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				background-color: #ffffff;
+				margin: 0;
+				overflow: hidden;
+				font-family: arial;
+			}
+			#blocker {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.5);
+			}
+			#instructions {
+				width: 100%;
+				height: 100%;
+				display: -webkit-box;
+				display: -moz-box;
+				display: box;
+				-webkit-box-orient: horizontal;
+				-moz-box-orient: horizontal;
+				box-orient: horizontal;
+				-webkit-box-pack: center;
+				-moz-box-pack: center;
+				box-pack: center;
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				box-align: center;
+				color: #ffffff;
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="build/three.js"></script>
+		<script src="build/ammo.js"></script>
+		<script src="build/PointerLockControls.js"></script>	
+		<script src="build/stats.min.js"></script>
+		<script src="build/ColladaLoader.js"></script>
+		<script src="build/dat.gui.min.js"></script>
+
+		<div id="blocker">
+			<div id="instructions">
+				<span style="color: white; text-align: center; font-size:20px;">Hire'n GO 3D<br>
+			created by NURSIMHULU Jay-Shiva, LAVARET Aymeric et DESIR Yannis</span><br>
+				<span style="font-size:40px">Click to play</span>
+				<br />
+				(W, A, S, D = Move, SPACE = Jump, MOUSE = Look around)
+			</div>
+
+		</div>
+
+		<script>
+			var camera, scene, renderer, controls, stats, spotLight, car;
+			var mixer, mixer2, mixer3, mixer4;
+			var hitboxCar;
+			var inCar = false;
+			var listener, ambiantSong, musique, audioLoader = new THREE.AudioLoader();
+			var objects = [];
+			var raycaster;
+			var moveForward = false;
+			var moveBackward = false;
+			var moveLeft = false;
+			var moveRight = false;
+			var carMoveForward = false;
+			var carMoveBackward = false;
+			var carMoveLeft = false;
+			var carMoveRight = false;
+			var canJump = false;
+			var prevTime = performance.now();
+			var velocity = new THREE.Vector3();
+			var direction = new THREE.Vector3();
+			var clock = new THREE.Clock();
+
+			// Physics variables
+			var gravityConstant = - 9.8;
+			var collisionConfiguration;
+			var dispatcher;
+			var broadphase;
+			var raycaster;
+			var solver;
+			var softBodySolver;
+			var physicsWorld;
+			var rigidBodies = [];
+			var margin = 0;
+			var transformAux1 = new Ammo.btTransform();
+
+
+			initPhysics();
+			init();
+			buildGui();
+			animate();
+
+			function init() {
+				//camera
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.set(0, 0, 0);
+
+				//audio
+				listener = new THREE.AudioListener();
+				camera.add( listener );
+
+				//scene
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
+				scene.background = new THREE.TextureLoader().load("image/retro2.png");
+
+				//spotlight
+				var distance = 10;
+				spotLight = new THREE.SpotLight( 0xffffff, 1 );
+				spotLight.position.set( 20, 20, 35 );
+				spotLight.rotation.set(Math.PI*2,0,0);
+				spotLight.angle = Math.PI;
+				spotLight.intensity = 4;
+				spotLight.penumbra = 0.2;
+				spotLight.decay = 1;
+				spotLight.distance = 5000;
+				spotLight.castShadow = true;
+				spotLight.shadow.mapSize.width = 1024;
+				spotLight.shadow.mapSize.height = 1024;
+				spotLight.shadow.camera.near = 1;
+				spotLight.shadow.camera.far = 2000;
+				spotLight.shadow.camera.left = - distance;
+				spotLight.shadow.camera.right = distance;
+				spotLight.shadow.camera.top = distance;
+				spotLight.shadow.camera.bottom = - distance;
+				scene.add( spotLight );
+
+				// Lumiere ambiante
+				var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+				scene.add( ambientLight );
+
+				//controls
+				controls = new THREE.PointerLockControls( camera );
+
+				//unlock et lock the screen
+				var blocker = document.getElementById( 'blocker' );
+				var instructions = document.getElementById( 'instructions' );
+				instructions.addEventListener( 'click', function () {
+					controls.lock();
+					}, false );
+
+				controls.addEventListener( 'lock', function () {
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+					} );
+
+				controls.addEventListener( 'unlock', function () {
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+					} );
+
+				scene.add( controls.getObject() );
+
+				//move
+				var onKeyDown = function ( event ) {
+					switch ( event.keyCode ) {
+						case 38: // up
+						case 90: // z
+							moveForward = true;
+							carMoveForward = true;
+							break;
+						case 37: // left
+						case 81: // q
+							moveLeft = true;
+							carMoveLeft = true;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = true;
+							carMoveBackward = true;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = true;
+							carMoveRight = true;
+							break;
+						case 32: // space
+							if ( canJump === true ) velocity.y += 150;
+							canJump = false;
+							break;
+						case 77:
+							inCar = true;
+							controls.getObject().position.set(car.position.x - 9, 9.8, car.position.z + 15);
+							break;
+						case 76:
+							inCar = false;
+							controls.getObject().position.set(car.position.x - 20, 10, car.position.z + 15);
+					}
+				};
+
+				var onKeyUp = function ( event ) {
+					switch ( event.keyCode ) {
+						case 38: // up
+						case 90: // z
+							moveForward = false;
+							carMoveForward = false;
+							break;
+						case 37: // left
+						case 81: // q
+							moveLeft = false;
+							carMoveLeft = false;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = false;
+							carMoveBackward = false;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = false;
+							carMoveRight = false;
+							break;
+					}
+				};
+
+				// stats
+				stats = new Stats();
+				document.body.appendChild( stats.dom );
+
+				//
+				document.addEventListener( 'keydown', onKeyDown, false );
+				document.addEventListener( 'keyup', onKeyUp, false );
+				raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, -1, 0 ), 0, 10 );
+
+				//Plane
+				var pos = new THREE.Vector3();
+				var quat = new THREE.Quaternion();
+				pos.set(0, 0, 0);
+				quat.set(0, 0, 0, 1);
+
+				var plane = createGround(pos, quat, "image/goudron.jpg", 1);
+				plane.position.set(0, 0, -490);
+				plane.receiveShadow = true;
+
+				pos.set(0, 0, -1490);
+				createGround(pos, quat, "image/goudron.jpg", 1);
+				
+				var plane3 = createGround(pos, quat, "image/goudron.jpg", 1);
+				plane3.position.set(0, 0, 490);
+				plane3.receiveShadow = true;
+
+				//Collada
+					//sol
+					for (var i = -127 * 6; i < 127 * 16; i+=127) {
+						createRoad(0, i);
+						createRoad(63.5, i);
+						createRoad(-63.5, i);
+					}
+
+					//trotoire
+					for (var i = -206.9 * 4; i < 206.9 * 10; i+=206.9) {
+						createPavement(159, i, 0);
+						createPavement(-158, i, 1);
+					}
+
+					//batiment
+						//cote gauche
+						createBat1(150, 391, 0);
+						createBat2(120, 547.5, 0);
+						createBat3(200, 870, 0);
+						createBat4(153, 1360, 0);
+
+						//cote droit
+						createBat1(-150, -5, 1);
+						createBat2(-120, 547.5, 1);
+						createBat2(-120, 391, 1);
+						createBat3(-190, 870, 1);
+						createBat5(-153, 1000, 1);
+
+					/*arbre
+					for (var i = 0; i < 400 * 3; i+=400) {
+						createTree(115, i, 0);
+					}*/
+
+					//voiture
+					var loader = new THREE.ColladaLoader();
+					loader.load("voiture/untitled.dae", function ( collada ) {
+					car = collada.scene;
+					car.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+						}
+					} );
+					car.position.set(100, 1, -50);
+					car.rotation.z = Math.PI;
+					car.scale.set(6, 6, 6);
+					car.receiveShadow = true;
+					car.castShadow = true;
+					scene.add( car );
+					} ); 
+
+					//arc de triomphe
+					var loader = new THREE.ColladaLoader();
+					loader.load("batiment/arc de triomphe/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(-95, 0, -1850);
+					avatar.scale.set(0.1, 0.1, 0.1);
+					scene.add( avatar );
+					} );
+					
+
+					//tour eiffel
+					var loader = new THREE.ColladaLoader();
+					loader.load("batiment/tour eiffel/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(300, -2, 600);
+					avatar.rotation.z = -0.8;
+					scene.add( avatar );
+					} );
+
+					//parc
+					var loader = new THREE.ColladaLoader();
+					loader.load("batiment/parc/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(200, 1, 100);
+					avatar.scale.set(0.2, 0.2, 0.2);
+					scene.add( avatar );
+					} );
+
+					var loader = new THREE.ColladaLoader();
+					loader.load("animation/situps/jbl.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(250,1.7,132);
+					avatar.scale.set(0.5, 0.5, 0.5);
+					scene.add( avatar );
+					} );
+
+					//hitbox
+						//batiment
+						pos.set(-323, 1, -455);
+						objects.push(createHitbox(pos, quat, 353, 100, 935));
+
+						pos.set(323, 1, -455);
+						objects.push(createHitbox(pos, quat, 353, 100, 935));
+
+						pos.set(-274, 20, -1117);
+						objects.push(createHitbox(pos, quat, 243, 50, 233));
+
+						pos.set(262, 1, -1151);
+						objects.push(createHitbox(pos, quat, 215, 100, 380));
+
+						//pied arc de triomphe
+						pos.set(69, 1, -1877);
+						objects.push(createHitbox(pos, quat, 68, 30, 43));
+
+						pos.set(-62, 1, -1877);
+						objects.push(createHitbox(pos, quat, 71, 30, 43));
+
+						pos.set(69, 1, -1952);
+						objects.push(createHitbox(pos, quat, 68, 30, 43));
+
+						pos.set(-62, 1, -1952);
+						objects.push(createHitbox(pos, quat, 71, 30, 43));
+
+						//pied tour eiffel
+						pos.set(42, 1, 779);
+						objects.push(createHitbox(pos, quat, 25, 30, 25));
+
+						pos.set(42, 1, 872);
+						objects.push(createHitbox(pos, quat, 25, 30, 25));
+
+						pos.set(-55, 1, 779);
+						objects.push(createHitbox(pos, quat, 25, 30, 25));
+
+						pos.set(-55, 1, 872);
+						objects.push(createHitbox(pos, quat, 25, 30, 25));
+
+						//aire de jeu
+						pos.set(218, 1, 117);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(265, 1, 116);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(308, 1, 116);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(357, 1, 116);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(311, 1, 185);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(354, 1, 178);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(263, 1, 181);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(224, 1, 182);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(222, 1, 213);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(261, 1, 210);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(300, 1, 226);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(357, 1, 218);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(302, 1, 276);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(356, 1, 276);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(270, 1, 279);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+						pos.set(219, 1, 278);
+						objects.push(createHitbox(pos, quat, 12, 10, 15));
+
+					pos.set(93, 1, -35);
+					hitboxCar = createHitbox(pos, quat, 13, 12, 30);
+					objects.push(hitboxCar);
+
+				//collada animation
+				var loader = new THREE.ColladaLoader();
+				loader.load( "animation/assis/Sitting.dae", function ( collada ) {
+					var animations = collada.animations;
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(213,2,115);
+					avatar.rotation.y = -Math.PI * 0.5;
+					avatar.scale.set(0.07,0.07,0.07);
+					mixer = new THREE.AnimationMixer( avatar );
+					var action = mixer.clipAction( animations[ 0 ] ).play();
+					scene.add( avatar );
+				} );
+
+				var loader = new THREE.ColladaLoader();
+				loader.load( "animation/situps/Situps.dae", function ( collada ) {
+					var animations = collada.animations;
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(250,1,125);
+					avatar.rotation.y = -Math.PI * 0.5;
+					avatar.scale.set(0.07,0.07,0.07);
+					mixer2 = new THREE.AnimationMixer( avatar );
+					var action = mixer2.clipAction( animations[ 0 ] ).play();
+					scene.add( avatar );
+				} );
+
+				var loader = new THREE.ColladaLoader();
+				loader.load( "animation/danse/Swing Dancing.dae", function ( collada ) {
+					var animations = collada.animations;
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(274,1,159);
+					avatar.rotation.y = -Math.PI * 0.5;
+					avatar.scale.set(0.03,0.03,0.03);
+					mixer3 = new THREE.AnimationMixer( avatar );
+					var action = mixer3.clipAction( animations[ 0 ] ).play();
+					scene.add( avatar );
+				} );
+
+				var loader = new THREE.ColladaLoader();
+				loader.load( "animation/cheer/Cheering.dae", function ( collada ) {
+					var animations = collada.animations;
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(260,1,159);
+					avatar.rotation.y = Math.PI * 0.5;
+					avatar.scale.set(0.05,0.05,0.05);
+					mixer4 = new THREE.AnimationMixer( avatar );
+					var action = mixer4.clipAction( animations[ 0 ] ).play();
+					scene.add( avatar );
+				} );
+
+				//renderer
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.shadowMap.enabled = true;
+				document.body.appendChild( renderer.domElement );
+
+				//Rezise
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				//Musique
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+				stats.update();
+				if ( controls.isLocked === true ) {
+					if (inCar){
+						var time = performance.now();
+						var delta = ( time - prevTime ) / 1000;
+						velocity.x -= velocity.x * 1.0 * delta;
+						velocity.z -= velocity.z * 1.0 * delta;
+						direction.z = Number( carMoveForward ) - Number( carMoveBackward );
+						direction.x = Number( carMoveLeft ) - Number( carMoveRight );
+						direction.normalize();
+						if ( carMoveForward || carMoveBackward ){
+							velocity.z -= direction.z * 200.0 * delta;
+						}
+						if ( carMoveLeft ){
+							velocity.x -= direction.x * 50.0 * delta;
+							car.rotation.z += 0.01;
+							controls.getObject().rotation.y += 0.009;
+							velocity.z -= direction.z * 50.0 * delta;
+						}
+						if ( carMoveRight ){
+							velocity.x -= direction.x * 50.0 * delta;
+							car.rotation.z -= 0.01;
+							controls.getObject().rotation.y -= 0.009;
+							velocity.z -= direction.z * 50.0 * delta;
+						}
+						car.position.set(car.position.x + velocity.x * delta, 1, car.position.z + velocity.z * delta);
+						hitboxCar.position.set(car.position.x - 7 + velocity.x * delta, 1, car.position.z + 20 + velocity.z * delta);
+						controls.getObject().position.set(car.position.x - 9 + velocity.x * delta, 9.8, car.position.z + 15 + velocity.z * delta);
+						//collisionCar(objects);
+					} else {
+						raycaster.ray.origin.copy( controls.getObject().position );
+						raycaster.ray.origin.y -= 10;
+						var intersections = raycaster.intersectObjects( objects );
+						var onObject = intersections.length > 0;
+						var time = performance.now();
+						var delta = ( time - prevTime ) / 1000;
+						velocity.x -= velocity.x * 5.0 * delta;
+						velocity.z -= velocity.z * 5.0 * delta;
+						velocity.y -= 9.8 * 70.0 * delta; // 100.0 = mass
+						direction.z = Number( moveForward ) - Number( moveBackward );
+						direction.x = Number( moveLeft ) - Number( moveRight );
+						direction.normalize(); // this ensures consistent movements in all directions
+						if ( moveForward || moveBackward ) velocity.z -= direction.z * 200.0 * delta;
+						if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
+						if ( onObject === true ) {							
+							velocity.y = Math.max( 0, velocity.y );
+							canJump = true;
+						}
+						controls.getObject().translateX( velocity.x * delta );
+						controls.getObject().translateY( velocity.y * delta );
+						controls.getObject().translateZ( velocity.z * delta );
+						if ( controls.getObject().position.y < 10 ) {
+							velocity.y = 0;
+							controls.getObject().position.y = 10;
+							canJump = true;
+						}
+						collision(objects);
+					}
+					prevTime = time;
+				}
+				renderer.render( scene, camera );
+			}
+
+			function createGround(pos, quat, texture, repeat){
+				var material = new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load(texture)});
+				var geometry = new THREE.BoxBufferGeometry(1000, 1 ,1000);
+				var threeObject = new THREE.Mesh( geometry, material );
+				if (repeat){
+					threeObject.material.map.repeat.set( 64, 64 );
+					threeObject.material.map.wrapS = THREE.RepeatWrapping;
+					threeObject.material.map.wrapT = THREE.RepeatWrapping;
+				}
+				var shape = new Ammo.btBoxShape( new Ammo.btVector3( 1000, 0.1, 1000) );	
+				shape.setMargin( margin );
+				createRigidBody( threeObject, shape, 0, pos, quat );
+				return threeObject;
+			}
+
+			function createHitbox(pos, quat, width, height, depth) {
+				var material = new THREE.MeshPhongMaterial( {transparent: true, opacity: 0.0} );
+				var threeObject = new THREE.Mesh( new THREE.BoxBufferGeometry(width, height, depth), material );
+				var shape = new Ammo.btBoxShape( new Ammo.btVector3( width/2, height/2, depth/2) );
+				shape.setMargin( margin );
+				createRigidBody( threeObject, shape, 10, pos, quat );
+				return threeObject;
+			}
+
+			function initPhysics() {
+				// Physics configuration
+				collisionConfiguration = new Ammo.btSoftBodyRigidBodyCollisionConfiguration();
+				dispatcher = new Ammo.btCollisionDispatcher( collisionConfiguration );
+				broadphase = new Ammo.btDbvtBroadphase();
+				solver = new Ammo.btSequentialImpulseConstraintSolver();
+				softBodySolver = new Ammo.btDefaultSoftBodySolver();
+				physicsWorld = new Ammo.btSoftRigidDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration, softBodySolver );
+				physicsWorld.setGravity( new Ammo.btVector3( 0, gravityConstant, 0 ) );
+				physicsWorld.getWorldInfo().set_m_gravity( new Ammo.btVector3( 0, gravityConstant, 0 ) );
+			}
+
+			function createRigidBody( threeObject, physicsShape, mass, pos, quat ) {
+				threeObject.position.copy( pos );
+				threeObject.quaternion.copy( quat );
+				var transform = new Ammo.btTransform();
+				transform.setIdentity();
+				transform.setOrigin( new Ammo.btVector3( pos.x, pos.y, pos.z ) );
+				transform.setRotation( new Ammo.btQuaternion( quat.x, quat.y, quat.z, quat.w ) );
+				var motionState = new Ammo.btDefaultMotionState( transform );
+				var localInertia = new Ammo.btVector3( 0, 0, 0 );
+				physicsShape.calculateLocalInertia( mass, localInertia );
+				var rbInfo = new Ammo.btRigidBodyConstructionInfo( mass, motionState, physicsShape, localInertia );
+				var body = new Ammo.btRigidBody( rbInfo );
+				threeObject.userData.physicsBody = body;
+				scene.add( threeObject );
+				if ( mass > 0 ) {
+					rigidBodies.push( threeObject );
+					// Disable deactivation
+					body.setActivationState( 4 );
+				}
+				physicsWorld.addRigidBody( body );
+			}
+
+			function render() {
+				var deltaTime = clock.getDelta();
+				updatePhysics( deltaTime );
+				if ( mixer !== undefined ) {
+					mixer.update( deltaTime );
+				}
+
+				if ( mixer2 !== undefined ) {
+					mixer2.update( deltaTime );
+				}
+
+				if ( mixer3 !== undefined ) {
+					mixer3.update( deltaTime );
+				}
+
+				if ( mixer4 !== undefined ) {
+					mixer4.update( deltaTime );
+				}
+
+				renderer.render( scene, camera );
+			}
+
+			function updatePhysics( deltaTime ) {
+				// Step world
+				physicsWorld.stepSimulation( deltaTime, 10 );
+
+				// Update rigid bodies
+				for ( var i = 0, il = rigidBodies.length; i < il; i ++ ) {
+					var objThree = rigidBodies[ i ];
+					var objPhys = objThree.userData.physicsBody;
+					var ms = objPhys.getMotionState();
+					if ( ms ) {
+						ms.getWorldTransform( transformAux1 );
+						var p = transformAux1.getOrigin();
+						var q = transformAux1.getRotation();
+						objThree.position.set( p.x(), p.y(), p.z() );
+						objThree.quaternion.set( q.x(), q.y(), q.z(), q.w() );
+					}
+				}
+			}
+
+			function buildGui() /* Interface de contrôle pour changer des paramètres*/ {
+				gui = new dat.GUI();
+
+				var folder1 = gui.addFolder('Spotlight');
+				var folder2 = gui.addFolder('Song');
+
+				var params = {
+					intensity: spotLight.intensity,
+					distance: spotLight.distance,
+					angle: spotLight.angle,
+					penumbra: spotLight.penumbra,
+					decay: spotLight.decay,
+					'rotation x z': spotLight.position.z, 
+					'rotation x z': spotLight.position.x,
+					'rotation y': spotLight.position.y,
+					master: listener.getMasterVolume(),
+				}
+
+				folder1.add( params, 'intensity', 0, 4 ).onChange( function ( val ) {
+					spotLight.intensity = val;
+					render();
+				} );
+
+				folder1.add( params, 'distance', 50, 5000 ).onChange( function ( val ) {
+					spotLight.distance = val;
+					render();
+				} );
+
+				folder1.add( params, 'angle', 0, Math.PI / 3 ).onChange( function ( val ) {
+					spotLight.angle = val;
+					render();
+				} );
+
+				folder1.add( params, 'penumbra', 0, 1 ).onChange( function ( val ) {
+					spotLight.penumbra = val;
+					render();
+				} );
+
+				folder1.add( params, 'decay', 1, 2 ).onChange( function ( val ) {
+					spotLight.decay = val;
+					render();
+				} );
+
+				folder1.add( params, 'rotation x z', -Math.PI*50, Math.PI*50 ).onChange( function ( val ) {
+					spotLight.position.z = val;
+					spotLight.position.x = val;
+					render();
+				} );
+
+				folder1.add( params, 'rotation y', 0, Math.PI*50 ).onChange( function ( val ) {
+					spotLight.position.y = val;
+					render();
+				} );
+
+				folder2.add( params, 'master' ).min( 0.0 ).max( 1.0 ).step( 0.01 ).onChange( function () {
+					listener.setMasterVolume( params.master );
+				} );
+				
+			}
+
+			function createRoad(posX, posZ){
+				var loader = new THREE.ColladaLoader();
+				loader.load("sol/route2.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					avatar.position.set(posX, 0, -54-posZ);
+					avatar.rotation.set(Math.PI / 2, Math.PI , Math.PI / 2);
+					avatar.scale.set(50, 50,50);
+					scene.add( avatar );
+				} );
+			}
+
+			function createPavement(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("sol/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					if (inverse) {
+						avatar.rotation.z = -Math.PI/2;
+						avatar.position.set(posX, -3, -196-posZ);
+					} else {
+						avatar.rotation.z = Math.PI/2;
+						avatar.position.set(posX, -3, 10-posZ);
+					}	
+					avatar.scale.set(1, 1, 1);
+					scene.add( avatar );
+					} );
+			}
+
+			function createBat1(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("batiment/1/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.castShadow = true;
+							node.receiveShadow = true;
+							node.frustumCulled = false;
+						}
+					} );
+					if (inverse) {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = Math.PI/2;
+					} else {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = -Math.PI/2;
+					}
+					avatar.scale.set(0.3, 0.3, 0.3);
+					scene.add( avatar );
+					} );
+			}
+
+			function createBat2(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("batiment/2/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.castShadow = true;
+							node.receiveShadow = true;
+							node.frustumCulled = false;
+						}
+					} );
+					if (inverse) {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = Math.PI/2;
+					} else {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = -Math.PI/2;
+					}
+					avatar.scale.set(0.3, 0.3, 0.3);
+					scene.add( avatar );
+					} );
+			}
+
+			function createBat3(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("batiment/3/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.castShadow = true;
+							node.receiveShadow = true;
+							node.frustumCulled = false;
+						}
+					} );
+					if (inverse) {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = -Math.PI/2;
+					} else {
+						avatar.position.set(posX, 0, -posZ);
+					}
+					avatar.scale.set(0.3, 0.3, 0.3);
+					scene.add( avatar );
+					} );
+			}
+
+			function createBat4(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("batiment/4/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.castShadow = true;
+							node.receiveShadow = true;
+							node.frustumCulled = false;
+						}
+					} );
+					if (inverse) {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = Math.PI/2;
+					} else {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = -Math.PI/2;
+					}
+					avatar.scale.set(0.2, 0.2, 0.2);
+					scene.add( avatar );
+					} );
+			}
+
+			function createBat5(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("batiment/5/model.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.castShadow = true;
+							node.receiveShadow = true;
+							node.frustumCulled = false;
+						}
+					} );
+					if (inverse) {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = Math.PI/2;
+					} else {
+						avatar.position.set(posX, 0, -posZ);
+						avatar.rotation.z = -Math.PI/2;
+					}
+					avatar.scale.set(0.2, 0.2, 0.2);
+					scene.add( avatar );
+					} );
+			}
+
+			function createTree(posX, posZ, inverse){
+				var loader = new THREE.ColladaLoader();
+					loader.load("arbre/tree3.dae", function ( collada ) {
+					var avatar = collada.scene;
+					avatar.traverse( function ( node ) {
+						if ( node.isSkinnedMesh ) {
+							node.frustumCulled = false;
+							node.castShadow = true;
+						}
+					} );
+					if (inverse){
+						avatar.position.set(posX, 2, -5-posZ);
+						avatar.rotation.z = -Math.PI/2;
+					} else {
+						avatar.position.set(posX, 2, -5-posZ);
+						avatar.rotation.z = -Math.PI/2;
+					}
+					avatar.scale.set(5, 5, 5);
+					scene.add( avatar );
+					} );
+			}
+
+			function collision(objet){
+					for (var i = 0; i < objet.length; i++) {
+						if (controls.getObject().position.z > objet[i].position.z - objet[i].geometry.parameters.depth/2 && 
+							controls.getObject().position.z < objet[i].position.z + objet[i].geometry.parameters.depth/2 && 
+							controls.getObject().position.y < objet[i].position.y + objet[i].geometry.parameters.height/2) {
+
+							if(controls.getObject().position.x < objet[i].position.x){
+								if(controls.getObject().position.x > objet[i].position.x - objet[i].geometry.parameters.width/2){
+								controls.getObject().position.x = objet[i].position.x - objet[i].geometry.parameters.width/2;
+								}
+							}else{
+								if(controls.getObject().position.x < objet[i].position.x + objet[i].geometry.parameters.width/2){
+									controls.getObject().position.x = objet[i].position.x + objet[i].geometry.parameters.width/2;
+								}
+							}	
+						}
+
+						if (controls.getObject().position.x > objet[i].position.x - objet[i].geometry.parameters.width/2 && 
+							controls.getObject().position.x < objet[i].position.x + objet[i].geometry.parameters.width/2 && 
+							controls.getObject().position.y < objet[i].position.y + objet[i].geometry.parameters.height/2){
+
+							if(controls.getObject().position.z < objet[i].position.z){
+								if(controls.getObject().position.z > objet[i].position.z - objet[i].geometry.parameters.depth/2-2){
+								controls.getObject().position.z = objet[i].position.z - objet[i].geometry.parameters.depth/2-2;
+								}
+							}else{
+								if(controls.getObject().position.z < objet[i].position.z + objet[i].geometry.parameters.depth/2+2){
+									controls.getObject().position.z = objet[i].position.z + objet[i].geometry.parameters.depth/2+2;
+								}
+							}
+						}
+					}
+				}
+			
+			function collisionCar(objet){
+					for (var i = 0; i < objet.length - 1; i++) {
+						if (hitboxCar.position.z - objet[i].geometry.parameters.depth/2> objet[i].position.z - objet[i].geometry.parameters.depth/2 && 
+							hitboxCar.position.z + objet[i].geometry.parameters.depth/2< objet[i].position.z + objet[i].geometry.parameters.depth/2) {
+
+							if(hitboxCar.position.x < objet[i].position.x){
+								if(hitboxCar.position.x + hitboxCar.geometry.parameters.width/2 > objet[i].position.x - objet[i].geometry.parameters.width/2){
+								hitboxCar.position.x = objet[i].position.x - objet[i].geometry.parameters.width/2 - hitboxCar.geometry.parameters.width/2;
+								}
+							}else{
+								if(hitboxCar.position.x - hitboxCar.geometry.parameters.width/2 < objet[i].position.x + objet[i].geometry.parameters.width/2){
+									hitboxCar.position.x = objet[i].position.x + objet[i].geometry.parameters.width/2 + hitboxCar.geometry.parameters.width/2;
+								}
+							}	
+						}
+
+						if (hitboxCar.position.x > objet[i].position.x - objet[i].geometry.parameters.width/2 && 
+							hitboxCar.position.x < objet[i].position.x + objet[i].geometry.parameters.width/2){
+
+							if(hitboxCar.position.z < objet[i].position.z){
+								if(hitboxCar.position.z - hitboxCar.geometry.parameters.depth/2 < objet[i].position.z + objet[i].geometry.parameters.depth/2){
+								hitboxCar.position.z = objet[i].position.z + objet[i].geometry.parameters.depth/2 + hitboxCar.geometry.parameters.depth/2;
+								}
+							}else{
+								if(hitboxCar.position.z + hitboxCar.geometry.parameters.depth/2 > objet[i].position.z - objet[i].geometry.parameters.depth/2){
+									hitboxCar.position.z = objet[i].position.z - objet[i].geometry.parameters.depth/2 - hitboxCar.geometry.parameters.depth/2;
+								}
+							}
+						}
+					}
+				}
+		</script>
+	</body>
+</html>
