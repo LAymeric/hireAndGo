@@ -1,6 +1,6 @@
 <?php
 
-define("DBNAME","hirengo");
+define("DBNAME","hireandgo");
 define("DBUSER","root");
 define("DBPWD","");
 define("DBHOST","localhost");

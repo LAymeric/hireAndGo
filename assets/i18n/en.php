@@ -108,5 +108,7 @@
   define('EXPORT','Export');
   define('DOWNLOAD_EXPORT','Export data');
   define('UPDATE_PICTURE','Update profile picture');
+  define('CANCEL_SUBSCRIPTION','Cancel my subscription');
+  define('SUBSCRIBE','Subscribe to this subscription');
   define('EXPORT_EXPLANATION','Export data of every courses for your accounting');
 ?>

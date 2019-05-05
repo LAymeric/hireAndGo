@@ -17,6 +17,7 @@ require_once __DIR__."./../functions.php";
         private $phone;
         private $registration_date;
         private $picture;
+        private $isPremium;
         private $registrations = "";
         private $type = "FRONT";
 
@@ -51,8 +52,11 @@ require_once __DIR__."./../functions.php";
                 return $this->registrations;
             }  else if('picture' === $property) {
                 return $this->picture;
+            }  else if('isPremium' === $property) {
+                return $this->isPremium;
             } else {
-                throw new Exception('Propriété invalide !');
+                   echo "ERROR ".$property;
+                //throw new Exception('Propriété invalide !');
             }
         }
 
@@ -120,7 +124,7 @@ require_once __DIR__."./../functions.php";
                 header("Location: login.php");
             } else {
                 $query = $connection->prepare(
-                "SELECT id,email, lastname,firstname,birthdate,postal_code,city,country,address,phone,type, picture
+                "SELECT id,email, lastname,firstname,birthdate,postal_code,city,country,address,phone,type, picture, is_premium
                 FROM user
                 WHERE id=" . $id
                 );
@@ -138,8 +142,55 @@ require_once __DIR__."./../functions.php";
             $this->address=$row['address'];
             $this->phone=$row['phone'];
             $this->type=$row['type'];
+            $this->isPremium=$row['is_premium'];
             $this->id=$row['id'];
             $this->picture=$row['picture'];
+        }
+
+        public function fetchMySubscription(){
+            $connection = connectDB();
+            if (!isConnected()) {
+                header("Location: login.php");
+            } else {
+                $query = $connection->prepare(
+                "SELECT subscription.name, subscription.description, subscription.price, user.id as userId, subscription.id as subscriptionId
+                FROM subscription, asso_subscription_user, user
+                WHERE subscription.id=asso_subscription_user.id_subscription
+                AND user.id=asso_subscription_user.id_user
+                AND user.id=".$this->id
+                );
+            }
+
+            $result = $query->execute();
+            $mySubscriptions = [];
+            while ($row = $query->fetch())
+            {
+                $mySubscriptions[]=$row;
+            }
+
+            $query->closeCursor();
+            return $mySubscriptions;
+        }
+
+        public function fetchOtherSubscriptions(){
+            $connection = connectDB();
+            if (!isConnected()) {
+                header("Location: login.php");
+            } else {
+                $query = $connection->prepare(
+                "SELECT subscription.name, subscription.description, subscription.price, subscription.id
+                FROM subscription");
+            }
+
+            $result = $query->execute();
+            $availableSubscriptions = [];
+            while ($row = $query->fetch())
+            {
+                $availableSubscriptions[]=$row;
+            }
+
+            $query->closeCursor();
+            return $availableSubscriptions;
         }
 
         public function getReservations($id){
@@ -160,7 +211,6 @@ require_once __DIR__."./../functions.php";
             {
             	$this->registrations[]=$row;
             }
-
             $query->closeCursor();
         }
 

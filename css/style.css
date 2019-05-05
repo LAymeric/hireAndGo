@@ -225,6 +225,27 @@ h4{
     float:left;
     min-height:205px;
 }
+.mySubscriptionContainer{
+    width:300px;
+    text-align:center;
+    padding:10px;
+    border-radius:5px;
+    border: solid 1px;
+    margin:10px;
+    float:left;
+    min-height:205px;
+}
+.availableSubscriptionContainer{
+    width:300px;
+    text-align:center;
+    padding:10px;
+    border-radius:5px;
+    border: solid 1px #008000;
+    color: #008000;
+    margin:10px;
+    float:left;
+    min-height:205px;
+}
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.

@@ -137,6 +137,42 @@
                                         ?>
 		                            </div>
 		                            <div class="tab-pane" id="subscribs">
+                                            <?php
+                                                $alreadyHasKey = [];
+                                                if($user->__get("isPremium")){
+                                                    $mySubscriptions = $user->fetchMySubscription();
+                                                    //print user subscription
+                                                    //and other available subscription
+                                                    foreach($mySubscriptions as $mySubscription){
+                                                        $alreadyHasKey[]=$mySubscription['subscriptionId'];
+                                                        echo "<div class=\"mySubscriptionContainer\">";
+                                                        echo "<h3>".$mySubscription['name']."</h3>";
+                                                        echo $mySubscription['description']."<br/>";
+                                                        echo $mySubscription['price']."€<br/>";
+                                                        echo "<div class=\"form-group\" style=\"text-align:center;\">";
+                                                        echo "<button type=\"button\" onclick=\"\" class=\"btn btn-info\">".CANCEL_SUBSCRIPTION."</button></div>";
+                                                        echo "</div>";
+                                                    }
+                                                }
+
+                                                $otherSubscriptions = $user->fetchOtherSubscriptions();
+                                                $filtered = array_filter(
+                                                    $otherSubscriptions,
+                                                    function ($key) use ($alreadyHasKey) {
+                                                        return in_array($key, $alreadyHasKey);
+                                                    },
+                                                    ARRAY_FILTER_USE_KEY
+                                                );
+                                                foreach($filtered as $otherSubscription){
+                                                        echo "<div class=\"availableSubscriptionContainer\">";
+                                                        echo "<h3>".$otherSubscription['name']."</h3>";
+                                                        echo $otherSubscription['description']."<br/>";
+                                                        echo $otherSubscription['price']."€<br/>";
+                                                        echo "<div class=\"form-group\" style=\"text-align:center;\">";
+                                                        echo "<button type=\"button\" onclick=\"\" class=\"btn btn-success\">".SUBSCRIBE."</button></div>";
+                                                        echo "</div>";
+                                                    }
+                                            ?>
 
 		                            </div>
 		                        </div>
@@ -509,9 +545,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="form-group" style="text-align:center;">
                                     <button type="submit" class="btn btn-info"><?php echo UPDATE;?></button>
