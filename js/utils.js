@@ -151,27 +151,7 @@ function cancelSubscription(idUser, idSubscription) {
 }
 
 function addSubscription(idUser, idSubscription) {
-    $.ajax({
-        url: './script/addSubscription.php',
-        type: 'POST',
-        dataType: "json",
-        data: {
-            idUser: idUser,
-            idSubscription: idSubscription
-        },
-        success: function (code_html, statut) {
-            document.location.href="./profile.php"
-        },
-
-        error: function (resultat, statut, erreur) {
-            console.log(JSON.stringify(resultat))
-            document.location.href="./profile.php"
-        },
-
-        complete: function (resultat, statut) {
-        }
-
-    })
+    document.location.href="./paiementSubscription.php?idUser="+idUser+"&idSubscription="+idSubscription
 }
 
 
