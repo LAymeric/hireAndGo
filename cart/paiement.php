@@ -8,7 +8,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="./../js/stripe.js"></script>
 <div class="margin-container">
-    <form action="./validation.php?commandId=<?php echo $_GET["commandId"]?>" method="post" id="payment-form">
+    <form action="./validation.php?commandId=<?php echo $_GET["idCommand"]?>" method="post" id="payment-form">
       <div class="form-group" style="text-align:center;">
         <label for="card-element" class="card-element">
           Credit or debit card

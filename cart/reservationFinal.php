@@ -14,7 +14,7 @@
         <button type="button" class="btn btn-primary" onClick="downloadDevis('<?php echo $_GET["idCommand"]?>')"><?php echo DOWNLOAD_DEVIS?></button>
     </div>
      <div class="form-group" style="text-align:center;">
-        <button type="button" class="btn btn-primary" onClick="document.location.href='paiement.php?commandId=<?php echo $_GET["idCommand"]?>'"><?php echo VALIDATE_COURSE?></button>
+        <button type="button" class="btn btn-primary" onClick="document.location.href='paiement.php?idCommand=<?php echo $_GET["idCommand"]?>'"><?php echo VALIDATE_COURSE?></button>
     </div>
 <?php
     include "../footer.php";

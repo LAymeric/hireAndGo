@@ -99,7 +99,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                     if(isPremium === "1"){
                         document.location.href="cart/service.php?idCommand="+code.id
                     }else {
-                        document.location.href="cart/paiement.php?idCommand="+code.id
+                        document.location.href="cart/reservationFinal.php?idCommand="+code.id
                     }
                 },
 
