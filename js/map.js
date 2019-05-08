@@ -80,7 +80,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, email, i
                 totalDistance += legs[i].distance.value;
                 totalDuration += legs[i].duration.value;
             }
-            $.ajax({ url: 'http://localhost:8080/api/command/new',
+            $.ajax({ url: 'http://192.168.1.67:8080/api/command/new',
                 data: JSON.stringify({
                     email:email,
                     start: startAddress.value + " " + startPC.value + " " + startCity.value,

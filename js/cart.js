@@ -116,7 +116,7 @@ function validateCart(id, idCommand)
         })
     }
 
-    $.ajax({ url: 'http://localhost:8080/api/command/update',
+    $.ajax({ url: 'http://192.168.1.67:8080/api/command/update',
                 data: JSON.stringify({
                     idUser:id,
                     services: arrayServices,
@@ -146,7 +146,7 @@ function validateCart(id, idCommand)
 
 function downloadDevis( idCommand)//TODO
 {
-    $.ajax({ url: 'http://localhost:8080/api/command/pdf/'+idCommand,
+    $.ajax({ url: 'http://192.168.1.67:8080/api/command/pdf/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -180,7 +180,7 @@ function downloadPDF(file) {
 }
 function validateCommand( idCommand)//TODO
 {
-    $.ajax({ url: 'http://localhost:8080/api/command/validate/'+idCommand,
+    $.ajax({ url: 'http://192.168.1.67:8080/api/command/validate/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -204,7 +204,7 @@ function validateCommand( idCommand)//TODO
 }
 function paidCourse( idCommand)//TODO
 {
-    $.ajax({ url: 'http://localhost:8080/api/command/paid/'+idCommand,
+    $.ajax({ url: 'http://192.168.1.67:8080/api/command/paid/'+idCommand,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
