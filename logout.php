@@ -7,6 +7,10 @@
  */
 
   session_start();
-  session_unset();
-  session_destroy();
+$_SESSION["front_id"] = null;
+$_SESSION["front_type"] = null;
+$_SESSION["front_panier"] = null;
+$_SESSION["front_isPremium"] = false;
+$_SESSION["front_email"] = null;
+$_SESSION["front_auth"] = null;
   header("Location: index.php");
