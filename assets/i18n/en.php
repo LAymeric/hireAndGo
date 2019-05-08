@@ -112,4 +112,5 @@
   define('SUBSCRIBE','Subscribe to this subscription');
   define('EXPORT_EXPLANATION','Export data of every courses for your accounting');
   define('CARD','Credit or debit card');
+  define('SERVICE_ACCOMPANIST','Is this service of accompanist type ?');
 ?>

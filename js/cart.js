@@ -21,7 +21,7 @@ function Add(id)
 
     //alert("ID : "+id+" Name : "+name+" Price : "+price+" Qunatity : "+quantity);
     var action = "add";
-    if(quantity === ""){
+    if(quantity === "" || quantity === "0" || quantity === 0){
         errorPopup()
         return
     }
@@ -84,6 +84,9 @@ function delAll(id)
 function update(id)
 {
     var up = document.getElementById("quantite"+id).value;
+    if(!up || up === "0" || up === 0){
+        return;
+    }
     var action = "upd";
     $.ajax({
         url:'../cart/actionCart.php',

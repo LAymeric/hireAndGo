@@ -112,4 +112,5 @@
   define('SUBSCRIBE','S\'inscrire à cet abonnement');
   define('EXPORT_EXPLANATION','Exporter les données de toutes les courses et des montants associés pour votre comptabilité');
   define('CARD','Carte de crédit ou débit');
+  define('SERVICE_ACCOMPANIST','Ce service est-il celui d\'un accompagnateur ?');
 ?>

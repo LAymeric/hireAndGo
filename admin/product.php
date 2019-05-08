@@ -24,7 +24,7 @@ require_once __DIR__."./../functions.php";
                         echo "</tr>";
                     }
                 } else {
-                    echo EMPTY_SPRODUCT;
+                    echo EMPTY_PRODUCT;
                 }
                 echo "</table>" ?>
             </div>
@@ -75,6 +75,15 @@ require_once __DIR__."./../functions.php";
                                     <label for="quantity"><?php echo QUANTITY; ?></label>
                                     <input type="number" class="form-control" name="quantity"  required="required">
 
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <input type="checkbox" name="accompanist">
+                                        <label for="accompanist"><?php echo SERVICE_ACCOMPANIST; ?></label>
+                                    </div>
                                 </div>
                             </div>
 
