@@ -11,7 +11,7 @@
     <form action="./validation.php?commandId=<?php echo $_GET["idCommand"]?>" method="post" id="payment-form">
       <div class="form-group" style="text-align:center;">
         <label for="card-element" class="card-element">
-          Credit or debit card
+            <?php echo CARD; ?>
         </label>
         <div id="card-element">
           <!-- A Stripe Element will be inserted here. -->
