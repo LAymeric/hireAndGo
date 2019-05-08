@@ -176,21 +176,30 @@ require_once __DIR__."./../functions.php";
             $deleteSubscription = $connection->prepare("DELETE FROM asso_subscription_user
             WHERE id_subscription=".$subscriptionId." AND id_user=".$this->id );
             $deleteSubscription->execute();
-            if(sizeof(fetchMySubscription() == 0)){
-                setIsPremium(false);
-                $_SESSION["front_isPremium"] = false;
-            }
+            $muSubscription = $connection->prepare(
+                                                     "SELECT subscription.name, subscription.description, subscription.price, user.id as userId, subscription.id as subscriptionId
+                                                     FROM subscription, asso_subscription_user, user
+                                                     WHERE subscription.id=asso_subscription_user.id_subscription
+                                                     AND user.id=asso_subscription_user.id_user
+                                                     AND user.id=".$this->id
+                                                     )->execute();
+            if($muSubscription == null){
+                $this->setIsPremium(0);
+            }else{
+                 $this->setIsPremium(0);
+             }
          }
          public function addSubscription($subscriptionId){
             $connection = connectDB();
             $deleteSubscription = $connection->prepare("INSERT INTO asso_subscription_user (id_subscription, id_user) VALUES(".$subscriptionId.", ".$this->id.") ");
             $deleteSubscription->execute();
+            $this->setIsPremium(true);
          }
          public function setIsPremium($boolean){
             $connection = connectDB();
             $setIsPremium = $connection->prepare("UPDATE user SET is_premium=".$boolean." WHERE id=".$this->id);
-            $_SESSION["front_isPremium"] = true;
             $setIsPremium->execute();
+            $_SESSION["front_isPremium"] = $boolean;
          }
 
         public function fetchOtherSubscriptions(){
