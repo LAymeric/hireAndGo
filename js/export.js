@@ -1,5 +1,5 @@
 function downloadXls(){
-    $.ajax({ url: 'http://192.168.1.67:8080/api/command/export',
+    $.ajax({ url: 'http://localhost:8080/api/command/export',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
